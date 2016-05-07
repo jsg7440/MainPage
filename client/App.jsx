@@ -1,9 +1,13 @@
+import $ from 'jquery';
+import _ from 'underscore';
+import Handlebars from 'handlebars';
+
 // on document load
 $(function(){
-  
   // Data Model
-  var todos = [];
   
+  var todos = [];
+
   // Application
   var template;
   var app = {
@@ -17,7 +21,7 @@ $(function(){
         return template(todo);
       });
       app.unbindEvents();
-      $('ul.list-group').html(todoHtml.join(""));
+      $('ul.list-group').html(todoHtml.join(''));
       app.bindEvents();
     },
     compileTemplates: function(){
@@ -36,11 +40,10 @@ $(function(){
       app.bindAddTodoEvents();
       app.bindAddTodoEventsOnEnter();
       app.bindRemoveTodoEvents();
-      app.bindTodoItemFinished();
     },
     bindHoverEvents: function(){
       var $items = $('.list-group-item');
-      $items.on('mouseover', function(event){
+      $items.on('mouseover', function(){
         $(this).addClass('list-group-item-success');
       });
       $items.on('mouseout', function(){
@@ -52,9 +55,9 @@ $(function(){
       $checkboxes.on('change', function(){
         var wasChecked = $(this).is(':checked');
         if (!wasChecked) {
-          $(this).parent().parent().removeClass("disabled");
+          $(this).parent().parent().removeClass('disabled');
         } else {
-          $(this).parent().parent().addClass("disabled");
+          $(this).parent().parent().addClass('disabled');
         }
       });
     },
@@ -64,12 +67,12 @@ $(function(){
         if (_.isString(newTodoTitle) && newTodoTitle.length > 2) {
           var newTodoObject = { title: newTodoTitle, completed: false };
           todos.push(newTodoObject);
-          $('.add-todo-container input').val("");
-          app.render(); 
+          $('.add-todo-container input').val('');
+          app.render();
         }
       });
-    }, 
-    bindAddTodoEventsOnEnter: function (){
+    },
+    bindAddTodoEventsOnEnter: function(){
       $(document).keypress(function(event) {
         var kcode = (event.keyCode);
         if (kcode === 13) {
@@ -77,8 +80,8 @@ $(function(){
           if ($.type(newTodoTitle) === 'string' && newTodoTitle.length > 2) {
             var newTodoObject = { title: newTodoTitle, completed: false };
             todos.push(newTodoObject);
-            $('.add-todo-container input').val("");
-            app.render(); 
+            $('.add-todo-container input').val('');
+            app.render();
           }
         }
       });
@@ -87,16 +90,10 @@ $(function(){
       $('.list-group-item button').on('click', function(){
         var index = $(this).parent().parent().index();
         todos.splice(index, 1);
-        $()
+        $();
         app.render();
-      }); 
-    },
-    bindTodoItemFinished: function(){
-      
+      });
     }
-    
   };
-  
   app.init();
-  
 });
