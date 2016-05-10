@@ -65,7 +65,11 @@
 	_pagesTodo2['default'].init();
 	
 	(0, _jquery2['default'])(function () {
-		_pagesTodo2['default'].init();
+		var url = window.location.pathname;
+	
+		if (url === "pages/todo.html") {
+			_pagesTodo2['default'].init();
+		};
 	});
 
 /***/ },
