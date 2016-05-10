@@ -8,17 +8,13 @@ todos.init();
 $(function(){
 	var url = window.location.pathname;
 
-	// Switch statement
-
+	// First javascript router
 	switch(url){
 		case 'pages/todo.html': 
 			todos.init();
 		break;
-
 		case 'pages/project.html':
 			//init the project javascript
 		break;
 	}
-
-	};
 });

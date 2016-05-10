@@ -67,9 +67,15 @@
 	(0, _jquery2['default'])(function () {
 		var url = window.location.pathname;
 	
-		if (url === "pages/todo.html") {
-			_pagesTodo2['default'].init();
-		};
+		// First javascript router
+		switch (url) {
+			case 'pages/todo.html':
+				_pagesTodo2['default'].init();
+				break;
+			case 'pages/project.html':
+				//init the project javascript
+				break;
+		}
 	});
 
 /***/ },
