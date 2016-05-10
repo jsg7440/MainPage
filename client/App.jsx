@@ -10,10 +10,10 @@ $(function(){
 
 	// First javascript router
 	switch (url) {
-		case 'pages/todo.html': 
+		case '/pages/todo.html': 
 			todos.init();
 		break;
-		case 'pages/project.html':
+		case '/pages/project.html':
 			//init the project javascript
 		break;
 	}

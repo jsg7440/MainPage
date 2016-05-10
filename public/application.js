@@ -69,10 +69,10 @@
 	
 		// First javascript router
 		switch (url) {
-			case 'pages/todo.html':
+			case '/pages/todo.html':
 				_pagesTodo2['default'].init();
 				break;
-			case 'pages/project.html':
+			case '/pages/project.html':
 				//init the project javascript
 				break;
 		}
