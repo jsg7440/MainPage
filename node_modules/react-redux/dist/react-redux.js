@@ -157,11 +157,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	  didWarnAboutReceivingStore = true;
 
-	  /* eslint-disable no-console */
-	  if (typeof console !== 'undefined' && typeof console.error === 'function') {
-	    (0, _warning2["default"])('<Provider> does not support changing `store` on the fly. ' + 'It is most likely that you see this error because you updated to ' + 'Redux 2.x and React Redux 2.x which no longer hot reload reducers ' + 'automatically. See https://github.com/reactjs/react-redux/releases/' + 'tag/v2.0.0 for the migration instructions.');
-	  }
-	  /* eslint-disable no-console */
+	  (0, _warning2["default"])('<Provider> does not support changing `store` on the fly. ' + 'It is most likely that you see this error because you updated to ' + 'Redux 2.x and React Redux 2.x which no longer hot reload reducers ' + 'automatically. See https://github.com/reactjs/react-redux/releases/' + 'tag/v2.0.0 for the migration instructions.');
 	}
 
 	var Provider = function (_Component) {
@@ -271,6 +267,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function getDisplayName(WrappedComponent) {
 	  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+	}
+
+	var errorObject = { value: null };
+	function tryCatch(fn, ctx) {
+	  try {
+	    return fn.apply(ctx);
+	  } catch (e) {
+	    errorObject.value = e;
+	    return errorObject;
+	  }
 	}
 
 	// Helps track hot reloading.
@@ -475,6 +481,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.haveOwnPropsChanged = true;
 	        this.hasStoreStateChanged = true;
 	        this.haveStatePropsBeenPrecalculated = false;
+	        this.statePropsPrecalculationError = null;
 	        this.renderedElement = null;
 	        this.finalMapDispatchToProps = null;
 	        this.finalMapStateToProps = null;
@@ -492,8 +499,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        if (pure && !this.doStatePropsDependOnOwnProps) {
-	          if (!this.updateStatePropsIfNeeded()) {
+	          var haveStatePropsChanged = tryCatch(this.updateStatePropsIfNeeded, this);
+	          if (!haveStatePropsChanged) {
 	            return;
+	          }
+	          if (haveStatePropsChanged === errorObject) {
+	            this.statePropsPrecalculationError = errorObject.value;
 	          }
 	          this.haveStatePropsBeenPrecalculated = true;
 	        }
@@ -512,11 +523,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var haveOwnPropsChanged = this.haveOwnPropsChanged;
 	        var hasStoreStateChanged = this.hasStoreStateChanged;
 	        var haveStatePropsBeenPrecalculated = this.haveStatePropsBeenPrecalculated;
+	        var statePropsPrecalculationError = this.statePropsPrecalculationError;
 	        var renderedElement = this.renderedElement;
 
 	        this.haveOwnPropsChanged = false;
 	        this.hasStoreStateChanged = false;
 	        this.haveStatePropsBeenPrecalculated = false;
+	        this.statePropsPrecalculationError = null;
+
+	        if (statePropsPrecalculationError) {
+	          throw statePropsPrecalculationError;
+	        }
 
 	        var shouldUpdateStateProps = true;
 	        var shouldUpdateDispatchProps = true;

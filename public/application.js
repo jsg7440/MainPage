@@ -46,25 +46,54 @@
 
 	'use strict';
 	
+	__webpack_require__(1);
+	
+	__webpack_require__(5);
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"todo-container":"todo-container","add-todo-container":"add-todo-container","col-md-10":"col-md-10","col-md-2":"col-md-2"};
+
+/***/ },
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _jquery = __webpack_require__(1);
+	var _jquery = __webpack_require__(6);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
-	var _underscore = __webpack_require__(2);
+	var _underscore = __webpack_require__(7);
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var _handlebars = __webpack_require__(3);
+	var _handlebars = __webpack_require__(8);
 	
 	var _handlebars2 = _interopRequireDefault(_handlebars);
+	
+	var _lscache = __webpack_require__(38);
+	
+	var _lscache2 = _interopRequireDefault(_lscache);
 	
 	// on document load
 	(0, _jquery2['default'])(function () {
 	  // Data Model
-	
-	  var todos = [];
+	  var savedData = _lscache2['default'].get('todos');
+	  var todos;
+	  if (savedData === null) {
+	    todos = [];
+	  } else {
+	    todos = savedData;
+	  };
 	
 	  // Application
 	  var template;
@@ -75,6 +104,7 @@
 	    },
 	    render: function render() {
 	      // render the todos
+	      _lscache2['default'].set('todos', todos);
 	      var todoHtml = _underscore2['default'].map(todos, function (todo) {
 	        return template(todo);
 	      });
@@ -155,11 +185,9 @@
 	  };
 	  app.init();
 	});
-	
-	// Test
 
 /***/ },
-/* 1 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10007,7 +10035,7 @@
 
 
 /***/ },
-/* 2 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//     Underscore.js 1.8.3
@@ -11561,7 +11589,7 @@
 
 
 /***/ },
-/* 3 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// USAGE:
@@ -11570,9 +11598,9 @@
 	
 	// var local = handlebars.create();
 	
-	var handlebars = __webpack_require__(4)['default'];
+	var handlebars = __webpack_require__(9)['default'];
 	
-	var printer = __webpack_require__(32);
+	var printer = __webpack_require__(37);
 	handlebars.PrintVisitor = printer.PrintVisitor;
 	handlebars.print = printer.print;
 	
@@ -11592,7 +11620,7 @@
 
 
 /***/ },
-/* 4 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11602,29 +11630,29 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _handlebarsRuntime = __webpack_require__(5);
+	var _handlebarsRuntime = __webpack_require__(10);
 	
 	var _handlebarsRuntime2 = _interopRequireDefault(_handlebarsRuntime);
 	
 	// Compiler imports
 	
-	var _handlebarsCompilerAst = __webpack_require__(23);
+	var _handlebarsCompilerAst = __webpack_require__(28);
 	
 	var _handlebarsCompilerAst2 = _interopRequireDefault(_handlebarsCompilerAst);
 	
-	var _handlebarsCompilerBase = __webpack_require__(24);
+	var _handlebarsCompilerBase = __webpack_require__(29);
 	
-	var _handlebarsCompilerCompiler = __webpack_require__(29);
+	var _handlebarsCompilerCompiler = __webpack_require__(34);
 	
-	var _handlebarsCompilerJavascriptCompiler = __webpack_require__(30);
+	var _handlebarsCompilerJavascriptCompiler = __webpack_require__(35);
 	
 	var _handlebarsCompilerJavascriptCompiler2 = _interopRequireDefault(_handlebarsCompilerJavascriptCompiler);
 	
-	var _handlebarsCompilerVisitor = __webpack_require__(27);
+	var _handlebarsCompilerVisitor = __webpack_require__(32);
 	
 	var _handlebarsCompilerVisitor2 = _interopRequireDefault(_handlebarsCompilerVisitor);
 	
-	var _handlebarsNoConflict = __webpack_require__(22);
+	var _handlebarsNoConflict = __webpack_require__(27);
 	
 	var _handlebarsNoConflict2 = _interopRequireDefault(_handlebarsNoConflict);
 	
@@ -11663,7 +11691,7 @@
 
 
 /***/ },
-/* 5 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11677,30 +11705,30 @@
 	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 	
-	var _handlebarsBase = __webpack_require__(6);
+	var _handlebarsBase = __webpack_require__(11);
 	
 	var base = _interopRequireWildcard(_handlebarsBase);
 	
 	// Each of these augment the Handlebars object. No need to setup here.
 	// (This is done to easily share code between commonjs and browse envs)
 	
-	var _handlebarsSafeString = __webpack_require__(20);
+	var _handlebarsSafeString = __webpack_require__(25);
 	
 	var _handlebarsSafeString2 = _interopRequireDefault(_handlebarsSafeString);
 	
-	var _handlebarsException = __webpack_require__(8);
+	var _handlebarsException = __webpack_require__(13);
 	
 	var _handlebarsException2 = _interopRequireDefault(_handlebarsException);
 	
-	var _handlebarsUtils = __webpack_require__(7);
+	var _handlebarsUtils = __webpack_require__(12);
 	
 	var Utils = _interopRequireWildcard(_handlebarsUtils);
 	
-	var _handlebarsRuntime = __webpack_require__(21);
+	var _handlebarsRuntime = __webpack_require__(26);
 	
 	var runtime = _interopRequireWildcard(_handlebarsRuntime);
 	
-	var _handlebarsNoConflict = __webpack_require__(22);
+	var _handlebarsNoConflict = __webpack_require__(27);
 	
 	var _handlebarsNoConflict2 = _interopRequireDefault(_handlebarsNoConflict);
 	
@@ -11735,7 +11763,7 @@
 
 
 /***/ },
-/* 6 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11746,17 +11774,17 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _utils = __webpack_require__(7);
+	var _utils = __webpack_require__(12);
 	
-	var _exception = __webpack_require__(8);
+	var _exception = __webpack_require__(13);
 	
 	var _exception2 = _interopRequireDefault(_exception);
 	
-	var _helpers = __webpack_require__(9);
+	var _helpers = __webpack_require__(14);
 	
-	var _decorators = __webpack_require__(17);
+	var _decorators = __webpack_require__(22);
 	
-	var _logger = __webpack_require__(19);
+	var _logger = __webpack_require__(24);
 	
 	var _logger2 = _interopRequireDefault(_logger);
 	
@@ -11845,7 +11873,7 @@
 
 
 /***/ },
-/* 7 */
+/* 12 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -11975,7 +12003,7 @@
 
 
 /***/ },
-/* 8 */
+/* 13 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -12021,7 +12049,7 @@
 
 
 /***/ },
-/* 9 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12032,31 +12060,31 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _helpersBlockHelperMissing = __webpack_require__(10);
+	var _helpersBlockHelperMissing = __webpack_require__(15);
 	
 	var _helpersBlockHelperMissing2 = _interopRequireDefault(_helpersBlockHelperMissing);
 	
-	var _helpersEach = __webpack_require__(11);
+	var _helpersEach = __webpack_require__(16);
 	
 	var _helpersEach2 = _interopRequireDefault(_helpersEach);
 	
-	var _helpersHelperMissing = __webpack_require__(12);
+	var _helpersHelperMissing = __webpack_require__(17);
 	
 	var _helpersHelperMissing2 = _interopRequireDefault(_helpersHelperMissing);
 	
-	var _helpersIf = __webpack_require__(13);
+	var _helpersIf = __webpack_require__(18);
 	
 	var _helpersIf2 = _interopRequireDefault(_helpersIf);
 	
-	var _helpersLog = __webpack_require__(14);
+	var _helpersLog = __webpack_require__(19);
 	
 	var _helpersLog2 = _interopRequireDefault(_helpersLog);
 	
-	var _helpersLookup = __webpack_require__(15);
+	var _helpersLookup = __webpack_require__(20);
 	
 	var _helpersLookup2 = _interopRequireDefault(_helpersLookup);
 	
-	var _helpersWith = __webpack_require__(16);
+	var _helpersWith = __webpack_require__(21);
 	
 	var _helpersWith2 = _interopRequireDefault(_helpersWith);
 	
@@ -12073,14 +12101,14 @@
 
 
 /***/ },
-/* 10 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	exports.__esModule = true;
 	
-	var _utils = __webpack_require__(7);
+	var _utils = __webpack_require__(12);
 	
 	exports['default'] = function (instance) {
 	  instance.registerHelper('blockHelperMissing', function (context, options) {
@@ -12118,7 +12146,7 @@
 
 
 /***/ },
-/* 11 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12128,9 +12156,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _utils = __webpack_require__(7);
+	var _utils = __webpack_require__(12);
 	
-	var _exception = __webpack_require__(8);
+	var _exception = __webpack_require__(13);
 	
 	var _exception2 = _interopRequireDefault(_exception);
 	
@@ -12218,7 +12246,7 @@
 
 
 /***/ },
-/* 12 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12228,7 +12256,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _exception = __webpack_require__(8);
+	var _exception = __webpack_require__(13);
 	
 	var _exception2 = _interopRequireDefault(_exception);
 	
@@ -12249,14 +12277,14 @@
 
 
 /***/ },
-/* 13 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	exports.__esModule = true;
 	
-	var _utils = __webpack_require__(7);
+	var _utils = __webpack_require__(12);
 	
 	exports['default'] = function (instance) {
 	  instance.registerHelper('if', function (conditional, options) {
@@ -12284,7 +12312,7 @@
 
 
 /***/ },
-/* 14 */
+/* 19 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -12316,7 +12344,7 @@
 
 
 /***/ },
-/* 15 */
+/* 20 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -12334,14 +12362,14 @@
 
 
 /***/ },
-/* 16 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	exports.__esModule = true;
 	
-	var _utils = __webpack_require__(7);
+	var _utils = __webpack_require__(12);
 	
 	exports['default'] = function (instance) {
 	  instance.registerHelper('with', function (context, options) {
@@ -12373,7 +12401,7 @@
 
 
 /***/ },
-/* 17 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12384,7 +12412,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _decoratorsInline = __webpack_require__(18);
+	var _decoratorsInline = __webpack_require__(23);
 	
 	var _decoratorsInline2 = _interopRequireDefault(_decoratorsInline);
 	
@@ -12395,14 +12423,14 @@
 
 
 /***/ },
-/* 18 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	exports.__esModule = true;
 	
-	var _utils = __webpack_require__(7);
+	var _utils = __webpack_require__(12);
 	
 	exports['default'] = function (instance) {
 	  instance.registerDecorator('inline', function (fn, props, container, options) {
@@ -12430,14 +12458,14 @@
 
 
 /***/ },
-/* 19 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	exports.__esModule = true;
 	
-	var _utils = __webpack_require__(7);
+	var _utils = __webpack_require__(12);
 	
 	var logger = {
 	  methodMap: ['debug', 'info', 'warn', 'error'],
@@ -12483,7 +12511,7 @@
 
 
 /***/ },
-/* 20 */
+/* 25 */
 /***/ function(module, exports) {
 
 	// Build out our basic SafeString type
@@ -12504,7 +12532,7 @@
 
 
 /***/ },
-/* 21 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12524,15 +12552,15 @@
 	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 	
-	var _utils = __webpack_require__(7);
+	var _utils = __webpack_require__(12);
 	
 	var Utils = _interopRequireWildcard(_utils);
 	
-	var _exception = __webpack_require__(8);
+	var _exception = __webpack_require__(13);
 	
 	var _exception2 = _interopRequireDefault(_exception);
 	
-	var _base = __webpack_require__(6);
+	var _base = __webpack_require__(11);
 	
 	function checkRevision(compilerInfo) {
 	  var compilerRevision = compilerInfo && compilerInfo[0] || 1,
@@ -12802,7 +12830,7 @@
 
 
 /***/ },
-/* 22 */
+/* 27 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/* global window */
@@ -12829,7 +12857,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 23 */
+/* 28 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -12866,7 +12894,7 @@
 
 
 /***/ },
-/* 24 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12881,19 +12909,19 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _parser = __webpack_require__(25);
+	var _parser = __webpack_require__(30);
 	
 	var _parser2 = _interopRequireDefault(_parser);
 	
-	var _whitespaceControl = __webpack_require__(26);
+	var _whitespaceControl = __webpack_require__(31);
 	
 	var _whitespaceControl2 = _interopRequireDefault(_whitespaceControl);
 	
-	var _helpers = __webpack_require__(28);
+	var _helpers = __webpack_require__(33);
 	
 	var Helpers = _interopRequireWildcard(_helpers);
 	
-	var _utils = __webpack_require__(7);
+	var _utils = __webpack_require__(12);
 	
 	exports.parser = _parser2['default'];
 	
@@ -12920,7 +12948,7 @@
 
 
 /***/ },
-/* 25 */
+/* 30 */
 /***/ function(module, exports) {
 
 	/* istanbul ignore next */
@@ -13664,7 +13692,7 @@
 
 
 /***/ },
-/* 26 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13674,7 +13702,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _visitor = __webpack_require__(27);
+	var _visitor = __webpack_require__(32);
 	
 	var _visitor2 = _interopRequireDefault(_visitor);
 	
@@ -13891,7 +13919,7 @@
 
 
 /***/ },
-/* 27 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13901,7 +13929,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _exception = __webpack_require__(8);
+	var _exception = __webpack_require__(13);
 	
 	var _exception2 = _interopRequireDefault(_exception);
 	
@@ -14037,7 +14065,7 @@
 
 
 /***/ },
-/* 28 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14057,7 +14085,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _exception = __webpack_require__(8);
+	var _exception = __webpack_require__(13);
 	
 	var _exception2 = _interopRequireDefault(_exception);
 	
@@ -14273,7 +14301,7 @@
 
 
 /***/ },
-/* 29 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* eslint-disable new-cap */
@@ -14288,13 +14316,13 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _exception = __webpack_require__(8);
+	var _exception = __webpack_require__(13);
 	
 	var _exception2 = _interopRequireDefault(_exception);
 	
-	var _utils = __webpack_require__(7);
+	var _utils = __webpack_require__(12);
 	
-	var _ast = __webpack_require__(23);
+	var _ast = __webpack_require__(28);
 	
 	var _ast2 = _interopRequireDefault(_ast);
 	
@@ -14851,7 +14879,7 @@
 
 
 /***/ },
-/* 30 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14861,15 +14889,15 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _base = __webpack_require__(6);
+	var _base = __webpack_require__(11);
 	
-	var _exception = __webpack_require__(8);
+	var _exception = __webpack_require__(13);
 	
 	var _exception2 = _interopRequireDefault(_exception);
 	
-	var _utils = __webpack_require__(7);
+	var _utils = __webpack_require__(12);
 	
-	var _codeGen = __webpack_require__(31);
+	var _codeGen = __webpack_require__(36);
 	
 	var _codeGen2 = _interopRequireDefault(_codeGen);
 	
@@ -15983,7 +16011,7 @@
 
 
 /***/ },
-/* 31 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* global define */
@@ -15991,7 +16019,7 @@
 	
 	exports.__esModule = true;
 	
-	var _utils = __webpack_require__(7);
+	var _utils = __webpack_require__(12);
 	
 	var SourceNode = undefined;
 	
@@ -16155,7 +16183,7 @@
 
 
 /***/ },
-/* 32 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* eslint-disable new-cap */
@@ -16168,7 +16196,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _visitor = __webpack_require__(27);
+	var _visitor = __webpack_require__(32);
 	
 	var _visitor2 = _interopRequireDefault(_visitor);
 	
@@ -16344,6 +16372,362 @@
 	};
 	/* eslint-enable new-cap */
 	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2NvbXBpbGVyL3ByaW50ZXIuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozt1QkFDb0IsV0FBVzs7OztBQUV4QixTQUFTLEtBQUssQ0FBQyxHQUFHLEVBQUU7QUFDekIsU0FBTyxJQUFJLFlBQVksRUFBRSxDQUFDLE1BQU0sQ0FBQyxHQUFHLENBQUMsQ0FBQztDQUN2Qzs7QUFFTSxTQUFTLFlBQVksR0FBRztBQUM3QixNQUFJLENBQUMsT0FBTyxHQUFHLENBQUMsQ0FBQztDQUNsQjs7QUFFRCxZQUFZLENBQUMsU0FBUyxHQUFHLDBCQUFhLENBQUM7O0FBRXZDLFlBQVksQ0FBQyxTQUFTLENBQUMsR0FBRyxHQUFHLFVBQVMsTUFBTSxFQUFFO0FBQzVDLE1BQUksR0FBRyxHQUFHLEVBQUUsQ0FBQzs7QUFFYixPQUFLLElBQUksQ0FBQyxHQUFHLENBQUMsRUFBRSxDQUFDLEdBQUcsSUFBSSxDQUFDLE9BQU8sRUFBRSxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFO0FBQzVDLE9BQUcsSUFBSSxJQUFJLENBQUM7R0FDYjs7QUFFRCxLQUFHLElBQUksTUFBTSxHQUFHLElBQUksQ0FBQztBQUNyQixTQUFPLEdBQUcsQ0FBQztDQUNaLENBQUM7O0FBRUYsWUFBWSxDQUFDLFNBQVMsQ0FBQyxPQUFPLEdBQUcsVUFBUyxPQUFPLEVBQUU7QUFDakQsTUFBSSxHQUFHLEdBQUcsRUFBRTtNQUNSLElBQUksR0FBRyxPQUFPLENBQUMsSUFBSTtNQUNuQixDQUFDLFlBQUE7TUFBRSxDQUFDLFlBQUEsQ0FBQzs7QUFFVCxNQUFJLE9BQU8sQ0FBQyxXQUFXLEVBQUU7QUFDdkIsUUFBSSxXQUFXLEdBQUcsaUJBQWlCLENBQUM7QUFDcEMsU0FBSyxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUMsR0FBRyxPQUFPLENBQUMsV0FBVyxDQUFDLE1BQU0sRUFBRSxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFO0FBQ3JELGlCQUFXLElBQUksR0FBRyxHQUFHLE9BQU8sQ0FBQyxXQUFXLENBQUMsQ0FBQyxDQUFDLENBQUM7S0FDOUM7QUFDRCxlQUFXLElBQUksSUFBSSxDQUFDO0FBQ3BCLE9BQUcsSUFBSSxJQUFJLENBQUMsR0FBRyxDQUFDLFdBQVcsQ0FBQyxDQUFDO0dBQzlCOztBQUVELE9BQUssQ0FBQyxHQUFHLENBQUMsRUFBRSxDQUFDLEdBQUcsSUFBSSxDQUFDLE1BQU0sRUFBRSxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFO0FBQ3ZDLE9BQUcsSUFBSSxJQUFJLENBQUMsTUFBTSxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDO0dBQzdCOztBQUVELE1BQUksQ0FBQyxPQUFPLEVBQUUsQ0FBQzs7QUFFZixTQUFPLEdBQUcsQ0FBQztDQUNaLENBQUM7O0FBRUYsWUFBWSxDQUFDLFNBQVMsQ0FBQyxpQkFBaUIsR0FBRyxVQUFTLFFBQVEsRUFBRTtBQUM1RCxTQUFPLElBQUksQ0FBQyxHQUFHLENBQUMsS0FBSyxHQUFHLElBQUksQ0FBQyxhQUFhLENBQUMsUUFBUSxDQUFDLEdBQUcsS0FBSyxDQUFDLENBQUM7Q0FDL0QsQ0FBQztBQUNGLFlBQVksQ0FBQyxTQUFTLENBQUMsU0FBUyxHQUFHLFVBQVMsUUFBUSxFQUFFO0FBQ3BELFNBQU8sSUFBSSxDQUFDLEdBQUcsQ0FBQyxlQUFlLEdBQUcsSUFBSSxDQUFDLGFBQWEsQ0FBQyxRQUFRLENBQUMsR0FBRyxLQUFLLENBQUMsQ0FBQztDQUN6RSxDQUFDOztBQUVGLFlBQVksQ0FBQyxTQUFTLENBQUMsY0FBYyxHQUNyQyxZQUFZLENBQUMsU0FBUyxDQUFDLGNBQWMsR0FBRyxVQUFTLEtBQUssRUFBRTtBQUN0RCxNQUFJLEdBQUcsR0FBRyxFQUFFLENBQUM7O0FBRWIsS0FBRyxJQUFJLElBQUksQ0FBQyxHQUFHLENBQUMsQ0FBQyxLQUFLLENBQUMsSUFBSSxLQUFLLGdCQUFnQixHQUFHLFlBQVksR0FBRyxFQUFFLENBQUEsR0FBSSxRQUFRLENBQUMsQ0FBQztBQUNsRixNQUFJLENBQUMsT0FBTyxFQUFFLENBQUM7QUFDZixLQUFHLElBQUksSUFBSSxDQUFDLEdBQUcsQ0FBQyxJQUFJLENBQUMsYUFBYSxDQUFDLEtBQUssQ0FBQyxDQUFDLENBQUM7QUFDM0MsTUFBSSxLQUFLLENBQUMsT0FBTyxFQUFFO0FBQ2pCLE9BQUcsSUFBSSxJQUFJLENBQUMsR0FBRyxDQUFDLFVBQVUsQ0FBQyxDQUFDO0FBQzVCLFFBQUksQ0FBQyxPQUFPLEVBQUUsQ0FBQztBQUNmLE9BQUcsSUFBSSxJQUFJLENBQUMsTUFBTSxDQUFDLEtBQUssQ0FBQyxPQUFPLENBQUMsQ0FBQztBQUNsQyxRQUFJLENBQUMsT0FBTyxFQUFFLENBQUM7R0FDaEI7QUFDRCxNQUFJLEtBQUssQ0FBQyxPQUFPLEVBQUU7QUFDakIsUUFBSSxLQUFLLENBQUMsT0FBTyxFQUFFO0FBQUUsVUFBSSxDQUFDLE9BQU8sRUFBRSxDQUFDO0tBQUU7QUFDdEMsT0FBRyxJQUFJLElBQUksQ0FBQyxHQUFHLENBQUMsT0FBTyxDQUFDLENBQUM7QUFDekIsUUFBSSxDQUFDLE9BQU8sRUFBRSxDQUFDO0FBQ2YsT0FBRyxJQUFJLElBQUksQ0FBQyxNQUFNLENBQUMsS0FBSyxDQUFDLE9BQU8sQ0FBQyxDQUFDO0FBQ2xDLFFBQUksQ0FBQyxPQUFPLEVBQUUsQ0FBQztBQUNmLFFBQUksS0FBSyxDQUFDLE9BQU8sRUFBRTtBQUFFLFVBQUksQ0FBQyxPQUFPLEVBQUUsQ0FBQztLQUFFO0dBQ3ZDO0FBQ0QsTUFBSSxDQUFDLE9BQU8sRUFBRSxDQUFDOztBQUVmLFNBQU8sR0FBRyxDQUFDO0NBQ1osQ0FBQzs7QUFFRixZQUFZLENBQUMsU0FBUyxDQUFDLGdCQUFnQixHQUFHLFVBQVMsT0FBTyxFQUFFO0FBQzFELE1BQUksT0FBTyxHQUFHLFVBQVUsR0FBRyxPQUFPLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQztBQUNqRCxNQUFJLE9BQU8sQ0FBQyxNQUFNLENBQUMsQ0FBQyxDQUFDLEVBQUU7QUFDckIsV0FBTyxJQUFJLEdBQUcsR0FBRyxJQUFJLENBQUMsTUFBTSxDQUFDLE9BQU8sQ0FBQyxNQUFNLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQztHQUNqRDtBQUNELE1BQUksT0FBTyxDQUFDLElBQUksRUFBRTtBQUNoQixXQUFPLElBQUksR0FBRyxHQUFHLElBQUksQ0FBQyxNQUFNLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO0dBQzVDO0FBQ0QsU0FBTyxJQUFJLENBQUMsR0FBRyxDQUFDLE1BQU0sR0FBRyxPQUFPLEdBQUcsS0FBSyxDQUFDLENBQUM7Q0FDM0MsQ0FBQztBQUNGLFlBQVksQ0FBQyxTQUFTLENBQUMscUJBQXFCLEdBQUcsVUFBUyxPQUFPLEVBQUU7QUFDL0QsTUFBSSxPQUFPLEdBQUcsZ0JBQWdCLEdBQUcsT0FBTyxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUM7QUFDdkQsTUFBSSxPQUFPLENBQUMsTUFBTSxDQUFDLENBQUMsQ0FBQyxFQUFFO0FBQ3JCLFdBQU8sSUFBSSxHQUFHLEdBQUcsSUFBSSxDQUFDLE1BQU0sQ0FBQyxPQUFPLENBQUMsTUFBTSxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUM7R0FDakQ7QUFDRCxNQUFJLE9BQU8sQ0FBQyxJQUFJLEVBQUU7QUFDaEIsV0FBTyxJQUFJLEdBQUcsR0FBRyxJQUFJLENBQUMsTUFBTSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQztHQUM1Qzs7QUFFRCxTQUFPLElBQUksR0FBRyxHQUFHLElBQUksQ0FBQyxHQUFHLENBQUMsVUFBVSxDQUFDLENBQUM7QUFDdEMsTUFBSSxDQUFDLE9BQU8sRUFBRSxDQUFDO0FBQ2YsU0FBTyxJQUFJLElBQUksQ0FBQyxNQUFNLENBQUMsT0FBTyxDQUFDLE9BQU8sQ0FBQyxDQUFDO0FBQ3hDLE1BQUksQ0FBQyxPQUFPLEVBQUUsQ0FBQzs7QUFFZixTQUFPLElBQUksQ0FBQyxHQUFHLENBQUMsTUFBTSxHQUFHLE9BQU8sR0FBRyxLQUFLLENBQUMsQ0FBQztDQUMzQyxDQUFDOztBQUVGLFlBQVksQ0FBQyxTQUFTLENBQUMsZ0JBQWdCLEdBQUcsVUFBUyxPQUFPLEVBQUU7QUFDMUQsU0FBTyxJQUFJLENBQUMsR0FBRyxDQUFDLFlBQVksR0FBRyxPQUFPLENBQUMsS0FBSyxHQUFHLEtBQUssQ0FBQyxDQUFDO0NBQ3ZELENBQUM7O0FBRUYsWUFBWSxDQUFDLFNBQVMsQ0FBQyxnQkFBZ0IsR0FBRyxVQUFTLE9BQU8sRUFBRTtBQUMxRCxTQUFPLElBQUksQ0FBQyxHQUFHLENBQUMsT0FBTyxHQUFHLE9BQU8sQ0FBQyxLQUFLLEdBQUcsTUFBTSxDQUFDLENBQUM7Q0FDbkQsQ0FBQzs7QUFFRixZQUFZLENBQUMsU0FBUyxDQUFDLGFBQWEsR0FBRyxVQUFTLEtBQUssRUFBRTtBQUNyRCxNQUFJLE1BQU0sR0FBRyxLQUFLLENBQUMsTUFBTTtNQUNyQixZQUFZLEdBQUcsRUFBRTtNQUNqQixJQUFJLFlBQUEsQ0FBQzs7QUFFVCxPQUFLLElBQUksQ0FBQyxHQUFHLENBQUMsRUFBRSxDQUFDLEdBQUcsTUFBTSxDQUFDLE1BQU0sRUFBRSxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFO0FBQzdDLGdCQUFZLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsTUFBTSxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQztHQUMzQzs7QUFFRCxRQUFNLEdBQUcsR0FBRyxHQUFHLFlBQVksQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLEdBQUcsR0FBRyxDQUFDOztBQUU3QyxNQUFJLEdBQUcsS0FBSyxDQUFDLElBQUksR0FBRyxHQUFHLEdBQUcsSUFBSSxDQUFDLE1BQU0sQ0FBQyxLQUFLLENBQUMsSUFBSSxDQUFDLEdBQUcsRUFBRSxDQUFDOztBQUV2RCxTQUFPLElBQUksQ0FBQyxNQUFNLENBQUMsS0FBSyxDQUFDLElBQUksQ0FBQyxHQUFHLEdBQUcsR0FBRyxNQUFNLEdBQUcsSUFBSSxDQUFDO0NBQ3RELENBQUM7O0FBRUYsWUFBWSxDQUFDLFNBQVMsQ0FBQyxjQUFjLEdBQUcsVUFBUyxFQUFFLEVBQUU7QUFDbkQsTUFBSSxJQUFJLEdBQUcsRUFBRSxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQUMsR0FBRyxDQUFDLENBQUM7QUFDOUIsU0FBTyxDQUFDLEVBQUUsQ0FBQyxJQUFJLEdBQUcsR0FBRyxHQUFHLEVBQUUsQ0FBQSxHQUFJLE9BQU8sR0FBRyxJQUFJLENBQUM7Q0FDOUMsQ0FBQzs7QUFHRixZQUFZLENBQUMsU0FBUyxDQUFDLGFBQWEsR0FBRyxVQUFTLE1BQU0sRUFBRTtBQUN0RCxTQUFPLEdBQUcsR0FBRyxNQUFNLENBQUMsS0FBSyxHQUFHLEdBQUcsQ0FBQztDQUNqQyxDQUFDOztBQUVGLFlBQVksQ0FBQyxTQUFTLENBQUMsYUFBYSxHQUFHLFVBQVMsTUFBTSxFQUFFO0FBQ3RELFNBQU8sU0FBUyxHQUFHLE1BQU0sQ0FBQyxLQUFLLEdBQUcsR0FBRyxDQUFDO0NBQ3ZDLENBQUM7O0FBRUYsWUFBWSxDQUFDLFNBQVMsQ0FBQyxjQUFjLEdBQUcsVUFBUyxJQUFJLEVBQUU7QUFDckQsU0FBTyxVQUFVLEdBQUcsSUFBSSxDQUFDLEtBQUssR0FBRyxHQUFHLENBQUM7Q0FDdEMsQ0FBQzs7QUFFRixZQUFZLENBQUMsU0FBUyxDQUFDLGdCQUFnQixHQUFHLFlBQVc7QUFDbkQsU0FBTyxXQUFXLENBQUM7Q0FDcEIsQ0FBQzs7QUFFRixZQUFZLENBQUMsU0FBUyxDQUFDLFdBQVcsR0FBRyxZQUFXO0FBQzlDLFNBQU8sTUFBTSxDQUFDO0NBQ2YsQ0FBQzs7QUFFRixZQUFZLENBQUMsU0FBUyxDQUFDLElBQUksR0FBRyxVQUFTLElBQUksRUFBRTtBQUMzQyxNQUFJLEtBQUssR0FBRyxJQUFJLENBQUMsS0FBSztNQUNsQixXQUFXLEdBQUcsRUFBRSxDQUFDOztBQUVyQixPQUFLLElBQUksQ0FBQyxHQUFHLENBQUMsRUFBRSxDQUFDLEdBQUcsS0FBSyxDQUFDLE1BQU0sRUFBRSxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFO0FBQzVDLGVBQVcsQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLE1BQU0sQ0FBQyxLQUFLLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDO0dBQ3pDOztBQUVELFNBQU8sT0FBTyxHQUFHLFdBQVcsQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLEdBQUcsR0FBRyxDQUFDO0NBQy9DLENBQUM7QUFDRixZQUFZLENBQUMsU0FBUyxDQUFDLFFBQVEsR0FBRyxVQUFTLElBQUksRUFBRTtBQUMvQyxTQUFPLElBQUksQ0FBQyxHQUFHLEdBQUcsR0FBRyxHQUFHLElBQUksQ0FBQyxNQUFNLENBQUMsSUFBSSxDQUFDLEtBQUssQ0FBQyxDQUFDO0NBQ2pELENBQUMiLCJmaWxlIjoicHJpbnRlci5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIGVzbGludC1kaXNhYmxlIG5ldy1jYXAgKi9cbmltcG9ydCBWaXNpdG9yIGZyb20gJy4vdmlzaXRvcic7XG5cbmV4cG9ydCBmdW5jdGlvbiBwcmludChhc3QpIHtcbiAgcmV0dXJuIG5ldyBQcmludFZpc2l0b3IoKS5hY2NlcHQoYXN0KTtcbn1cblxuZXhwb3J0IGZ1bmN0aW9uIFByaW50VmlzaXRvcigpIHtcbiAgdGhpcy5wYWRkaW5nID0gMDtcbn1cblxuUHJpbnRWaXNpdG9yLnByb3RvdHlwZSA9IG5ldyBWaXNpdG9yKCk7XG5cblByaW50VmlzaXRvci5wcm90b3R5cGUucGFkID0gZnVuY3Rpb24oc3RyaW5nKSB7XG4gIGxldCBvdXQgPSAnJztcblxuICBmb3IgKGxldCBpID0gMCwgbCA9IHRoaXMucGFkZGluZzsgaSA8IGw7IGkrKykge1xuICAgIG91dCArPSAnICAnO1xuICB9XG5cbiAgb3V0ICs9IHN0cmluZyArICdcXG4nO1xuICByZXR1cm4gb3V0O1xufTtcblxuUHJpbnRWaXNpdG9yLnByb3RvdHlwZS5Qcm9ncmFtID0gZnVuY3Rpb24ocHJvZ3JhbSkge1xuICBsZXQgb3V0ID0gJycsXG4gICAgICBib2R5ID0gcHJvZ3JhbS5ib2R5LFxuICAgICAgaSwgbDtcblxuICBpZiAocHJvZ3JhbS5ibG9ja1BhcmFtcykge1xuICAgIGxldCBibG9ja1BhcmFtcyA9ICdCTE9DSyBQQVJBTVM6IFsnO1xuICAgIGZvciAoaSA9IDAsIGwgPSBwcm9ncmFtLmJsb2NrUGFyYW1zLmxlbmd0aDsgaSA8IGw7IGkrKykge1xuICAgICAgIGJsb2NrUGFyYW1zICs9ICcgJyArIHByb2dyYW0uYmxvY2tQYXJhbXNbaV07XG4gICAgfVxuICAgIGJsb2NrUGFyYW1zICs9ICcgXSc7XG4gICAgb3V0ICs9IHRoaXMucGFkKGJsb2NrUGFyYW1zKTtcbiAgfVxuXG4gIGZvciAoaSA9IDAsIGwgPSBib2R5Lmxlbmd0aDsgaSA8IGw7IGkrKykge1xuICAgIG91dCArPSB0aGlzLmFjY2VwdChib2R5W2ldKTtcbiAgfVxuXG4gIHRoaXMucGFkZGluZy0tO1xuXG4gIHJldHVybiBvdXQ7XG59O1xuXG5QcmludFZpc2l0b3IucHJvdG90eXBlLk11c3RhY2hlU3RhdGVtZW50ID0gZnVuY3Rpb24obXVzdGFjaGUpIHtcbiAgcmV0dXJuIHRoaXMucGFkKCd7eyAnICsgdGhpcy5TdWJFeHByZXNzaW9uKG11c3RhY2hlKSArICcgfX0nKTtcbn07XG5QcmludFZpc2l0b3IucHJvdG90eXBlLkRlY29yYXRvciA9IGZ1bmN0aW9uKG11c3RhY2hlKSB7XG4gIHJldHVybiB0aGlzLnBhZCgne3sgRElSRUNUSVZFICcgKyB0aGlzLlN1YkV4cHJlc3Npb24obXVzdGFjaGUpICsgJyB9fScpO1xufTtcblxuUHJpbnRWaXNpdG9yLnByb3RvdHlwZS5CbG9ja1N0YXRlbWVudCA9XG5QcmludFZpc2l0b3IucHJvdG90eXBlLkRlY29yYXRvckJsb2NrID0gZnVuY3Rpb24oYmxvY2spIHtcbiAgbGV0IG91dCA9ICcnO1xuXG4gIG91dCArPSB0aGlzLnBhZCgoYmxvY2sudHlwZSA9PT0gJ0RlY29yYXRvckJsb2NrJyA/ICdESVJFQ1RJVkUgJyA6ICcnKSArICdCTE9DSzonKTtcbiAgdGhpcy5wYWRkaW5nKys7XG4gIG91dCArPSB0aGlzLnBhZCh0aGlzLlN1YkV4cHJlc3Npb24oYmxvY2spKTtcbiAgaWYgKGJsb2NrLnByb2dyYW0pIHtcbiAgICBvdXQgKz0gdGhpcy5wYWQoJ1BST0dSQU06Jyk7XG4gICAgdGhpcy5wYWRkaW5nKys7XG4gICAgb3V0ICs9IHRoaXMuYWNjZXB0KGJsb2NrLnByb2dyYW0pO1xuICAgIHRoaXMucGFkZGluZy0tO1xuICB9XG4gIGlmIChibG9jay5pbnZlcnNlKSB7XG4gICAgaWYgKGJsb2NrLnByb2dyYW0pIHsgdGhpcy5wYWRkaW5nKys7IH1cbiAgICBvdXQgKz0gdGhpcy5wYWQoJ3t7Xn19Jyk7XG4gICAgdGhpcy5wYWRkaW5nKys7XG4gICAgb3V0ICs9IHRoaXMuYWNjZXB0KGJsb2NrLmludmVyc2UpO1xuICAgIHRoaXMucGFkZGluZy0tO1xuICAgIGlmIChibG9jay5wcm9ncmFtKSB7IHRoaXMucGFkZGluZy0tOyB9XG4gIH1cbiAgdGhpcy5wYWRkaW5nLS07XG5cbiAgcmV0dXJuIG91dDtcbn07XG5cblByaW50VmlzaXRvci5wcm90b3R5cGUuUGFydGlhbFN0YXRlbWVudCA9IGZ1bmN0aW9uKHBhcnRpYWwpIHtcbiAgbGV0IGNvbnRlbnQgPSAnUEFSVElBTDonICsgcGFydGlhbC5uYW1lLm9yaWdpbmFsO1xuICBpZiAocGFydGlhbC5wYXJhbXNbMF0pIHtcbiAgICBjb250ZW50ICs9ICcgJyArIHRoaXMuYWNjZXB0KHBhcnRpYWwucGFyYW1zWzBdKTtcbiAgfVxuICBpZiAocGFydGlhbC5oYXNoKSB7XG4gICAgY29udGVudCArPSAnICcgKyB0aGlzLmFjY2VwdChwYXJ0aWFsLmhhc2gpO1xuICB9XG4gIHJldHVybiB0aGlzLnBhZCgne3s+ICcgKyBjb250ZW50ICsgJyB9fScpO1xufTtcblByaW50VmlzaXRvci5wcm90b3R5cGUuUGFydGlhbEJsb2NrU3RhdGVtZW50ID0gZnVuY3Rpb24ocGFydGlhbCkge1xuICBsZXQgY29udGVudCA9ICdQQVJUSUFMIEJMT0NLOicgKyBwYXJ0aWFsLm5hbWUub3JpZ2luYWw7XG4gIGlmIChwYXJ0aWFsLnBhcmFtc1swXSkge1xuICAgIGNvbnRlbnQgKz0gJyAnICsgdGhpcy5hY2NlcHQocGFydGlhbC5wYXJhbXNbMF0pO1xuICB9XG4gIGlmIChwYXJ0aWFsLmhhc2gpIHtcbiAgICBjb250ZW50ICs9ICcgJyArIHRoaXMuYWNjZXB0KHBhcnRpYWwuaGFzaCk7XG4gIH1cblxuICBjb250ZW50ICs9ICcgJyArIHRoaXMucGFkKCdQUk9HUkFNOicpO1xuICB0aGlzLnBhZGRpbmcrKztcbiAgY29udGVudCArPSB0aGlzLmFjY2VwdChwYXJ0aWFsLnByb2dyYW0pO1xuICB0aGlzLnBhZGRpbmctLTtcblxuICByZXR1cm4gdGhpcy5wYWQoJ3t7PiAnICsgY29udGVudCArICcgfX0nKTtcbn07XG5cblByaW50VmlzaXRvci5wcm90b3R5cGUuQ29udGVudFN0YXRlbWVudCA9IGZ1bmN0aW9uKGNvbnRlbnQpIHtcbiAgcmV0dXJuIHRoaXMucGFkKFwiQ09OVEVOVFsgJ1wiICsgY29udGVudC52YWx1ZSArIFwiJyBdXCIpO1xufTtcblxuUHJpbnRWaXNpdG9yLnByb3RvdHlwZS5Db21tZW50U3RhdGVtZW50ID0gZnVuY3Rpb24oY29tbWVudCkge1xuICByZXR1cm4gdGhpcy5wYWQoXCJ7eyEgJ1wiICsgY29tbWVudC52YWx1ZSArIFwiJyB9fVwiKTtcbn07XG5cblByaW50VmlzaXRvci5wcm90b3R5cGUuU3ViRXhwcmVzc2lvbiA9IGZ1bmN0aW9uKHNleHByKSB7XG4gIGxldCBwYXJhbXMgPSBzZXhwci5wYXJhbXMsXG4gICAgICBwYXJhbVN0cmluZ3MgPSBbXSxcbiAgICAgIGhhc2g7XG5cbiAgZm9yIChsZXQgaSA9IDAsIGwgPSBwYXJhbXMubGVuZ3RoOyBpIDwgbDsgaSsrKSB7XG4gICAgcGFyYW1TdHJpbmdzLnB1c2godGhpcy5hY2NlcHQocGFyYW1zW2ldKSk7XG4gIH1cblxuICBwYXJhbXMgPSAnWycgKyBwYXJhbVN0cmluZ3Muam9pbignLCAnKSArICddJztcblxuICBoYXNoID0gc2V4cHIuaGFzaCA/ICcgJyArIHRoaXMuYWNjZXB0KHNleHByLmhhc2gpIDogJyc7XG5cbiAgcmV0dXJuIHRoaXMuYWNjZXB0KHNleHByLnBhdGgpICsgJyAnICsgcGFyYW1zICsgaGFzaDtcbn07XG5cblByaW50VmlzaXRvci5wcm90b3R5cGUuUGF0aEV4cHJlc3Npb24gPSBmdW5jdGlvbihpZCkge1xuICBsZXQgcGF0aCA9IGlkLnBhcnRzLmpvaW4oJy8nKTtcbiAgcmV0dXJuIChpZC5kYXRhID8gJ0AnIDogJycpICsgJ1BBVEg6JyArIHBhdGg7XG59O1xuXG5cblByaW50VmlzaXRvci5wcm90b3R5cGUuU3RyaW5nTGl0ZXJhbCA9IGZ1bmN0aW9uKHN0cmluZykge1xuICByZXR1cm4gJ1wiJyArIHN0cmluZy52YWx1ZSArICdcIic7XG59O1xuXG5QcmludFZpc2l0b3IucHJvdG90eXBlLk51bWJlckxpdGVyYWwgPSBmdW5jdGlvbihudW1iZXIpIHtcbiAgcmV0dXJuICdOVU1CRVJ7JyArIG51bWJlci52YWx1ZSArICd9Jztcbn07XG5cblByaW50VmlzaXRvci5wcm90b3R5cGUuQm9vbGVhbkxpdGVyYWwgPSBmdW5jdGlvbihib29sKSB7XG4gIHJldHVybiAnQk9PTEVBTnsnICsgYm9vbC52YWx1ZSArICd9Jztcbn07XG5cblByaW50VmlzaXRvci5wcm90b3R5cGUuVW5kZWZpbmVkTGl0ZXJhbCA9IGZ1bmN0aW9uKCkge1xuICByZXR1cm4gJ1VOREVGSU5FRCc7XG59O1xuXG5QcmludFZpc2l0b3IucHJvdG90eXBlLk51bGxMaXRlcmFsID0gZnVuY3Rpb24oKSB7XG4gIHJldHVybiAnTlVMTCc7XG59O1xuXG5QcmludFZpc2l0b3IucHJvdG90eXBlLkhhc2ggPSBmdW5jdGlvbihoYXNoKSB7XG4gIGxldCBwYWlycyA9IGhhc2gucGFpcnMsXG4gICAgICBqb2luZWRQYWlycyA9IFtdO1xuXG4gIGZvciAobGV0IGkgPSAwLCBsID0gcGFpcnMubGVuZ3RoOyBpIDwgbDsgaSsrKSB7XG4gICAgam9pbmVkUGFpcnMucHVzaCh0aGlzLmFjY2VwdChwYWlyc1tpXSkpO1xuICB9XG5cbiAgcmV0dXJuICdIQVNIeycgKyBqb2luZWRQYWlycy5qb2luKCcsICcpICsgJ30nO1xufTtcblByaW50VmlzaXRvci5wcm90b3R5cGUuSGFzaFBhaXIgPSBmdW5jdGlvbihwYWlyKSB7XG4gIHJldHVybiBwYWlyLmtleSArICc9JyArIHRoaXMuYWNjZXB0KHBhaXIudmFsdWUpO1xufTtcbi8qIGVzbGludC1lbmFibGUgbmV3LWNhcCAqL1xuIl19
+
+
+/***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	 * lscache library
+	 * Copyright (c) 2011, Pamela Fox
+	 *
+	 * Licensed under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License.
+	 * You may obtain a copy of the License at
+	 *
+	 *       http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+	 */
+	
+	/* jshint undef:true, browser:true, node:true */
+	/* global define */
+	
+	(function (root, factory) {
+	    if (true) {
+	        // AMD. Register as an anonymous module.
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    } else if (typeof module !== "undefined" && module.exports) {
+	        // CommonJS/Node module
+	        module.exports = factory();
+	    } else {
+	        // Browser globals
+	        root.lscache = factory();
+	    }
+	}(this, function () {
+	
+	  // Prefix for all lscache keys
+	  var CACHE_PREFIX = 'lscache-';
+	
+	  // Suffix for the key name on the expiration items in localStorage
+	  var CACHE_SUFFIX = '-cacheexpiration';
+	
+	  // expiration date radix (set to Base-36 for most space savings)
+	  var EXPIRY_RADIX = 10;
+	
+	  // time resolution in minutes
+	  var EXPIRY_UNITS = 60 * 1000;
+	
+	  // ECMAScript max Date (epoch + 1e8 days)
+	  var MAX_DATE = Math.floor(8.64e15/EXPIRY_UNITS);
+	
+	  var cachedStorage;
+	  var cachedJSON;
+	  var cacheBucket = '';
+	  var warnings = false;
+	
+	  // Determines if localStorage is supported in the browser;
+	  // result is cached for better performance instead of being run each time.
+	  // Feature detection is based on how Modernizr does it;
+	  // it's not straightforward due to FF4 issues.
+	  // It's not run at parse-time as it takes 200ms in Android.
+	  function supportsStorage() {
+	    var key = '__lscachetest__';
+	    var value = key;
+	
+	    if (cachedStorage !== undefined) {
+	      return cachedStorage;
+	    }
+	
+	    try {
+	      setItem(key, value);
+	      removeItem(key);
+	      cachedStorage = true;
+	    } catch (e) {
+	        if (isOutOfSpace(e)) {    // If we hit the limit, then it means we have support, 
+	            cachedStorage = true; // just maxed it out and even the set test failed.
+	        } else {
+	            cachedStorage = false;
+	        }
+	    }
+	    return cachedStorage;
+	  }
+	
+	  // Check to set if the error is us dealing with being out of space
+	  function isOutOfSpace(e) {
+	    if (e && e.name === 'QUOTA_EXCEEDED_ERR' || 
+	            e.name === 'NS_ERROR_DOM_QUOTA_REACHED' || 
+	            e.name === 'QuotaExceededError') {
+	        return true;
+	    }
+	    return false;
+	  }
+	
+	  // Determines if native JSON (de-)serialization is supported in the browser.
+	  function supportsJSON() {
+	    /*jshint eqnull:true */
+	    if (cachedJSON === undefined) {
+	      cachedJSON = (window.JSON != null);
+	    }
+	    return cachedJSON;
+	  }
+	
+	  /**
+	   * Returns the full string for the localStorage expiration item.
+	   * @param {String} key
+	   * @return {string}
+	   */
+	  function expirationKey(key) {
+	    return key + CACHE_SUFFIX;
+	  }
+	
+	  /**
+	   * Returns the number of minutes since the epoch.
+	   * @return {number}
+	   */
+	  function currentTime() {
+	    return Math.floor((new Date().getTime())/EXPIRY_UNITS);
+	  }
+	
+	  /**
+	   * Wrapper functions for localStorage methods
+	   */
+	
+	  function getItem(key) {
+	    return localStorage.getItem(CACHE_PREFIX + cacheBucket + key);
+	  }
+	
+	  function setItem(key, value) {
+	    // Fix for iPad issue - sometimes throws QUOTA_EXCEEDED_ERR on setItem.
+	    localStorage.removeItem(CACHE_PREFIX + cacheBucket + key);
+	    localStorage.setItem(CACHE_PREFIX + cacheBucket + key, value);
+	  }
+	
+	  function removeItem(key) {
+	    localStorage.removeItem(CACHE_PREFIX + cacheBucket + key);
+	  }
+	
+	  function eachKey(fn) {
+	    var prefixRegExp = new RegExp('^' + CACHE_PREFIX + cacheBucket + '(.*)');
+	    // Loop in reverse as removing items will change indices of tail
+	    for (var i = localStorage.length-1; i >= 0 ; --i) {
+	      var key = localStorage.key(i);
+	      key = key && key.match(prefixRegExp);
+	      key = key && key[1];
+	      if (key && key.indexOf(CACHE_SUFFIX) < 0) {
+	        fn(key, expirationKey(key));
+	      }
+	    }
+	  }
+	
+	  function flushItem(key) {
+	    var exprKey = expirationKey(key);
+	
+	    removeItem(key);
+	    removeItem(exprKey);
+	  }
+	
+	  function flushExpiredItem(key) {
+	    var exprKey = expirationKey(key);
+	    var expr = getItem(exprKey);
+	
+	    if (expr) {
+	      var expirationTime = parseInt(expr, EXPIRY_RADIX);
+	
+	      // Check if we should actually kick item out of storage
+	      if (currentTime() >= expirationTime) {
+	        removeItem(key);
+	        removeItem(exprKey);
+	        return true;
+	      }
+	    }
+	  }
+	
+	  function warn(message, err) {
+	    if (!warnings) return;
+	    if (!('console' in window) || typeof window.console.warn !== 'function') return;
+	    window.console.warn("lscache - " + message);
+	    if (err) window.console.warn("lscache - The error was: " + err.message);
+	  }
+	
+	  var lscache = {
+	    /**
+	     * Stores the value in localStorage. Expires after specified number of minutes.
+	     * @param {string} key
+	     * @param {Object|string} value
+	     * @param {number} time
+	     */
+	    set: function(key, value, time) {
+	      if (!supportsStorage()) return;
+	
+	      // If we don't get a string value, try to stringify
+	      // In future, localStorage may properly support storing non-strings
+	      // and this can be removed.
+	      if (typeof value !== 'string') {
+	        if (!supportsJSON()) return;
+	        try {
+	          value = JSON.stringify(value);
+	        } catch (e) {
+	          // Sometimes we can't stringify due to circular refs
+	          // in complex objects, so we won't bother storing then.
+	          return;
+	        }
+	      }
+	
+	      try {
+	        setItem(key, value);
+	      } catch (e) {
+	        if (isOutOfSpace(e)) {
+	          // If we exceeded the quota, then we will sort
+	          // by the expire time, and then remove the N oldest
+	          var storedKeys = [];
+	          var storedKey;
+	          eachKey(function(key, exprKey) {
+	            var expiration = getItem(exprKey);
+	            if (expiration) {
+	              expiration = parseInt(expiration, EXPIRY_RADIX);
+	            } else {
+	              // TODO: Store date added for non-expiring items for smarter removal
+	              expiration = MAX_DATE;
+	            }
+	            storedKeys.push({
+	              key: key,
+	              size: (getItem(key) || '').length,
+	              expiration: expiration
+	            });
+	          });
+	          // Sorts the keys with oldest expiration time last
+	          storedKeys.sort(function(a, b) { return (b.expiration-a.expiration); });
+	
+	          var targetSize = (value||'').length;
+	          while (storedKeys.length && targetSize > 0) {
+	            storedKey = storedKeys.pop();
+	            warn("Cache is full, removing item with key '" + key + "'");
+	            flushItem(storedKey.key);
+	            targetSize -= storedKey.size;
+	          }
+	          try {
+	            setItem(key, value);
+	          } catch (e) {
+	            // value may be larger than total quota
+	            warn("Could not add item with key '" + key + "', perhaps it's too big?", e);
+	            return;
+	          }
+	        } else {
+	          // If it was some other error, just give up.
+	          warn("Could not add item with key '" + key + "'", e);
+	          return;
+	        }
+	      }
+	
+	      // If a time is specified, store expiration info in localStorage
+	      if (time) {
+	        setItem(expirationKey(key), (currentTime() + time).toString(EXPIRY_RADIX));
+	      } else {
+	        // In case they previously set a time, remove that info from localStorage.
+	        removeItem(expirationKey(key));
+	      }
+	    },
+	
+	    /**
+	     * Retrieves specified value from localStorage, if not expired.
+	     * @param {string} key
+	     * @return {string|Object}
+	     */
+	    get: function(key) {
+	      if (!supportsStorage()) return null;
+	
+	      // Return the de-serialized item if not expired
+	      if (flushExpiredItem(key)) { return null; }
+	
+	      // Tries to de-serialize stored value if its an object, and returns the normal value otherwise.
+	      var value = getItem(key);
+	      if (!value || !supportsJSON()) {
+	        return value;
+	      }
+	
+	      try {
+	        // We can't tell if its JSON or a string, so we try to parse
+	        return JSON.parse(value);
+	      } catch (e) {
+	        // If we can't parse, it's probably because it isn't an object
+	        return value;
+	      }
+	    },
+	
+	    /**
+	     * Removes a value from localStorage.
+	     * Equivalent to 'delete' in memcache, but that's a keyword in JS.
+	     * @param {string} key
+	     */
+	    remove: function(key) {
+	      if (!supportsStorage()) return;
+	
+	      flushItem(key);
+	    },
+	
+	    /**
+	     * Returns whether local storage is supported.
+	     * Currently exposed for testing purposes.
+	     * @return {boolean}
+	     */
+	    supported: function() {
+	      return supportsStorage();
+	    },
+	
+	    /**
+	     * Flushes all lscache items and expiry markers without affecting rest of localStorage
+	     */
+	    flush: function() {
+	      if (!supportsStorage()) return;
+	
+	      eachKey(function(key) {
+	        flushItem(key);
+	      });
+	    },
+	
+	    /**
+	     * Flushes expired lscache items and expiry markers without affecting rest of localStorage
+	     */
+	    flushExpired: function() {
+	      if (!supportsStorage()) return;
+	
+	      eachKey(function(key) {
+	        flushExpiredItem(key);
+	      });
+	    },
+	
+	    /**
+	     * Appends CACHE_PREFIX so lscache will partition data in to different buckets.
+	     * @param {string} bucket
+	     */
+	    setBucket: function(bucket) {
+	      cacheBucket = bucket;
+	    },
+	
+	    /**
+	     * Resets the string being appended to CACHE_PREFIX so lscache will use the default storage behavior.
+	     */
+	    resetBucket: function() {
+	      cacheBucket = '';
+	    },
+	
+	    /**
+	     * Sets whether to display warnings when an item is removed from the cache or not.
+	     */
+	    enableWarnings: function(enabled) {
+	      warnings = enabled;
+	    }
+	  };
+	
+	  // Return the module
+	  return lscache;
+	}));
 
 
 /***/ }

@@ -57,6 +57,16 @@ function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 
+var errorObject = { value: null };
+function tryCatch(fn, ctx) {
+  try {
+    return fn.apply(ctx);
+  } catch (e) {
+    errorObject.value = e;
+    return errorObject;
+  }
+}
+
 // Helps track hot reloading.
 var nextVersion = 0;
 
@@ -259,6 +269,7 @@ function connect(mapStateToProps, mapDispatchToProps, mergeProps) {
         this.haveOwnPropsChanged = true;
         this.hasStoreStateChanged = true;
         this.haveStatePropsBeenPrecalculated = false;
+        this.statePropsPrecalculationError = null;
         this.renderedElement = null;
         this.finalMapDispatchToProps = null;
         this.finalMapStateToProps = null;
@@ -276,8 +287,12 @@ function connect(mapStateToProps, mapDispatchToProps, mergeProps) {
         }
 
         if (pure && !this.doStatePropsDependOnOwnProps) {
-          if (!this.updateStatePropsIfNeeded()) {
+          var haveStatePropsChanged = tryCatch(this.updateStatePropsIfNeeded, this);
+          if (!haveStatePropsChanged) {
             return;
+          }
+          if (haveStatePropsChanged === errorObject) {
+            this.statePropsPrecalculationError = errorObject.value;
           }
           this.haveStatePropsBeenPrecalculated = true;
         }
@@ -296,11 +311,17 @@ function connect(mapStateToProps, mapDispatchToProps, mergeProps) {
         var haveOwnPropsChanged = this.haveOwnPropsChanged;
         var hasStoreStateChanged = this.hasStoreStateChanged;
         var haveStatePropsBeenPrecalculated = this.haveStatePropsBeenPrecalculated;
+        var statePropsPrecalculationError = this.statePropsPrecalculationError;
         var renderedElement = this.renderedElement;
 
         this.haveOwnPropsChanged = false;
         this.hasStoreStateChanged = false;
         this.haveStatePropsBeenPrecalculated = false;
+        this.statePropsPrecalculationError = null;
+
+        if (statePropsPrecalculationError) {
+          throw statePropsPrecalculationError;
+        }
 
         var shouldUpdateStateProps = true;
         var shouldUpdateDispatchProps = true;
