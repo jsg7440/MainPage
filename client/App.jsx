@@ -8,5 +8,3 @@ todos.init();
 $(function(){
 	todos.init();
 });
-
-// Comment to update for git

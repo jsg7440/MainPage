@@ -67,8 +67,6 @@
 	(0, _jquery2['default'])(function () {
 		_pagesTodo2['default'].init();
 	});
-	
-	// Comment to update for git
 
 /***/ },
 /* 1 */
