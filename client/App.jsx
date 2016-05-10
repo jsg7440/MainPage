@@ -9,7 +9,7 @@ $(function(){
 	var url = window.location.pathname;
 
 	// First javascript router
-	switch(url){
+	switch (url) {
 		case 'pages/todo.html': 
 			todos.init();
 		break;
