@@ -1,4 +1,9 @@
-import $ from 'jquery';
+// Legacy loading for bootstrap
+var $ = require('jquery');
+window.jQuery = window.$ = $;
+require('bootstrap');
+
+// Importing dependencies
 import _ from 'underscore';
 import Handlebars from 'handlebars';
 import lscache from 'lscache';
