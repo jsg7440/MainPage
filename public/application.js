@@ -82,6 +82,11 @@
 	    case '/pages/funnySquares.html':
 	      _pagesFunnySquares2['default'].init();
 	      break;
+	    case '/pages/goL.html':
+	      _pageGoL2['default'].init();
+	      break;
+	    case "/pages/threeJSExample.html":
+	      threeJSExample.init();
 	    default:
 	    // Default case here,
 	  }

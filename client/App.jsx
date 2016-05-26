@@ -17,8 +17,11 @@ $(function(){
     case '/pages/funnySquares.html':
 				funnySquares.init();
     break;
-    case '/pages/goL.html'
+    case '/pages/goL.html':
+        goL.init();
     break;
+    case "/pages/threeJSExample.html":
+        threeJSExample.init();
     default: 
 			// Default case here, 
   }
