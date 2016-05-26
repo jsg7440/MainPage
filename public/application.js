@@ -62,20 +62,29 @@
 	
 	var _pagesProject2 = _interopRequireDefault(_pagesProject);
 	
-	_pagesTodo2['default'].init();
+	var _pagesFunnySquares = __webpack_require__(53);
+	
+	var _pagesFunnySquares2 = _interopRequireDefault(_pagesFunnySquares);
+	
+	var _pageGoL = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"page/goL\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _pageGoL2 = _interopRequireDefault(_pageGoL);
 	
 	(0, _jquery2['default'])(function () {
-		var url = window.location.pathname;
-	
-		// First javascript router
-		switch (url) {
-			case '/pages/todo.html':
-				_pagesTodo2['default'].init();
-				break;
-			case '/pages/project.html':
-				//init the project javascript
-				break;
-		}
+	  var url = window.location.pathname;
+	  switch (url) {
+	    case '/pages/todo.html':
+	      _pagesTodo2['default'].init();
+	      break;
+	    case '/pages/project.html':
+	      // init the project javascript
+	      break;
+	    case '/pages/funnySquares.html':
+	      _pagesFunnySquares2['default'].init();
+	      break;
+	    default:
+	    // Default case here,
+	  }
 	});
 
 /***/ },
@@ -9931,7 +9940,7 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"todo-container":"todo-container","add-todo-container":"add-todo-container","col-md-10":"col-md-10","col-md-2":"col-md-2"};
+	module.exports = {"todo-container":"todo-container","add-todo-container":"add-todo-container","col-md-10":"col-md-10","col-md-2":"col-md-2","square":"square","edit":"edit"};
 
 /***/ },
 /* 3 */,
@@ -9969,7 +9978,7 @@
 	  todos = [];
 	} else {
 	  todos = savedData;
-	};
+	}
 	
 	// Application
 	var template;
@@ -19188,6 +19197,20 @@
 	"use strict";
 	
 	var app = {};
+	module.exports = app;
+
+/***/ },
+/* 53 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var app = {
+	  init: function init() {
+	    // alert('funny squares');
+	  }
+	};
+	
 	module.exports = app;
 
 /***/ }

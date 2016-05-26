@@ -17,4 +17,48 @@
   text-align: right;
 }
 
+.square {
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  background-color: #63a1f2;
+  text-align: center;
+  line-height: 100px;
+  font-family: arial;
+  font-size: 42px;
+}
+
+h1 {
+  color: green;
+}
+
+body {
+  width: 960px;
+  margin: 0 auto;
+}
+
+rect {
+  stroke: rgba(204, 204, 204, 0.2);
+  shape-rendering: crispEdges;
+}
+
+.edit:hover {
+  stroke: steelblue;
+  cursor: pointer;
+}
+
+select {
+  width: 80px;
+}
+
+button {
+  min-width: 50px;
+  padding: 0 40px;
+}
+
+video {
+  height: 240px;
+  width: 320px;
+}
+
 /*# sourceMappingURL=main.css.map*/

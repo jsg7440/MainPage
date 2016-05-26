@@ -16,7 +16,7 @@ if (savedData === null) {
   todos = [];
 } else {
   todos = savedData;
-};
+}
 
 // Application
 var template;
