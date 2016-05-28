@@ -3,111 +3,110 @@ window.THREE = THREE;
 
 var app = {
   init: function(){
-    
+        
+    var container;
 
-var container;
+    var camera, controls, scene, renderer;
 
-var camera, controls, scene, renderer;
+    var sphere, plane, effect;
 
-var sphere, plane, effect;
+    var start = Date.now();
 
-var start = Date.now();
+    init();
+    animate();
 
-init();
-animate();
+    function init() {
 
-function init() {
+      var width = window.innerWidth || 2;
+      var height = window.innerHeight || 2;
 
-  var width = window.innerWidth || 2;
-  var height = window.innerHeight || 2;
+      container = document.createElement('div');
+      document.body.appendChild(container);
 
-  container = document.createElement('div');
-  document.body.appendChild(container);
+      var info = document.createElement('div');
+      info.style.position = 'absolute';
+      info.style.top = '10px';
+      info.style.width = '100%';
+      info.style.textAlign = 'center';
+      info.innerHTML = 'Drag to change the view';
+      container.appendChild(info);
 
-  var info = document.createElement('div');
-  info.style.position = 'absolute';
-  info.style.top = '10px';
-  info.style.width = '100%';
-  info.style.textAlign = 'center';
-  info.innerHTML = 'Drag to change the view';
-  container.appendChild(info);
+      camera = new THREE.PerspectiveCamera(70, width / height, 1, 1000);
+      camera.position.y = 150;
+      camera.position.z = 500;
 
-  camera = new THREE.PerspectiveCamera(70, width / height, 1, 1000);
-  camera.position.y = 150;
-  camera.position.z = 500;
+      controls = new THREE.TrackballControls(camera);
 
-  controls = new THREE.TrackballControls(camera);
+      scene = new THREE.Scene();
 
-  scene = new THREE.Scene();
+      var light = new THREE.PointLight(0xffffff);
+      light.position.set(500, 500, 500);
+      scene.add(light);
 
-  var light = new THREE.PointLight(0xffffff);
-  light.position.set(500, 500, 500);
-  scene.add(light);
+      var light = new THREE.PointLight(0xffffff, 0.25);
+      light.position.set(-500, -500, -500);
+      scene.add(light);
 
-  var light = new THREE.PointLight(0xffffff, 0.25);
-  light.position.set(-500, -500, -500);
-  scene.add(light);
+      sphere = new THREE.Mesh(new THREE.SphereGeometry(200, 20, 10), new THREE.MeshLambertMaterial());
+      scene.add(sphere);
 
-  sphere = new THREE.Mesh(new THREE.SphereGeometry(200, 20, 10), new THREE.MeshLambertMaterial());
-  scene.add(sphere);
+      // Plane
 
-  // Plane
+      plane = new THREE.Mesh(new THREE.PlaneBufferGeometry(400, 400), new THREE.MeshBasicMaterial({
+        color: 0xe0e0e0
+      }));
+      plane.position.y = -200;
+      plane.rotation.x = -Math.PI / 2;
+      scene.add(plane);
 
-  plane = new THREE.Mesh(new THREE.PlaneBufferGeometry(400, 400), new THREE.MeshBasicMaterial({
-    color: 0xe0e0e0
-  }));
-  plane.position.y = -200;
-  plane.rotation.x = -Math.PI / 2;
-  scene.add(plane);
+      renderer = new THREE.CanvasRenderer();
+      renderer.setClearColor(0xf0f0f0);
+      renderer.setSize(width, height);
+      // container.appendChild( renderer.domElement );
 
-  renderer = new THREE.CanvasRenderer();
-  renderer.setClearColor(0xf0f0f0);
-  renderer.setSize(width, height);
-  // container.appendChild( renderer.domElement );
+      effect = new THREE.AsciiEffect(renderer);
+      effect.setSize(width, height);
+      container.appendChild(effect.domElement);
 
-  effect = new THREE.AsciiEffect(renderer);
-  effect.setSize(width, height);
-  container.appendChild(effect.domElement);
+      //
 
-  //
+      window.addEventListener('resize', onWindowResize, false);
 
-  window.addEventListener('resize', onWindowResize, false);
+    }
 
-}
+    function onWindowResize() {
 
-function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
 
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      effect.setSize(window.innerWidth, window.innerHeight);
 
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  effect.setSize(window.innerWidth, window.innerHeight);
+    }
 
-}
+    //
 
-//
+    function animate() {
 
-function animate() {
+      requestAnimationFrame(animate);
 
-  requestAnimationFrame(animate);
+      render();
 
-  render();
+    }
 
-}
+    function render() {
 
-function render() {
+      var timer = Date.now() - start;
 
-  var timer = Date.now() - start;
+      sphere.position.y = Math.abs(Math.sin(timer * 0.002)) * 150;
+      sphere.rotation.x = timer * 0.0003;
+      sphere.rotation.z = timer * 0.0002;
 
-  sphere.position.y = Math.abs(Math.sin(timer * 0.002)) * 150;
-  sphere.rotation.x = timer * 0.0003;
-  sphere.rotation.z = timer * 0.0002;
+      controls.update();
 
-  controls.update();
+      effect.render(scene, camera);
 
-  effect.render(scene, camera);
-
-}
+    }
   }
 };
 

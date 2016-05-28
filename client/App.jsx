@@ -3,7 +3,8 @@ import 'styles/main.scss';
 import todos from 'pages/todo';
 import project from 'pages/project';
 import funnySquares from 'pages/funnySquares';
-import goL from 'page/goL';
+import goL from 'pages/goL';
+import threeJSExample from 'pages/threeJSExample';
 
 $(function(){
   var url = window.location.pathname;
