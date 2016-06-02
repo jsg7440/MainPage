@@ -29,7 +29,7 @@ TodoModel = Backbone.Model.extend({
   save: function(){}
 });                         
 
-var todoModel = new TodoModel();                               
+todoModel = new TodoModel();                               
 
 // View
 
@@ -47,7 +47,7 @@ TodoControllerView = Backbone.View.extend({
     closeView: function(){}            
 });
 
-var todoControllerView = new TodoControllerView();
+todoControllerView = new TodoControllerView();
 
 // TodoView = Backbone.View.extend({                      
 //   el: 'body',                                         

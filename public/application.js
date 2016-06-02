@@ -9982,7 +9982,7 @@
 	  save: function save() {}
 	});
 	
-	var todoModel = new TodoModel();
+	todoModel = new TodoModel();
 	
 	// View
 	
@@ -10000,7 +10000,7 @@
 	  closeView: function closeView() {}
 	});
 	
-	var todoControllerView = new TodoControllerView();
+	todoControllerView = new TodoControllerView();
 	
 	// TodoView = Backbone.View.extend({                     
 	//   el: 'body',                                        
