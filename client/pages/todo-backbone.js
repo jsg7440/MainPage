@@ -21,20 +21,44 @@ var TodoView;
 var todoModel;
 var todoControllerView;
 
-TodoModel = Backbone.Model.extend({                    
+TodoModel = Backbone.Model.extend({
   defaults: {
-    // No defaults yet
+    todos: []
   },
-  fetch: function(){},
-  save: function(){}
-});                         
+  todoSchema: {
+    id: 0,
+    title: '',
+    completed: false
+  },
+  fetch: function(){
+    var data = lscache.get('todos');
+    data = this.applySchema(data);
+    this.set('todos', data);
+  },
+  save: function(){
+    var data = this.get('todos');
+    data = this.applySchema(data);
+    lscache.set('todos', data);
+  },
+  applySchema: function(){
+    var data = todos;
+    var schema = this.todoSchema;
+    data = (_.isArray(todos))? data : [];
+    data = data.map(function(todo, index){
+      todo.id = index;
+      return _.defaults(todo, schema);
+    });
+    // LEFT OFF POINT *************************
+    return data;
+  }
+});
 
-todoModel = new TodoModel();                               
+todoModel = new TodoModel();
 
 // View
 
-TodoControllerView = Backbone.View.extend({                      
-  el: 'body',                                         
+TodoControllerView = Backbone.View.extend({
+  el: 'body',
   model: todoModel,
   events: {
     // No Events yet
@@ -49,8 +73,8 @@ TodoControllerView = Backbone.View.extend({
 
 todoControllerView = new TodoControllerView();
 
-// TodoView = Backbone.View.extend({                      
-//   el: 'body',                                         
+// TodoView = Backbone.View.extend({
+//   el: 'body',
 //   model: model,
 //   events: {
 //     // No Events yet
@@ -58,16 +82,10 @@ todoControllerView = new TodoControllerView();
 //     initialize: function(){},
 //     render: function(){},
 //     someFunction: function(){},
-//     closeView: function(){}            
+//     closeView: function(){}
 //   }
 // });
 
 // var todoView = new TodoView();     
 
-module.exports = todoControllerView;                            
-
-
-
-
-
-
+module.exports = todoControllerView;

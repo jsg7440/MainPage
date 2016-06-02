@@ -9976,10 +9976,34 @@
 	
 	TodoModel = _backbone2['default'].Model.extend({
 	  defaults: {
-	    // No defaults yet
+	    todos: []
 	  },
-	  fetch: function fetch() {},
-	  save: function save() {}
+	  todoSchema: {
+	    id: 0,
+	    title: '',
+	    completed: false
+	  },
+	  fetch: function fetch() {
+	    var data = _lscache2['default'].get('todos');
+	    data = this.applySchema(data);
+	    this.set('todos', data);
+	  },
+	  save: function save() {
+	    var data = this.get('todos');
+	    data = this.applySchema(data);
+	    _lscache2['default'].set('todos', data);
+	  },
+	  applySchema: function applySchema() {
+	    var data = todos;
+	    var schema = this.todoSchema;
+	    data = _underscore2['default'].isArray(todos) ? data : [];
+	    data = data.map(function (todo, index) {
+	      todo.id = index;
+	      return _underscore2['default'].defaults(todo, schema);
+	    });
+	    // LEFT OFF POINT *************************
+	    return data;
+	  }
 	});
 	
 	todoModel = new TodoModel();
@@ -10002,8 +10026,8 @@
 	
 	todoControllerView = new TodoControllerView();
 	
-	// TodoView = Backbone.View.extend({                     
-	//   el: 'body',                                        
+	// TodoView = Backbone.View.extend({
+	//   el: 'body',
 	//   model: model,
 	//   events: {
 	//     // No Events yet
@@ -10011,7 +10035,7 @@
 	//     initialize: function(){},
 	//     render: function(){},
 	//     someFunction: function(){},
-	//     closeView: function(){}           
+	//     closeView: function(){}
 	//   }
 	// });
 	
