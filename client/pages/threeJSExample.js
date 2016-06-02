@@ -5,15 +5,48 @@ var app = {
   init: function(){
         
     var container;
-
-    var camera, controls, scene, renderer;
-
-    var sphere, plane, effect;
-
+    var camera; 
+    var controls; 
+    var scene; 
+    var renderer;
+    var sphere;
+    var plane;
+    var effect;
     var start = Date.now();
 
-    init();
-    animate();
+    function onWindowResize() {
+
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      effect.setSize(window.innerWidth, window.innerHeight);
+
+    }
+
+    //
+
+    function render() {
+
+      var timer = Date.now() - start;
+
+      sphere.position.y = Math.abs(Math.sin(timer * 0.002)) * 150;
+      sphere.rotation.x = timer * 0.0003;
+      sphere.rotation.z = timer * 0.0002;
+
+      controls.update();
+
+      effect.render(scene, camera);
+
+    }
+
+    function animate() {
+
+      requestAnimationFrame(animate);
+
+      render();
+
+    }
 
     function init() {
 
@@ -43,7 +76,7 @@ var app = {
       light.position.set(500, 500, 500);
       scene.add(light);
 
-      var light = new THREE.PointLight(0xffffff, 0.25);
+      light = new THREE.PointLight(0xffffff, 0.25);
       light.position.set(-500, -500, -500);
       scene.add(light);
 
@@ -68,45 +101,12 @@ var app = {
       effect.setSize(width, height);
       container.appendChild(effect.domElement);
 
-      //
-
       window.addEventListener('resize', onWindowResize, false);
-
     }
 
-    function onWindowResize() {
+    init();
+    animate();
 
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      effect.setSize(window.innerWidth, window.innerHeight);
-
-    }
-
-    //
-
-    function animate() {
-
-      requestAnimationFrame(animate);
-
-      render();
-
-    }
-
-    function render() {
-
-      var timer = Date.now() - start;
-
-      sphere.position.y = Math.abs(Math.sin(timer * 0.002)) * 150;
-      sphere.rotation.x = timer * 0.0003;
-      sphere.rotation.z = timer * 0.0002;
-
-      controls.update();
-
-      effect.render(scene, camera);
-
-    }
   }
 };
 

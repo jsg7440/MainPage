@@ -58,30 +58,31 @@
 	
 	var _pagesTodo2 = _interopRequireDefault(_pagesTodo);
 	
-	var _pagesProject = __webpack_require__(52);
+	var _pagesProject = __webpack_require__(54);
 	
 	var _pagesProject2 = _interopRequireDefault(_pagesProject);
 	
-	var _pagesFunnySquares = __webpack_require__(53);
+	var _pagesFunnySquares = __webpack_require__(55);
 	
 	var _pagesFunnySquares2 = _interopRequireDefault(_pagesFunnySquares);
 	
-	var _pagesGoL = __webpack_require__(54);
+	var _pagesGoL = __webpack_require__(57);
 	
 	var _pagesGoL2 = _interopRequireDefault(_pagesGoL);
 	
-	var _pagesThreeJSExample = __webpack_require__(56);
+	var _pagesThreeJSExample = __webpack_require__(59);
 	
 	var _pagesThreeJSExample2 = _interopRequireDefault(_pagesThreeJSExample);
 	
 	(0, _jquery2['default'])(function () {
 	  var url = window.location.pathname;
+	
 	  switch (url) {
 	    case '/pages/todo.html':
 	      _pagesTodo2['default'].init();
 	      break;
 	    case '/pages/project.html':
-	      // init the project javascript
+	      _pagesProject2['default'].init();
 	      break;
 	    case '/pages/funnySquares.html':
 	      _pagesFunnySquares2['default'].init();
@@ -89,8 +90,9 @@
 	    case '/pages/goL.html':
 	      _pagesGoL2['default'].init();
 	      break;
-	    case "/pages/threeJSExample.html":
+	    case '/pages/threeJSExample.html':
 	      _pagesThreeJSExample2['default'].init();
+	      break;
 	    default:
 	    // Default case here,
 	  }
@@ -9958,12 +9960,9 @@
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// Legacy loading for bootstrap
 	'use strict';
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	// Importing dependencies
 	
 	var _underscore = __webpack_require__(7);
 	
@@ -9977,17 +9976,37 @@
 	
 	var _lscache2 = _interopRequireDefault(_lscache);
 	
-	// on document load
+	var _templatesTodoItemHtml = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"templates/todoItem.html\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _templatesTodoItemHtml2 = _interopRequireDefault(_templatesTodoItemHtml);
+	
+	var _templatesTodoModalHtml = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"templates/todoModal.html\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _templatesTodoModalHtml2 = _interopRequireDefault(_templatesTodoModalHtml);
+	
 	// Data Model
+	
 	var $ = __webpack_require__(1);
+	
+	// legacy loading for bootstrap
 	window.jQuery = window.$ = $;
-	__webpack_require__(39);var savedData = _lscache2['default'].get('todos');
+	__webpack_require__(41);
+	
 	var todos;
+	var savedData = _lscache2['default'].get('todos');
 	if (savedData === null) {
 	  todos = [];
 	} else {
 	  todos = savedData;
 	}
+	
+	var todoSchema = function todoSchema(todo) {
+	  return _underscore2['default'].defaults(todo, {
+	    id: 0,
+	    title: "",
+	    completed: false
+	  });
+	};
 	
 	// Application
 	var template;
@@ -10003,25 +10022,25 @@
 	      return template(todo);
 	    });
 	    app.unbindEvents();
-	    $('ul.list-group').html(todoHtml.join(''));
+	    $('ul.list-group').html(todoHtml.join(""));
 	    app.bindEvents();
 	  },
 	  compileTemplates: function compileTemplates() {
-	    template = $('[type="text/x-template"]');
-	    template = _handlebars2['default'].compile(template.first().html());
+	    template = _handlebars2['default'].compile(_templatesTodoItemHtml2['default']);
 	  },
 	  unbindEvents: function unbindEvents() {
 	    $('.list-group-item').off();
 	    $('.add-todo-container button').off();
 	    $('input[type="checkbox"]').off();
-	    $('list-group-item button').off();
+	    $('.list-group-item button').off();
+	    $('.title-edit input').off();
 	  },
 	  bindEvents: function bindEvents() {
 	    app.bindHoverEvents();
 	    app.bindCheckboxEvents();
 	    app.bindAddTodoEvents();
-	    app.bindAddTodoEventsOnEnter();
 	    app.bindRemoveTodoEvents();
+	    app.bindEditTodoEvents();
 	  },
 	  bindHoverEvents: function bindHoverEvents() {
 	    var $items = $('.list-group-item');
@@ -10037,34 +10056,25 @@
 	    $checkboxes.on('change', function () {
 	      var wasChecked = $(this).is(':checked');
 	      if (!wasChecked) {
-	        $(this).parent().parent().removeClass('disabled');
+	        $(this).parent().parent().removeClass("disabled");
 	      } else {
-	        $(this).parent().parent().addClass('disabled');
+	        $(this).parent().parent().addClass("disabled");
 	      }
 	    });
 	  },
 	  bindAddTodoEvents: function bindAddTodoEvents() {
-	    $('.add-todo-container button').on('click', function () {
-	      var newTodoTitle = $('.add-todo-container input').val();
+	    var $container = $('.add-todo-container');
+	    $container.find('button').on('click', function () {
+	      var newTodoTitle = $container.find('input').val();
 	      if (_underscore2['default'].isString(newTodoTitle) && newTodoTitle.length > 2) {
-	        var newTodoObject = { title: newTodoTitle, completed: false };
+	        var newTodoObject = todoSchema({
+	          id: todos.length,
+	          title: newTodoTitle,
+	          completed: false
+	        });
 	        todos.push(newTodoObject);
-	        $('.add-todo-container input').val('');
+	        $container.find('input').val("");
 	        app.render();
-	      }
-	    });
-	  },
-	  bindAddTodoEventsOnEnter: function bindAddTodoEventsOnEnter() {
-	    $(document).keypress(function (event) {
-	      var kcode = event.keyCode;
-	      if (kcode === 13) {
-	        var newTodoTitle = $('.add-todo-container input').val();
-	        if ($.type(newTodoTitle) === 'string' && newTodoTitle.length > 2) {
-	          var newTodoObject = { title: newTodoTitle, completed: false };
-	          todos.push(newTodoObject);
-	          $('.add-todo-container input').val('');
-	          app.render();
-	        }
 	      }
 	    });
 	  },
@@ -10072,11 +10082,53 @@
 	    $('.list-group-item button').on('click', function () {
 	      var index = $(this).parent().parent().index();
 	      todos.splice(index, 1);
-	      $();
 	      app.render();
 	    });
+	  },
+	  bindEditTodoEvents: function bindEditTodoEvents() {
+	
+	    $('.title').on('click', function () {
+	      var whichTodo = $(this).attr('data-id');
+	      whichTodo = parseInt(whichTodo, 10);
+	      var editTodo = todos[whichTodo];
+	      var compiledTemplate = _handlebars2['default'].compile(_templatesTodoModalHtml2['default']);
+	      var fullHtml = compiledTemplate(editTodo);
+	
+	      $('body').append(fullHtml);
+	
+	      $('.modal').modal();
+	
+	      $('.close, .btn-default, .modal-backdrop').on('click', function () {
+	        $('.modal, .modal-backdrop').remove();
+	      });
+	    });
+	
+	    // $('.title').on('click', function(){
+	    //   var $parent = $(this).parent();
+	    //   $parent.find('.title').addClass('hidden');
+	    //   $parent.find('.title-edit').removeClass('hidden');
+	    // });
+	    // $('.title-edit input').on('keypress', function(event){
+	    //   var key = event.which;
+	    //   // if they hit the enter key
+	    //   if (key === 13) {
+	    //     var newTitle = $(this).val();
+	    //     var editId = $(this).attr('data-id');
+	    //     editId = parseInt(editId, 10);
+	    //     // update the title in our model
+	    //     var editTodo = _.filter(todos, function(todo){
+	    //       if (todo.id === editId) {
+	    //         return true;
+	    //       }
+	    //       return false;
+	    //     });
+	    //     editTodo[0].title = newTitle;
+	    //     app.render();
+	    //   }
+	    // });
 	  }
 	};
+	
 	module.exports = app;
 
 /***/ },
@@ -16776,12 +16828,12 @@
 
 
 /***/ },
-/* 39 */
+/* 39 */,
+/* 40 */,
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// This file is autogenerated via the `commonjs` Grunt task. You can require() this file in a CommonJS environment.
-	__webpack_require__(40)
-	__webpack_require__(41)
 	__webpack_require__(42)
 	__webpack_require__(43)
 	__webpack_require__(44)
@@ -16792,9 +16844,11 @@
 	__webpack_require__(49)
 	__webpack_require__(50)
 	__webpack_require__(51)
+	__webpack_require__(52)
+	__webpack_require__(53)
 
 /***/ },
-/* 40 */
+/* 42 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -16859,7 +16913,7 @@
 
 
 /***/ },
-/* 41 */
+/* 43 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -16959,7 +17013,7 @@
 
 
 /***/ },
-/* 42 */
+/* 44 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -17085,7 +17139,7 @@
 
 
 /***/ },
-/* 43 */
+/* 45 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -17328,7 +17382,7 @@
 
 
 /***/ },
-/* 44 */
+/* 46 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -17545,7 +17599,7 @@
 
 
 /***/ },
-/* 45 */
+/* 47 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -17716,7 +17770,7 @@
 
 
 /***/ },
-/* 46 */
+/* 48 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -18059,7 +18113,7 @@
 
 
 /***/ },
-/* 47 */
+/* 49 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -18579,7 +18633,7 @@
 
 
 /***/ },
-/* 48 */
+/* 50 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -18693,7 +18747,7 @@
 
 
 /***/ },
-/* 49 */
+/* 51 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -18871,7 +18925,7 @@
 
 
 /***/ },
-/* 50 */
+/* 52 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -19032,7 +19086,7 @@
 
 
 /***/ },
-/* 51 */
+/* 53 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -19200,63 +19254,107 @@
 
 
 /***/ },
-/* 52 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	var app = {};
-	module.exports = app;
-
-/***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports) {
 
 	"use strict";
 	
 	var app = {
-	  init: function init() {
-	    // alert('funny squares');
-	  }
+		init: function init() {
+			app.render();
+		},
+		render: function render() {
+			// make it so
+		}
 	};
 	
 	module.exports = app;
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _d3 = __webpack_require__(55);
+	var _jquery = __webpack_require__(1);
+	
+	var _jquery2 = _interopRequireDefault(_jquery);
+	
+	var _underscore = __webpack_require__(7);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _htmlTemplatesFunnySquareHtml = __webpack_require__(56);
+	
+	var _htmlTemplatesFunnySquareHtml2 = _interopRequireDefault(_htmlTemplatesFunnySquareHtml);
+	
+	var _handlebars = __webpack_require__(8);
+	
+	var _handlebars2 = _interopRequireDefault(_handlebars);
+	
+	var template;
+	var app = {
+	  init: function init() {
+	    template = _handlebars2['default'].compile(_htmlTemplatesFunnySquareHtml2['default']);
+	    app.render();
+	  },
+	  render: function render() {
+	    // display 6 squares
+	    var numberOfSquares = 6;
+	    var renderedHtml = '';
+	    _underscore2['default'].times(numberOfSquares, function (index) {
+	      renderedHtml += template({ id: index + 1 });
+	    });
+	    (0, _jquery2['default'])('body').append(renderedHtml);
+	  }
+	};
+	
+	module.exports = app;
+
+/***/ },
+/* 56 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"square-container\">\n  <div class=\"square square{{id}}\">\n    <div class=\"inner\">{{id}}</div>\n  </div>\n</div>";
+
+/***/ },
+/* 57 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _d3 = __webpack_require__(58);
 	
 	var _d32 = _interopRequireDefault(_d3);
 	
 	var app = {
 	  init: function init() {
 	    var goL = (function () {
-	      var goL = {},
-	          bits = 64 * 128;
+	      goL = {};
+	      var bits = 64 * 128;
 	      var dt; // grid bits
 	      var i; // which dt is current?
 	      var sp = 20; // speed of animation. smaller = faster.
 	      var timeClr; // for clearing Timeout.
 	      var editMode = false;
+	      var rects;
 	
 	      goL.clearGrid = function () {
 	        dt = [Array.apply(0, Array(bits / 32)).map(function () {
 	          return 0;
 	        }), Array.apply(0, Array(bits / 32)).map(function () {
 	          return 0;
-	        })]; //enough bits for 64x128 grid
+	        })]; // enough bits for 64x128 grid
 	        i = 0; // 0 is current
 	      };
 	
 	      goL.get = function (p) {
 	        // get status of pth bit
-	        return (dt[i][p >>> 5] & 0x80000000 >>> (p & 31)) == 0 ? 0 : 1;
+	        return (dt[i][p >>> 5] & 0x80000000 >>> (p & 31)) === 0 ? 0 : 1;
 	      };
 	
 	      goL.put = function (p, s, j) {
@@ -19270,30 +19368,29 @@
 	
 	      goL.editMode = function (f) {
 	        editMode = f;
-	        f ? rects.attr('class', "edit") : rects.attr('class', "");
+	        f ? rects.attr('class', 'edit') : rects.attr('class', '');
 	      };
 	
 	      function switchSq(p) {
 	        if (!editMode) return;
 	        goL.put(p, 1 - goL.get(p), i);
-	        rects.style("fill", function (d) {
-	          return goL.get(d) == 1 ? "steelblue" : "white";
+	        rects.style('fill', function (d) {
+	          return goL.get(d) === 1 ? 'steelblue' : 'white';
 	        });
 	      }
 	
 	      goL.clearGrid();
-	      var rects = _d32['default'].select("svg").selectAll("rect").data(_d32['default'].range(0, bits)).enter().append("rect").attr("x", function (d) {
+	      rects = _d32['default'].select('svg').selectAll('rect').data(_d32['default'].range(0, bits)).enter().append('rect').attr('x', function (d) {
 	        return (d & 127) * 7;
-	      }).attr("y", function (d) {
+	      }).attr('y', function (d) {
 	        return (d >>> 7) * 7;
-	      }).attr("width", 7).attr("height", 7).style("fill", function (d) {
-	        return goL.get(d) == 1 ? "steelblue" : "white";
-	      }).on("click", function (d) {
+	      }).attr('width', 7).attr('height', 7).style('fill', function (d) {
+	        return goL.get(d) === 1 ? 'steelblue' : 'white';
+	      }).on('click', function (d) {
 	        return switchSq(d);
 	      });
 	
 	      goL.setGrid = function (ar) {
-	        //set the initial bits
 	        goL.clearGrid();
 	        goL.clearTimeout();
 	
@@ -19304,23 +19401,23 @@
 	            });
 	          });
 	        }
-	        rects.style("fill", function (d) {
-	          return goL.get(d) == 1 ? "steelblue" : "white";
+	        rects.style('fill', function (d) {
+	          return goL.get(d) === 1 ? 'steelblue' : 'white';
 	        });
 	      };
 	
 	      goL.update = function () {
 	        for (var p = 0; p < bits; p++) {
-	          var q = p >>> 7,
-	              r = p & 127; // quotient and reminder
+	          var q = p >>> 7;
+	          var r = p & 127; // quotient and reminder
 	          var n = (q > 0 && r > 0 ? goL.get(p - 129) : 0) + ( // number of neighbours
 	          q > 0 ? goL.get(p - 128) : 0) + (q > 0 && r < 127 ? goL.get(p - 127) : 0) + (r > 0 ? goL.get(p - 1) : 0) + (r < 127 ? goL.get(p + 1) : 0) + (q < 63 && r > 0 ? goL.get(p + 127) : 0) + (q < 63 ? goL.get(p + 128) : 0) + (q < 63 && r < 127 ? goL.get(p + 129) : 0);
 	
-	          if (n <= 1 || n > 3) goL.put(p, 0, 1 - i);else if (n == 2) goL.put(p, goL.get(p), 1 - i);else goL.put(p, 1, 1 - i);
+	          if (n <= 1 || n > 3) goL.put(p, 0, 1 - i);else if (n === 2) goL.put(p, goL.get(p), 1 - i);else goL.put(p, 1, 1 - i);
 	        }
 	        i = 1 - i; // switch current
-	        rects.style("fill", function (d) {
-	          return goL.get(d) == 1 ? "steelblue" : "white";
+	        rects.style('fill', function (d) {
+	          return goL.get(d) === 1 ? 'steelblue' : 'white';
 	        });
 	
 	        timeClr = setTimeout(function () {
@@ -19336,7 +19433,7 @@
 	module.exports = app;
 
 /***/ },
-/* 55 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function() {
@@ -28895,14 +28992,14 @@
 	}();
 
 /***/ },
-/* 56 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _three = __webpack_require__(57);
+	var _three = __webpack_require__(60);
 	
 	var _three2 = _interopRequireDefault(_three);
 	
@@ -28912,15 +29009,45 @@
 	  init: function init() {
 	
 	    var container;
-	
-	    var camera, controls, scene, renderer;
-	
-	    var sphere, plane, effect;
-	
+	    var camera;
+	    var controls;
+	    var scene;
+	    var renderer;
+	    var sphere;
+	    var plane;
+	    var effect;
 	    var start = Date.now();
 	
-	    init();
-	    animate();
+	    function onWindowResize() {
+	
+	      camera.aspect = window.innerWidth / window.innerHeight;
+	      camera.updateProjectionMatrix();
+	
+	      renderer.setSize(window.innerWidth, window.innerHeight);
+	      effect.setSize(window.innerWidth, window.innerHeight);
+	    }
+	
+	    //
+	
+	    function render() {
+	
+	      var timer = Date.now() - start;
+	
+	      sphere.position.y = Math.abs(Math.sin(timer * 0.002)) * 150;
+	      sphere.rotation.x = timer * 0.0003;
+	      sphere.rotation.z = timer * 0.0002;
+	
+	      controls.update();
+	
+	      effect.render(scene, camera);
+	    }
+	
+	    function animate() {
+	
+	      requestAnimationFrame(animate);
+	
+	      render();
+	    }
 	
 	    function init() {
 	
@@ -28950,7 +29077,7 @@
 	      light.position.set(500, 500, 500);
 	      scene.add(light);
 	
-	      var light = new _three2['default'].PointLight(0xffffff, 0.25);
+	      light = new _three2['default'].PointLight(0xffffff, 0.25);
 	      light.position.set(-500, -500, -500);
 	      scene.add(light);
 	
@@ -28975,48 +29102,18 @@
 	      effect.setSize(width, height);
 	      container.appendChild(effect.domElement);
 	
-	      //
-	
 	      window.addEventListener('resize', onWindowResize, false);
 	    }
 	
-	    function onWindowResize() {
-	
-	      camera.aspect = window.innerWidth / window.innerHeight;
-	      camera.updateProjectionMatrix();
-	
-	      renderer.setSize(window.innerWidth, window.innerHeight);
-	      effect.setSize(window.innerWidth, window.innerHeight);
-	    }
-	
-	    //
-	
-	    function animate() {
-	
-	      requestAnimationFrame(animate);
-	
-	      render();
-	    }
-	
-	    function render() {
-	
-	      var timer = Date.now() - start;
-	
-	      sphere.position.y = Math.abs(Math.sin(timer * 0.002)) * 150;
-	      sphere.rotation.x = timer * 0.0003;
-	      sphere.rotation.z = timer * 0.0002;
-	
-	      controls.update();
-	
-	      effect.render(scene, camera);
-	    }
+	    init();
+	    animate();
 	  }
 	};
 	
 	module.exports = app;
 
 /***/ },
-/* 57 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;// File:src/Three.js

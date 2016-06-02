@@ -1,21 +1,31 @@
-// Legacy loading for bootstrap
+
 var $ = require('jquery');
+
+// legacy loading for bootstrap
 window.jQuery = window.$ = $;
 require('bootstrap');
 
-// Importing dependencies
 import _ from 'underscore';
 import Handlebars from 'handlebars';
 import lscache from 'lscache';
+import rawTemplate from 'templates/todoItem.html';
+import modalTemplate from 'templates/todoModal.html';
 
-// on document load
 // Data Model
-var savedData = lscache.get('todos');
 var todos;
-if (savedData === null) {	
+var savedData = lscache.get('todos');
+if (savedData === null) {
   todos = [];
 } else {
   todos = savedData;
+}
+
+var todoSchema = function(todo){
+  return _.defaults(todo, {
+    id: 0,
+    title: "",
+    completed: false 
+  });
 }
 
 // Application
@@ -32,25 +42,25 @@ var app = {
       return template(todo);
     });
     app.unbindEvents();
-    $('ul.list-group').html(todoHtml.join(''));
+    $('ul.list-group').html(todoHtml.join(""));
     app.bindEvents();
   },
   compileTemplates: function(){
-    template = $('[type="text/x-template"]');
-    template = Handlebars.compile(template.first().html());
+    template = Handlebars.compile(rawTemplate);
   },
   unbindEvents: function(){
     $('.list-group-item').off();
     $('.add-todo-container button').off();
     $('input[type="checkbox"]').off();
-    $('list-group-item button').off();
+    $('.list-group-item button').off();
+    $('.title-edit input').off();
   },
   bindEvents: function(){
     app.bindHoverEvents();
     app.bindCheckboxEvents();
     app.bindAddTodoEvents();
-    app.bindAddTodoEventsOnEnter();
     app.bindRemoveTodoEvents();
+    app.bindEditTodoEvents();
   },
   bindHoverEvents: function(){
     var $items = $('.list-group-item');
@@ -66,34 +76,25 @@ var app = {
     $checkboxes.on('change', function(){
       var wasChecked = $(this).is(':checked');
       if (!wasChecked) {
-        $(this).parent().parent().removeClass('disabled');
+        $(this).parent().parent().removeClass("disabled");
       } else {
-        $(this).parent().parent().addClass('disabled');
+        $(this).parent().parent().addClass("disabled");
       }
     });
   },
   bindAddTodoEvents: function(){
-    $('.add-todo-container button').on('click', function(){
-      var newTodoTitle = $('.add-todo-container input').val();
+    var $container = $('.add-todo-container');
+    $container.find('button').on('click', function(){
+      var newTodoTitle = $container.find('input').val();
       if (_.isString(newTodoTitle) && newTodoTitle.length > 2) {
-        var newTodoObject = { title: newTodoTitle, completed: false };
+        var newTodoObject = todoSchema({
+          id: todos.length,
+          title: newTodoTitle, 
+          completed: false 
+        });
         todos.push(newTodoObject);
-        $('.add-todo-container input').val('');
-        app.render();
-      }
-    });
-  },
-  bindAddTodoEventsOnEnter: function(){
-    $(document).keypress(function(event) {
-      var kcode = (event.keyCode);
-      if (kcode === 13) {
-        var newTodoTitle = $('.add-todo-container input').val();
-        if ($.type(newTodoTitle) === 'string' && newTodoTitle.length > 2) {
-          var newTodoObject = { title: newTodoTitle, completed: false };
-          todos.push(newTodoObject);
-          $('.add-todo-container input').val('');
-          app.render();
-        }
+        $container.find('input').val("");
+        app.render(); 
       }
     });
   },
@@ -101,9 +102,52 @@ var app = {
     $('.list-group-item button').on('click', function(){
       var index = $(this).parent().parent().index();
       todos.splice(index, 1);
-      $();
       app.render();
     });
+  },
+  bindEditTodoEvents: function(){
+
+    $('.title').on('click', function(){
+      var whichTodo = $(this).attr('data-id');
+      whichTodo = parseInt(whichTodo, 10);
+      var editTodo = todos[whichTodo];
+      var compiledTemplate = Handlebars.compile(modalTemplate);
+      var fullHtml = compiledTemplate(editTodo);
+
+      $('body').append(fullHtml);
+
+      $('.modal').modal();
+
+      $('.close, .btn-default, .modal-backdrop').on('click', function(){
+        $('.modal, .modal-backdrop').remove();
+      });
+
+    });
+
+    // $('.title').on('click', function(){
+    //   var $parent = $(this).parent();
+    //   $parent.find('.title').addClass('hidden');
+    //   $parent.find('.title-edit').removeClass('hidden');
+    // });
+    // $('.title-edit input').on('keypress', function(event){
+    //   var key = event.which;
+    //   // if they hit the enter key
+    //   if (key === 13) {
+    //     var newTitle = $(this).val();
+    //     var editId = $(this).attr('data-id');
+    //     editId = parseInt(editId, 10);
+    //     // update the title in our model
+    //     var editTodo = _.filter(todos, function(todo){
+    //       if (todo.id === editId) {
+    //         return true;
+    //       }
+    //       return false;
+    //     });
+    //     editTodo[0].title = newTitle;
+    //     app.render();
+    //   }
+    // });
   }
 };
+
 module.exports = app;

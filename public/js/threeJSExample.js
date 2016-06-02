@@ -1,4 +1,4 @@
-var container;
+var container, render;
 
 var camera, controls, scene, renderer;
 

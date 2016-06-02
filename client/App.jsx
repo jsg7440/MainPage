@@ -8,22 +8,25 @@ import threeJSExample from 'pages/threeJSExample';
 
 $(function(){
   var url = window.location.pathname;
+
   switch (url) {
     case '/pages/todo.html': 
       todos.init();
-		break;
+    break;
     case '/pages/project.html':
-				// init the project javascript
+      project.init();
     break;
     case '/pages/funnySquares.html':
-				funnySquares.init();
+      funnySquares.init();
     break;
     case '/pages/goL.html':
-        goL.init();
+      goL.init();
     break;
-    case "/pages/threeJSExample.html":
-        threeJSExample.init();
+    case '/pages/threeJSExample.html':
+      threeJSExample.init();
+    break;
     default: 
-			// Default case here, 
+      // Default case here, 
   }
+
 });
