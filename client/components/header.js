@@ -1,3 +1,4 @@
+
 import $ from 'jquery';
 import navbar from 'templates/navbar.html';
 

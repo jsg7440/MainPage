@@ -5,16 +5,20 @@
 }
 
 .add-todo-container {
-  margin-bottom: 7px;
+  margin-bottom: 10px;
 }
 
 .add-todo-container .col-md-10 {
-  padding-left: 0;
+  padding: 0;
 }
 
 .add-todo-container .col-md-2 {
   padding-right: 0;
   text-align: right;
+}
+
+h1 {
+  color: red;
 }
 
 .square {
@@ -26,34 +30,43 @@
   line-height: 100px;
   font-family: arial;
   font-size: 42px;
+  transform: none;
+  transition: transform .5s;
 }
 
-h1 {
-  color: green;
+.square-container {
+  perspective: 50px;
+  display: inline-block;
 }
 
-body {
-  width: 960px;
-  margin: 0 auto;
+.square1:hover {
+  transform: skewX(45deg);
+  transition: transform .5s;
 }
 
-rect {
-  stroke: rgba(204, 204, 204, 0.2);
-  shape-rendering: crispEdges;
+.square2:hover {
+  transform: rotate(45deg);
+  transition: transform .5s;
 }
 
-.edit:hover {
-  stroke: steelblue;
-  cursor: pointer;
+.square3:hover {
+  transform: scale(0.8, 0.5);
+  transition: transform .5s;
 }
 
-select {
-  width: 80px;
+.square4:hover {
+  transform: rotateY(745deg) rotateX(45deg);
+  transition: transform .5s;
 }
 
-button {
-  min-width: 50px;
-  padding: 0 40px;
+.square5:hover {
+  -webkit-transform: rotateX(45deg);
+  transform: rotateX(45deg);
+  transition: transform .5s;
+}
+
+.square6:hover {
+  transform: translate3d(20px, 50px, 100px);
 }
 
 video {
