@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import _ from 'underscore';
 import flickrImage from 'templates/flickrImage.html';
 import Handlebars from 'handlebars';
 
