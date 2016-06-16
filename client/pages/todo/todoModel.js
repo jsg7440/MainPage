@@ -1,14 +1,9 @@
-var $ = require('jquery');
-
-// legacy loading for bootstrap
-window.jQuery = window.$ = $;
-require('bootstrap');
-
+// var $ = require('jquery');
 import _ from 'underscore';
-import lscache from 'lscache';
 import Backbone from 'backbone';
+import lscache from 'lscache';
 
-// Todo Data Model
+// Model
 
 var TodoModel = Backbone.Model.extend({
   defaults: {
@@ -70,4 +65,4 @@ var TodoModel = Backbone.Model.extend({
 
 var todoModel = new TodoModel();
 
-module.exports = TodoModel;
+module.exports = todoModel;

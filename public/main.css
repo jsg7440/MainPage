@@ -69,6 +69,17 @@ h1 {
   transform: translate3d(20px, 50px, 100px);
 }
 
+.search-container .photo {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.search-container .photo img {
+  width: 100%;
+}
+
 video {
   height: 240px;
   width: 320px;
