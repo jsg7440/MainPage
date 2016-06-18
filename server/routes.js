@@ -19,23 +19,14 @@ router.get('/api', function(req, res){
 });
 
 router.post('/api', function(req, res){
-  var newTodo = req.body;
-  fs.readFile(databasePath, function(err, data){
+  var todos = req.body.todos;
+  // saveDatabase(newData, res);
+  fs.writeFile(databasePath, todos, function(err){
     if (err) {console.log(err); }
-    // Parse data from a string
-    var parsedData = JSON.parse(data);
-    if (!parsedData) {console.log('Database is corrupted!!')}
-    // Add a new item to the database
-    parsedData.push(newTodo);
-    // Convert the database back into a string
-    var newDBString = JSON.stringify(parsedData);
-    fs.writeFile(databasePath, newDBString, function(err){
-      if (err) {console.log(err); }
-      // Respond to Client
-      res.writeHead(200, {'Content-Type': 'text/json'});
-      res.write(newDBString);
-      res.end();
-    });
+    // Respond to Client
+    res.writeHead(200, {'Content-Type': 'text/json'});
+    res.write(todos);
+    res.end();
   });
 });
 
@@ -45,7 +36,5 @@ router.get('/*', function indexRouteHandler (req, res) {
     token: _.uniqueId()
   });
 });
-
-
 
 module.exports = router;
