@@ -20,7 +20,6 @@ router.get('/api', function(req, res){
 
 router.post('/api', function(req, res){
   var todos = req.body.todos;
-  // saveDatabase(newData, res);
   fs.writeFile(databasePath, todos, function(err){
     if (err) {console.log(err); }
     // Respond to Client

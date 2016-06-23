@@ -2,7 +2,7 @@
 import $ from 'jquery';
 import 'styles/main.scss';
 import TodoControllerView from 'pages/todo/todoController';
-import project from 'pages/project';
+// import logoMagic from 'pages/logoMagic';
 import funnySquares from 'pages/funnySquares';
 import header from 'components/header';
 import photoSearch from 'pages/photoSearch';
@@ -22,10 +22,9 @@ $(function(){
     case '/pages/todoReact.html':
       var todoReactControllerView = new TodoReactControllerView();
     break;
-    // case '/pages/project.html':
-    //   // init the project javascript
-    //   home.init();
-    // break;
+    case '/pages/logomagic.html':
+      // home.init();
+    break;
     case '/pages/funnySquares.html':
       funnySquares.init();
     break;
@@ -33,7 +32,6 @@ $(function(){
       photoSearch.init();
     break;
     default:
-      // Nothing here
   }
 
 });

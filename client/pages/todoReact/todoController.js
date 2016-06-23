@@ -5,8 +5,6 @@ import Backbone from 'backbone';
 import todoModel from 'pages/todoReact/todoModel';
 import TodoItemView from 'pages/todoReact/todoView';
 
-// Controller View
-
 var TodoReactControllerView = Backbone.View.extend({
   el: '.todo-container',
   model: todoModel,
@@ -27,7 +25,7 @@ var TodoReactControllerView = Backbone.View.extend({
       var $li = $('<li class="list-group-item row"></li>');
       $ul.append($li);
       ReactDOM.render(
-        <TodoItemView data={todo} />,
+        <TodoItemView data={todo} controller={controller} />,
         // Get original DOMnode from jQuery object
         $li[0]
         );
@@ -43,10 +41,6 @@ var TodoReactControllerView = Backbone.View.extend({
   },
   removeItem: function(id){
     this.model.removeItem(id);
-    this.render();
-  },
-  itemCompleted: function(id, isCompleted){
-    this.model.itemCompleted(id, isCompleted);
     this.render();
   },
   titleEdit: function(newTitle, id){

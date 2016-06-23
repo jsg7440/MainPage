@@ -1,7 +1,7 @@
 var $ = require('jquery');
 import _ from 'underscore';
 import Backbone from 'backbone';
-import lscache from 'lscache';
+// import lscache from 'lscache';
 
 // Model
 
