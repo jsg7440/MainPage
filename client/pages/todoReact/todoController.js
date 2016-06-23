@@ -38,14 +38,6 @@ var TodoReactControllerView = Backbone.View.extend({
     this.model.addItem(newTitle);
     $input.val('');
     this.render();
-  },
-  removeItem: function(id){
-    this.model.removeItem(id);
-    this.render();
-  },
-  titleEdit: function(newTitle, id){
-    this.model.editTitle(newTitle, id);
-    this.render();
   }
 });
 

@@ -18668,14 +18668,6 @@
 	    this.model.addItem(newTitle);
 	    $input.val('');
 	    this.render();
-	  },
-	  removeItem: function removeItem(id) {
-	    this.model.removeItem(id);
-	    this.render();
-	  },
-	  titleEdit: function titleEdit(newTitle, id) {
-	    this.model.editTitle(newTitle, id);
-	    this.render();
 	  }
 	});
 	
