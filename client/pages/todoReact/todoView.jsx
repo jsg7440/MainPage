@@ -35,14 +35,12 @@ var TodoItem = React.createClass({
           </button>
         </div>
       </div>
-    );  
+    );
   },
   editKeypress: function(event){
-    if (event.which === 13) {
-      var id = this.props.data.id;
-      var newTitle = $('li').eq(id).find('input[type="text"]').val();
-      dispatcher.editTodoTitle(id, newTitle);
-    }
+    var id = this.props.data.id;
+    var newTitle = $('li').eq(id).find('input[type="text"]').val();
+    dispatcher.editTodoTitle(id, newTitle, event);
   },
   handleClose: function(){
     var id = this.props.data.id;

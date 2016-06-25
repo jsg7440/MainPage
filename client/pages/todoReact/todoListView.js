@@ -17,7 +17,6 @@ var TodoReactListView = Backbone.View.extend({
     this.model.on('change', this.render, this);
   },
   render: function(){
-    // render the todo items
     var todos = this.model.get('todos');
     var $ul = this.$el.find('.list-group');
     $ul.html('');
@@ -34,7 +33,6 @@ var TodoReactListView = Backbone.View.extend({
   addTodoItem: function(){
     var $input = this.$el.find('.input-name');
     var newTitle = $input.val();
-    if (newTitle === '') { return; }
     dispatcher.addTodo(newTitle);
     $input.val('');
   }

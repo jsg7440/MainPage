@@ -18650,7 +18650,6 @@
 	    this.model.on('change', this.render, this);
 	  },
 	  render: function render() {
-	    // render the todo items
 	    var todos = this.model.get('todos');
 	    var $ul = this.$el.find('.list-group');
 	    $ul.html('');
@@ -18665,9 +18664,6 @@
 	  addTodoItem: function addTodoItem() {
 	    var $input = this.$el.find('.input-name');
 	    var newTitle = $input.val();
-	    if (newTitle === '') {
-	      return;
-	    }
 	    _pagesTodoReactTodoDispatcher2['default'].addTodo(newTitle);
 	    $input.val('');
 	  }
@@ -38462,11 +38458,9 @@
 	    );
 	  },
 	  editKeypress: function editKeypress(event) {
-	    if (event.which === 13) {
-	      var id = this.props.data.id;
-	      var newTitle = (0, _jquery2['default'])('li').eq(id).find('input[type="text"]').val();
-	      _pagesTodoReactTodoDispatcher2['default'].editTodoTitle(id, newTitle);
-	    }
+	    var id = this.props.data.id;
+	    var newTitle = (0, _jquery2['default'])('li').eq(id).find('input[type="text"]').val();
+	    _pagesTodoReactTodoDispatcher2['default'].editTodoTitle(id, newTitle, event);
 	  },
 	  handleClose: function handleClose() {
 	    var id = this.props.data.id;
@@ -38497,18 +38491,21 @@
 	var _pagesTodoReactTodoModel2 = _interopRequireDefault(_pagesTodoReactTodoModel);
 	
 	var dispatcher = {
-	  init: function init() {},
 	  clickComplete: function clickComplete(id) {
 	    _pagesTodoReactTodoModel2['default'].itemCompleted(id);
 	  },
 	  addTodo: function addTodo(title) {
-	    _pagesTodoReactTodoModel2['default'].addItem(title);
+	    if (title !== '' && typeof title === 'string') {
+	      _pagesTodoReactTodoModel2['default'].addItem(title);
+	    }
 	  },
 	  removeTodo: function removeTodo(id) {
 	    _pagesTodoReactTodoModel2['default'].removeItem(id);
 	  },
-	  editTodoTitle: function editTodoTitle(id, newTitle) {
-	    _pagesTodoReactTodoModel2['default'].editTitle(id, newTitle);
+	  editTodoTitle: function editTodoTitle(id, newTitle, event) {
+	    if (event.which === 13 && typeof newTitle === 'string' && newTitle.length > 0) {
+	      _pagesTodoReactTodoModel2['default'].editTitle(id, newTitle);
+	    }
 	  },
 	  startEditMode: function startEditMode(id) {
 	    _pagesTodoReactTodoModel2['default'].startEditing(id);
