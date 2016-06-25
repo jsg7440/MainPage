@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom';
 import Backbone from 'backbone';
 import todoModel from 'pages/todoReact/todoModel';
 import TodoItemView from 'pages/todoReact/todoView';
+import dispatcher from 'pages/todoReact/todoDispatcher';
 
-var TodoReactControllerView = Backbone.View.extend({
+var TodoReactListView = Backbone.View.extend({
   el: '.todo-container',
   model: todoModel,
   events: {
@@ -20,12 +21,11 @@ var TodoReactControllerView = Backbone.View.extend({
     var todos = this.model.get('todos');
     var $ul = this.$el.find('.list-group');
     $ul.html('');
-    var controller = this;
     todos.forEach(function(todo){
       var $li = $('<li class="list-group-item row"></li>');
       $ul.append($li);
       ReactDOM.render(
-        <TodoItemView data={todo} controller={controller} />,
+        <TodoItemView data={todo} />,
         // Get original DOMnode from jQuery object
         $li[0]
         );
@@ -35,10 +35,9 @@ var TodoReactControllerView = Backbone.View.extend({
     var $input = this.$el.find('.input-name');
     var newTitle = $input.val();
     if (newTitle === '') { return; }
-    this.model.addItem(newTitle);
+    dispatcher.addTodo(newTitle);
     $input.val('');
-    this.render();
   }
 });
 
-module.exports = TodoReactControllerView;
+module.exports = TodoReactListView;

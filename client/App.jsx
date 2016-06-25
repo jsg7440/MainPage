@@ -1,4 +1,3 @@
-
 import $ from 'jquery';
 import 'styles/main.scss';
 import TodoControllerView from 'pages/todo/todoController';
@@ -6,7 +5,7 @@ import TodoControllerView from 'pages/todo/todoController';
 import funnySquares from 'pages/funnySquares';
 import header from 'components/header';
 import photoSearch from 'pages/photoSearch';
-import TodoReactControllerView from 'pages/todoReact/todoController';
+import TodoReactControllerView from 'pages/todoReact/todoListView';
 
 $(function(){
 
