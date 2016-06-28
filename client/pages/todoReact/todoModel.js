@@ -59,7 +59,7 @@ var TodoModel = Backbone.Model.extend({
     this.save();
   },
   removeItem: function(id){
-    // finally actually remove the damn thing
+    // finally actually remove the thing
     var todos = this.get('todos');
     todos.splice(id, 1);
     this.save();
@@ -77,6 +77,13 @@ var TodoModel = Backbone.Model.extend({
     item.title = newTitle;
     item.isEditing = false;
     this.set('todos', todos);
+    this.save();
+  },
+  ignoreEdit: function(id){
+    // blackholed
+    var todos = this.get('todos');
+    var item = _.findWhere(todos, {id: id});
+    item.isEditing = false;
     this.save();
   },
   startEditing: function(id){

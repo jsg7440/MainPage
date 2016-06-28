@@ -13,11 +13,11 @@ var TodoItem = React.createClass({
   },
   render: function(){
     var todo = this.props.data;
-    var title = <div className="col-sm-10" onClick={this.titleClick}>{todo.title}</div>;
+    var title = <div className="col-sm-10" onKeyPress={this.addItemOnEnter} onClick={this.titleClick}>{todo.title}</div>;
     if (todo.isEditing) {
       title = (
         <div className="col-sm-10">
-          <input type="text" className="form-control" defaultValue={todo.title} onKeyPress={this.editKeypress} onChange={function(){}}></input>
+          <input type="text" className="form-control" defaultValue={todo.title} onKeyUp={this.editKeypress} onChange={function(){}}></input>
         </div>
       );
     }
@@ -25,10 +25,9 @@ var TodoItem = React.createClass({
     return (
       <div>
         <div className="col-sm-1">
-            <input type="checkbox" checked={todo.completed} onChange={this.handleComplete}></input>
+            <input type="checkbox" checked={todo.completed} onChange={this.handleComplete} ></input>
         </div>
         {title}
-        
         <div className="col-sm-1">
           <button type="button" aria-label="Close" onClick={this.handleClose}>
             <span aria-hidden="true">&times;</span>
@@ -53,6 +52,10 @@ var TodoItem = React.createClass({
   titleClick: function(){
     var id = this.props.data.id;
     dispatcher.startEditMode(id);
+  },
+  addItemOnEnter: function(event){
+    console.log('alert');
+    dispatcher.addTodoEnter(event);
   }
 });
 

@@ -10,7 +10,8 @@ var TodoReactListView = Backbone.View.extend({
   el: '.todo-container',
   model: todoModel,
   events: {
-    'click .btn-add': 'addTodoItem'
+    'click .btn-add': 'addTodoItem',
+    'keydown input.input-name': 'addTodoItemOnEnter'
   },
   initialize: function(){
     this.model.fetch();
@@ -35,6 +36,14 @@ var TodoReactListView = Backbone.View.extend({
     var newTitle = $input.val();
     dispatcher.addTodo(newTitle);
     $input.val('');
+  },
+  addTodoItemOnEnter: function(event){
+    if ( event.which === 13 ){
+    var $input = this.$el.find('input.input-name');
+    var newTitle = $input.val();
+    dispatcher.addTodo(newTitle);
+    $input.val('');
+    };
   }
 });
 

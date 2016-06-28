@@ -18643,7 +18643,8 @@
 	  el: '.todo-container',
 	  model: _pagesTodoReactTodoModel2['default'],
 	  events: {
-	    'click .btn-add': 'addTodoItem'
+	    'click .btn-add': 'addTodoItem',
+	    'keydown input.input-name': 'addTodoItemOnEnter'
 	  },
 	  initialize: function initialize() {
 	    this.model.fetch();
@@ -18666,6 +18667,14 @@
 	    var newTitle = $input.val();
 	    _pagesTodoReactTodoDispatcher2['default'].addTodo(newTitle);
 	    $input.val('');
+	  },
+	  addTodoItemOnEnter: function addTodoItemOnEnter(event) {
+	    if (event.which === 13) {
+	      var $input = this.$el.find('input.input-name');
+	      var newTitle = $input.val();
+	      _pagesTodoReactTodoDispatcher2['default'].addTodo(newTitle);
+	      $input.val('');
+	    };
 	  }
 	});
 	
@@ -38354,7 +38363,7 @@
 	    this.save();
 	  },
 	  removeItem: function removeItem(id) {
-	    // finally actually remove the damn thing
+	    // finally actually remove the thing
 	    var todos = this.get('todos');
 	    todos.splice(id, 1);
 	    this.save();
@@ -38372,6 +38381,13 @@
 	    item.title = newTitle;
 	    item.isEditing = false;
 	    this.set('todos', todos);
+	    this.save();
+	  },
+	  ignoreEdit: function ignoreEdit(id) {
+	    // blackholed
+	    var todos = this.get('todos');
+	    var item = _underscore2['default'].findWhere(todos, { id: id });
+	    item.isEditing = false;
 	    this.save();
 	  },
 	  startEditing: function startEditing(id) {
@@ -38422,14 +38438,14 @@
 	    var todo = this.props.data;
 	    var title = _react2['default'].createElement(
 	      'div',
-	      { className: 'col-sm-10', onClick: this.titleClick },
+	      { className: 'col-sm-10', onKeyPress: this.addItemOnEnter, onClick: this.titleClick },
 	      todo.title
 	    );
 	    if (todo.isEditing) {
 	      title = _react2['default'].createElement(
 	        'div',
 	        { className: 'col-sm-10' },
-	        _react2['default'].createElement('input', { type: 'text', className: 'form-control', defaultValue: todo.title, onKeyPress: this.editKeypress, onChange: function () {} })
+	        _react2['default'].createElement('input', { type: 'text', className: 'form-control', defaultValue: todo.title, onKeyUp: this.editKeypress, onChange: function () {} })
 	      );
 	    }
 	
@@ -38473,6 +38489,10 @@
 	  titleClick: function titleClick() {
 	    var id = this.props.data.id;
 	    _pagesTodoReactTodoDispatcher2['default'].startEditMode(id);
+	  },
+	  addItemOnEnter: function addItemOnEnter(event) {
+	    console.log('alert');
+	    _pagesTodoReactTodoDispatcher2['default'].addTodoEnter(event);
 	  }
 	});
 	
@@ -38499,12 +38519,19 @@
 	      _pagesTodoReactTodoModel2['default'].addItem(title);
 	    }
 	  },
+	  addTodoEnter: function addTodoEnter(event) {
+	    if (event.which === 13 && title !== '' && typeof title === 'string') {
+	      _pagesTodoReactTodoModel2['default'].addItem();
+	    }
+	  },
 	  removeTodo: function removeTodo(id) {
 	    _pagesTodoReactTodoModel2['default'].removeItem(id);
 	  },
 	  editTodoTitle: function editTodoTitle(id, newTitle, event) {
 	    if (event.which === 13 && typeof newTitle === 'string' && newTitle.length > 0) {
 	      _pagesTodoReactTodoModel2['default'].editTitle(id, newTitle);
+	    } else if (event.which === 27) {
+	      _pagesTodoReactTodoModel2['default'].ignoreEdit(id);
 	    }
 	  },
 	  startEditMode: function startEditMode(id) {
