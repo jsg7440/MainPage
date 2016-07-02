@@ -2,6 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
+var fineUpload = require(__dirname +'/fineUpload.js')
 var _ = require('lodash');
 var fs = require('fs');
 var databasePath = __dirname + '/database.json';
@@ -31,13 +32,12 @@ router.post('/api', function(req, res){
 });
 
 router.get('/logoMagicAPI', function (){
-  // Stuff
+  // fineUpload.
 });
 
-router.post('/logomagicAPI', function(){
-  // Stuff
+router.post('/logomagicAPI', function(req, res){
+  fineUpload.onUpload(req, res);
 });
-  
 
 router.get('/*', function indexRouteHandler (req, res) {
   res.render('view', {

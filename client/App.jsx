@@ -1,7 +1,7 @@
-import $ from 'jquery';
+// import $ from 'jquery';
 import 'styles/main.scss';
 import TodoControllerView from 'pages/todo/todoController';
-// import logoMagic from 'pages/logoMagic/logoMagicController';
+import LogoMagicView from 'pages/logoMagic/logoMagicView';
 import funnySquares from 'pages/funnySquares';
 import header from 'components/header';
 import photoSearch from 'pages/photoSearch';
@@ -21,8 +21,8 @@ $(function(){
     case '/pages/todoReact.html':
       var todoReactControllerView = new TodoReactControllerView();
     break;
-    case '/pages/logomagic.html':
-      // var logoMagicController = new LogoMagicController();      
+    case '/pages/logoMagic.html':
+      var logoMagicView = new LogoMagicView();
     break;
     case '/pages/funnySquares.html':
       funnySquares.init();

@@ -58,7 +58,8 @@ var commonConfiguration = {
       },
       // { test: /\.png$/, loader: "url-loader" },
       // { test: /\.jpg$/, loader: "file-loader" },
-      { test: /\.html$/, loader: "html-loader" }
+      { test: /\.html$/, loader: "html-loader" },
+      { test: require.resolve("jquery"), loader: "expose?jquery!expose?jQuery" },
     ]
   },
   resolve: {
@@ -72,6 +73,7 @@ var commonConfiguration = {
 
 console.log('node environment: ' + process.env.NODE_ENV);
 var config;
+
 
 // The configuration for production
 if (process.env.NODE_ENV == 'production') {
