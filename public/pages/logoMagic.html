@@ -6,17 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/dropzone.css">
+    <script type="text/javascript" src="/dropzone.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"> -->
     <script type="text/javascript" async="async" defer="defer" src="/application.js"></script>
   </head>
   <body>
-
-    <!-- Application -->
-    <div class="upload-container">
-      <!-- <input type="text" name="form-control" placeholder="search"> -->
-    </div>
-    <div class="upload-results"></div>
-
+    <form id="upload-widget" method="post" action="/upload" class="dropzone">
+      <div class="fallback">
+        <input name="file" type="file" />
+      </div>
+    </form>
+    <ul class="server-images-list">
+      <!-- <div class="server-images-item"></div> -->
+    </ul>
   </body>
 </html>
 

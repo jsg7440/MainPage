@@ -1,5 +1,6 @@
 import todoModel from 'pages/todoReact/todoModel';
 
+
 var dispatcher = {
   clickComplete: function(id){
     todoModel.itemCompleted(id);
@@ -12,6 +13,7 @@ var dispatcher = {
     }
   },
   addTodoEnter: function(event){
+    var title;
     if (event.which === 13
       && title !== ''
       && typeof title === 'string'

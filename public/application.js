@@ -58,7 +58,7 @@
 	
 	var _pagesTodoTodoController2 = _interopRequireDefault(_pagesTodoTodoController);
 	
-	// import logoMagic from 'pages/logoMagic';
+	// import logoMagic from 'pages/logoMagic/logoMagicController';
 	
 	var _pagesFunnySquares = __webpack_require__(42);
 	
@@ -91,7 +91,7 @@
 	      var todoReactControllerView = new _pagesTodoReactTodoListView2['default']();
 	      break;
 	    case '/pages/logomagic.html':
-	      // home.init();
+	      // var logoMagicController = new LogoMagicController();     
 	      break;
 	    case '/pages/funnySquares.html':
 	      _pagesFunnySquares2['default'].init();
@@ -9928,7 +9928,7 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"todo-container":"todo-container","add-todo-container":"add-todo-container","col-md-10":"col-md-10","col-md-2":"col-md-2","square":"square","square-container":"square-container","square1":"square1","square2":"square2","square3":"square3","square4":"square4","square5":"square5","square6":"square6","search-container":"search-container","photo":"photo","upload-container":"upload-container"};
+	module.exports = {"todo-container":"todo-container","add-todo-container":"add-todo-container","col-md-10":"col-md-10","col-md-2":"col-md-2","square":"square","square-container":"square-container","square1":"square1","square2":"square2","square3":"square3","square4":"square4","square5":"square5","square6":"square6","search-container":"search-container","photo":"photo","filedrag":"filedrag","hover":"hover","upload-container":"upload-container"};
 
 /***/ },
 /* 3 */,
@@ -18670,11 +18670,8 @@
 	  },
 	  addTodoItemOnEnter: function addTodoItemOnEnter(event) {
 	    if (event.which === 13) {
-	      var $input = this.$el.find('input.input-name');
-	      var newTitle = $input.val();
-	      _pagesTodoReactTodoDispatcher2['default'].addTodo(newTitle);
-	      $input.val('');
-	    };
+	      this.addTodoItem();
+	    }
 	  }
 	});
 	
@@ -38491,7 +38488,6 @@
 	    _pagesTodoReactTodoDispatcher2['default'].startEditMode(id);
 	  },
 	  addItemOnEnter: function addItemOnEnter(event) {
-	    console.log('alert');
 	    _pagesTodoReactTodoDispatcher2['default'].addTodoEnter(event);
 	  }
 	});
@@ -38520,6 +38516,7 @@
 	    }
 	  },
 	  addTodoEnter: function addTodoEnter(event) {
+	    var title;
 	    if (event.which === 13 && title !== '' && typeof title === 'string') {
 	      _pagesTodoReactTodoModel2['default'].addItem();
 	    }

@@ -5,7 +5,6 @@ var router = express.Router();
 var _ = require('lodash');
 var fs = require('fs');
 var databasePath = __dirname + '/database.json';
-var imgDatabase = __dirname + '/imgDatabase';
 // API routes
 
 router.get('/api', function(req, res){
@@ -29,15 +28,6 @@ router.post('/api', function(req, res){
     res.end();
   });
 });
-
-router.get('/logoMagicAPI', function (){
-  // Stuff
-});
-
-router.post('/logomagicAPI', function(){
-  // Stuff
-});
-  
 
 router.get('/*', function indexRouteHandler (req, res) {
   res.render('view', {

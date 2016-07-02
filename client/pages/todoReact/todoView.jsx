@@ -54,7 +54,6 @@ var TodoItem = React.createClass({
     dispatcher.startEditMode(id);
   },
   addItemOnEnter: function(event){
-    console.log('alert');
     dispatcher.addTodoEnter(event);
   }
 });

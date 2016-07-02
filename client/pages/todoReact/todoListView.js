@@ -39,11 +39,8 @@ var TodoReactListView = Backbone.View.extend({
   },
   addTodoItemOnEnter: function(event){
     if ( event.which === 13 ){
-    var $input = this.$el.find('input.input-name');
-    var newTitle = $input.val();
-    dispatcher.addTodo(newTitle);
-    $input.val('');
-    };
+      this.addTodoItem();
+    }
   }
 });
 
