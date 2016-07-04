@@ -59,7 +59,7 @@ var commonConfiguration = {
       // { test: /\.png$/, loader: "url-loader" },
       // { test: /\.jpg$/, loader: "file-loader" },
       { test: /\.html$/, loader: "html-loader" },
-      { test: require.resolve("jquery"), loader: "expose?jquery!expose?jQuery" },
+      { test: require.resolve("jquery"), loader: "expose?$!expose?jquery!expose?jQuery" },
     ]
   },
   resolve: {
