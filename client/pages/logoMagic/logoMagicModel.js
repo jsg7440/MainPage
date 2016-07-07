@@ -21,46 +21,46 @@ var LogoMagicModel = {
         // that.set('todos', data);
       }
     });
-  },  
-  save: function(){
+  // },  
+  // save: function(){
     
-    // var that = this;
-    // var todos = this.get('todos');
-    // $.ajax({
-    //   url: '/api',
-    //   method: 'POST',
-    //   data: {todos: JSON.stringify(todos)},
-    //   complete: function(response){
-    //     var dataString = response.responseText;
-    //     var data = JSON.parse(dataString);
-    //     data = that.applySchema(data);
-    //     that.set('todos', data);
-    //     that.trigger('change');
-    //   }
-    // });
-  },
-  resize: function(){
-    // Scales combined image to 300 x 300
-  },
-  combineVertical: function(){
-    // Combines images vertically
-    // Passes image to save function
-  },
-  combineHorizontal: function(){
-    // Combines images horizontally
-    // Passes image to save function
-  },
-  displayNewImage: function(){
-    // Renders the combined image
-  },
+  //   // var that = this;
+  //   // var todos = this.get('todos');
+  //   // $.ajax({
+  //   //   url: '/api',
+  //   //   method: 'POST',
+  //   //   data: {todos: JSON.stringify(todos)},
+  //   //   complete: function(response){
+  //   //     var dataString = response.responseText;
+  //   //     var data = JSON.parse(dataString);
+  //   //     data = that.applySchema(data);
+  //   //     that.set('todos', data);
+  //   //     that.trigger('change');
+  //   //   }
+  //   // });
+  // },
+  // resize: function(){
+  //   // Scales combined image to 300 x 300
+  // },
+  // combineVertical: function(){
+  //   // Combines images vertically
+  //   // Passes image to save function
+  // },
+  // combineHorizontal: function(){
+  //   // Combines images horizontally
+  //   // Passes image to save function
+  // },
+  // displayNewImage: function(){
+  //   // Renders the combined image
+  // },
   // editTitle: function(id){
   //   // Changes the title of image
   //   var image = this.get('images');
   //   // Saves image to database
   // },
-  ignoreEdit: function(){
-    // Ignores edits and closes name edit field
-    // Sends to render with a change event
+  // ignoreEdit: function(){
+  //   // Ignores edits and closes name edit field
+  //   // Sends to render with a change event
   }
 };
 

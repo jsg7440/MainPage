@@ -62,7 +62,7 @@ var FineUpload = {
   },
 
   combineImages: function(uuid) {
-    //TODO: Figure out how to get the paths if there are two files in the uuid folder\
+    //TODO: Figure out how to get the paths if there are two files in the uuid folder
     //Read in the file names in directory
     // if(filesCount != 2) {
     //   return;
@@ -70,7 +70,7 @@ var FineUpload = {
     images(uuid)
     .size(400)
     .draw(images("logo.png"), 10, 10)
-    .save(uuid + "/output.jpg", {
+    .save(__dirname + "/imageDatabase/" + uuid + "/output.jpg", {
         quality : 5
     });
   },
@@ -78,7 +78,8 @@ var FineUpload = {
     return config.maxFileSize === 0 || size < config.maxFileSize;
   },
   moveUploadedFile: function (file, uuid, success, failure) {
-    var destinationDir = uuid + "/",
+    var fileDestination;
+    var destinationDir = __dirname + "/imageDatabase/" + uuid + "/",
       fileDestination = destinationDir + file.name;
     this.moveFile(destinationDir, file.path, fileDestination, success, failure);
   },

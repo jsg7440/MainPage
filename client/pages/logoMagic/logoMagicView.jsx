@@ -7,14 +7,14 @@ import FineUploaderHelper from 'pages/logoMagic/fineUploaderHelper';
 
 var LogoMagicView = React.createClass({
   propTypes: {
-    data: {
-      id: PropTypes.number,
-      title: PropTypes.string,
-      filename: PropTypes.string,
-      width: PropTypes.number,
-      height: PropTypes.number,
-      url: PropTypes.string
-    }
+    // data: {
+    //   id: PropTypes.number,
+    //   title: PropTypes.string,
+    //   filename: PropTypes.string,
+    //   width: PropTypes.number,
+    //   height: PropTypes.number,
+    //   url: PropTypes.string
+    // }
     // controller: ???
   },
   componentDidMount: function() {
