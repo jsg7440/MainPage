@@ -63,24 +63,22 @@ var FineUpload = {
     });
   },
   combineImages: function(uuid) {
-    fs.readdir(('/server/imageDatabase/' + uuid + "/"), function(err, images){
-      console.log(err, images);
-      // console.log(images.length);
-      // console.log(imageCount);
+    var filePath = 'server/imageDatabase/' + uuid;
+    fs.readdir(filePath, function(err, files){
+      var filePath = 'server/imageDatabase/' + uuid + "/";
+
+      if(files < 2) {
+        return;
+      }
+      // TODO: add logic for image orientation
+      images(600, 300)
+      .draw(images(filePath + files[0]).size(300), 0, 0)
+      .draw(images(filePath + files[1]).size(300), 300, 0)
+      .save( (__dirname + "/imageDatabase/" + uuid + "/output.jpg"), {
+          quality : 50
+      });
     });
-    //Read in the file names in directory
-    // if ( === 2) {
-    //   images.size(300);
-    // }
-    // if(filesCount != 2) {
-    //   if ()
-    // }
-    // images(uuid)
-    // .size(400)
-    // .draw(images("logo.png"), 10, 10)
-    // .save( (__dirname + "/imageDatabase/" + uuid + "/output.jpg"), {
-    //     quality : 5
-    // });
+
   },
   isValid: function(size) {
     return config.maxFileSize === 0 || size < config.maxFileSize;
