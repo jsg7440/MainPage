@@ -22,7 +22,22 @@ var LogoMagicView = React.createClass({
     FineUploaderHelper.initialize($this);
   },
   render: function(){
-    // var images = this.model.get('images');
+    return (
+      <div id="fine-uploader-gallery"></div> 
+    );
+  },
+  initialize: function(){
+    this.LMModel.fetch();
+    this.LMModel.on('change', this.render, this); 
+  },
+  saveLocal: function(){
+    // Save to host on click
+  }
+});
+
+module.exports = LogoMagicView;
+
+// var images = this.model.get('images');
     //   var image = this.props.data;
     //   var $ul = this.$el.find('.server-images-list');
     //   $ul.html('');
@@ -34,24 +49,3 @@ var LogoMagicView = React.createClass({
     //       </figure>                                                                                             \
     //       .');
     //     $ul.append($li);
-    return (
-      <div id="fine-uploader-gallery"></div> 
-    );
-  },
-  initialize: function(){
-    this.LMModel.fetch();
-    this.LMModel.on('change', this.render, this);
-    
-  },
-  editName: function(event){
-    var id = this.props.data.id;
-    var title = this.props.data.title;
-    var newTitle = $('li').eq(id).find('input[type="text"]').val();
-    dispatcher.editImageName(id, title, newTitle, event);
-  },
-  saveLocal: function(){
-    // Save to host on click
-  }
-});
-
-module.exports = LogoMagicView;

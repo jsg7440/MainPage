@@ -38135,29 +38135,11 @@
 	    _pagesLogoMagicFineUploaderHelper2['default'].initialize($this);
 	  },
 	  render: function render() {
-	    // var images = this.model.get('images');
-	    //   var image = this.props.data;
-	    //   var $ul = this.$el.find('.server-images-list');
-	    //   $ul.html('');
-	    //   images.forEach(function(){
-	    //     var $li = $('                                                                                           \
-	    //       <figure>                                                                                              \
-	    //         <img src="{image.url}" alt="{image.filename}" width="{image.width}" height="image.height">          \
-	    //         <figcaption>{image.title}</figcaption>                                                              \
-	    //       </figure>                                                                                             \
-	    //       .');
-	    //     $ul.append($li);
 	    return _react2['default'].createElement('div', { id: 'fine-uploader-gallery' });
 	  },
 	  initialize: function initialize() {
 	    this.LMModel.fetch();
 	    this.LMModel.on('change', this.render, this);
-	  },
-	  editName: function editName(event) {
-	    var id = this.props.data.id;
-	    var title = this.props.data.title;
-	    var newTitle = $('li').eq(id).find('input[type="text"]').val();
-	    _pagesLogoMagicLogoMagicDispatcher2['default'].editImageName(id, title, newTitle, event);
 	  },
 	  saveLocal: function saveLocal() {
 	    // Save to host on click
@@ -38165,6 +38147,19 @@
 	});
 	
 	module.exports = LogoMagicView;
+	
+	// var images = this.model.get('images');
+	//   var image = this.props.data;
+	//   var $ul = this.$el.find('.server-images-list');
+	//   $ul.html('');
+	//   images.forEach(function(){
+	//     var $li = $('                                                                                           \
+	//       <figure>                                                                                              \
+	//         <img src="{image.url}" alt="{image.filename}" width="{image.width}" height="image.height">          \
+	//         <figcaption>{image.title}</figcaption>                                                              \
+	//       </figure>                                                                                             \
+	//       .');
+	//     $ul.append($li);
 
 /***/ },
 /* 204 */
@@ -38670,59 +38665,11 @@
 	var $ = __webpack_require__(1);
 	var LogoMagicModel = {
 	  load: function load() {
-	    // Loads images from server
-	
-	    // var that = this;
 	    $.ajax({
 	      url: '/logoMagicAPI',
 	      method: 'GET',
-	      complete: function complete(response) {
-	        // var dataString = response.responseText;
-	        // var data = JSON.parse(dataString);
-	        // data = that.applySchema(data);
-	        // that.set('todos', data);
-	      }
+	      complete: function complete(response) {}
 	    });
-	    // }, 
-	    // save: function(){
-	
-	    //   // var that = this;
-	    //   // var todos = this.get('todos');
-	    //   // $.ajax({
-	    //   //   url: '/api',
-	    //   //   method: 'POST',
-	    //   //   data: {todos: JSON.stringify(todos)},
-	    //   //   complete: function(response){
-	    //   //     var dataString = response.responseText;
-	    //   //     var data = JSON.parse(dataString);
-	    //   //     data = that.applySchema(data);
-	    //   //     that.set('todos', data);
-	    //   //     that.trigger('change');
-	    //   //   }
-	    //   // });
-	    // },
-	    // resize: function(){
-	    //   // Scales combined image to 300 x 300
-	    // },
-	    // combineVertical: function(){
-	    //   // Combines images vertically
-	    //   // Passes image to save function
-	    // },
-	    // combineHorizontal: function(){
-	    //   // Combines images horizontally
-	    //   // Passes image to save function
-	    // },
-	    // displayNewImage: function(){
-	    //   // Renders the combined image
-	    // },
-	    // editTitle: function(id){
-	    //   // Changes the title of image
-	    //   var image = this.get('images');
-	    //   // Saves image to database
-	    // },
-	    // ignoreEdit: function(){
-	    //   // Ignores edits and closes name edit field
-	    //   // Sends to render with a change event
 	  }
 	};
 	
@@ -38783,6 +38730,10 @@
 	
 	var _node_modulesFineUploaderJqueryFineUploaderJqueryFineUploaderJs2 = _interopRequireDefault(_node_modulesFineUploaderJqueryFineUploaderJqueryFineUploaderJs);
 	
+	var _underscore = __webpack_require__(169);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
 	var $ = __webpack_require__(1);
 	
 	var FineUploaderHelper = {
@@ -38811,8 +38762,8 @@
 	          var newParams = {
 	            newPar: 321
 	          },
-	              finalParams = defaultParams;
-	          qq.extend(finalParams, newParams);
+	              finalParams = {};
+	          _underscore2['default'].extend(finalParams, newParams);
 	          this.setParams(finalParams);
 	        }
 	      }

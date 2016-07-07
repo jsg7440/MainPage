@@ -1,5 +1,6 @@
 var $ = require('jquery');
 import fineUploader from '../../../node_modules/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js';
+import _ from 'underscore';
 
 var FineUploaderHelper = {
   initialize: function(element){
@@ -27,8 +28,8 @@ var FineUploaderHelper = {
           var newParams = {
             newPar: 321
           },
-          finalParams = defaultParams;
-          qq.extend(finalParams, newParams);
+          finalParams = {};
+          _.extend(finalParams, newParams);
           this.setParams(finalParams);
         }
       }

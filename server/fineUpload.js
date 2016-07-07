@@ -2,8 +2,9 @@ var fs = require('fs');
 var rimraf = require('rimraf');
 var mkdirp = require('mkdirp');
 var multiparty = require('multiparty');
-var images = require("images");
-var _ = require("underscore");
+var images = require('images');
+var _ = require('underscore');
+// var $ = require('jquery');
 
 var config = {
   // paths/constants
@@ -31,8 +32,10 @@ var FineUpload = {
       };
     file.name = fields.qqfilename;
     if (this.isValid(file.size)) {
+      var fileDestination = {};
+      var that = this;
       this.moveUploadedFile(file, uuid, _.partial(function(uuid) {
-          this.combineImages(fileDestination);
+          that.combineImages(uuid);
           responseData.success = true;
           responseData.file = {
             location: fileDestination
@@ -60,19 +63,26 @@ var FineUpload = {
       res.send();
     });
   },
-
   combineImages: function(uuid) {
-    //TODO: Figure out how to get the paths if there are two files in the uuid folder
-    //Read in the file names in directory
-    // if(filesCount != 2) {
-    //   return;
-    // }
-    images(uuid)
-    .size(400)
-    .draw(images("logo.png"), 10, 10)
-    .save(__dirname + "/imageDatabase/" + uuid + "/output.jpg", {
-        quality : 5
+    
+    fs.readdir(('/server/imageDatabase/' + uuid + "/"), function(err, images){
+      console.log(err, images);
+      // console.log(images.length);
+      // console.log(imageCount);
     });
+    //Read in the file names in directory
+    // if ( === 2) {
+    //   images.size(300);
+    // }
+    // if(filesCount != 2) {
+    //   if ()
+    // }
+    // images(uuid)
+    // .size(400)
+    // .draw(images("logo.png"), 10, 10)
+    // .save( (__dirname + "/imageDatabase/" + uuid + "/output.jpg"), {
+    //     quality : 5
+    // });
   },
   isValid: function(size) {
     return config.maxFileSize === 0 || size < config.maxFileSize;
@@ -81,9 +91,9 @@ var FineUpload = {
     var fileDestination;
     var destinationDir = __dirname + "/imageDatabase/" + uuid + "/",
       fileDestination = destinationDir + file.name;
-    this.moveFile(destinationDir, file.path, fileDestination, success, failure);
+    this.moveFile(destinationDir, file.path, fileDestination, success, failure, uuid);
   },
-  moveFile: function (destinationDir, sourceFile, fileDestination, success, failure) {
+  moveFile: function (destinationDir, sourceFile, fileDestination, success, failure, uuid) {
     mkdirp(destinationDir, function(error) {
       var sourceStream, destStream;
       if (error) {
