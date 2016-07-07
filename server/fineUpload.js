@@ -27,21 +27,20 @@ var FineUpload = {
   },
   onSimpleUpload: function(fields, file, res) {
     var uuid = fields.masterId,
-      responseData = {
-        success: false
-      };
+        responseData = {
+          success: false
+        };
     file.name = fields.qqfilename;
     if (this.isValid(file.size)) {
       var fileDestination = {};
-      var that = this;
-      this.moveUploadedFile(file, uuid, _.partial(function(uuid) {
-          that.combineImages(uuid);
+      this.moveUploadedFile(file, uuid, _.bind(function() {
+          this.combineImages(uuid);
           responseData.success = true;
           responseData.file = {
             location: fileDestination
           }
           res.send(responseData);
-        }, uuid),
+        }, this),
         function() {
           responseData.error = "Problem copying the file!";
           res.send(responseData);
@@ -64,7 +63,6 @@ var FineUpload = {
     });
   },
   combineImages: function(uuid) {
-    
     fs.readdir(('/server/imageDatabase/' + uuid + "/"), function(err, images){
       console.log(err, images);
       // console.log(images.length);

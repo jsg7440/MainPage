@@ -38738,14 +38738,14 @@
 	
 	var FineUploaderHelper = {
 	  initialize: function initialize(element) {
-	    var generate_uuid;
+	    var masterId = this.generateUuid();
 	    element.fineUploader({
 	      template: 'qq-template-gallery',
 	      autoUpload: false,
 	      request: {
 	        endpoint: '/logoMagicAPI',
 	        params: {
-	          masterId: generate_uuid
+	          masterId: masterId
 	        }
 	      },
 	      thumbnails: {
@@ -38756,24 +38756,14 @@
 	      },
 	      validation: {
 	        allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
-	      },
-	      callbacks: {
-	        onSubmit: function onSubmit(id, name) {
-	          var newParams = {
-	            newPar: 321
-	          },
-	              finalParams = {};
-	          _underscore2['default'].extend(finalParams, newParams);
-	          this.setParams(finalParams);
-	        }
 	      }
 	    });
 	    $('#trigger-upload').click(function () {
 	      element.fineUploader('uploadStoredFiles');
 	    });
 	  },
-	  generate_uuid: function generate_uuid() {
-	    'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+	  generateUuid: function generateUuid() {
+	    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
 	      var r = Math.random() * 16 | 0;
 	      var v = c === 'x' ? r : r & 0x3 | 0x8;
 	      return v.toString(16);
