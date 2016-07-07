@@ -34,4 +34,4 @@ docker-compose.yml
 # dreamweaver
 _notes/
 
-/jQuery-ToDo/server/imageDatabase/
+**/imageDatabase/
