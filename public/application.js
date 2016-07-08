@@ -38119,17 +38119,6 @@
 	var LogoMagicView = _react2['default'].createClass({
 	  displayName: 'LogoMagicView',
 	
-	  propTypes: {
-	    // data: {
-	    //   id: PropTypes.number,
-	    //   title: PropTypes.string,
-	    //   filename: PropTypes.string,
-	    //   width: PropTypes.number,
-	    //   height: PropTypes.number,
-	    //   url: PropTypes.string
-	    // }
-	    // controller: ???
-	  },
 	  componentDidMount: function componentDidMount() {
 	    var $this = $(_reactDom2['default'].findDOMNode(this));
 	    _pagesLogoMagicFineUploaderHelper2['default'].initialize($this);
@@ -38140,9 +38129,6 @@
 	  initialize: function initialize() {
 	    this.LMModel.fetch();
 	    this.LMModel.on('change', this.render, this);
-	  },
-	  saveLocal: function saveLocal() {
-	    // Save to host on click
 	  }
 	});
 	
@@ -38657,66 +38643,63 @@
 	var _react2 = _interopRequireDefault(_react);
 	
 	// import ReactDOM from 'react-dom';
-	// import Backbone from 'backbone';
 	// import _ from 'underscore';
 	// import dispatcher from 'pages/logoMagic/logoMagicDispatcher';
 	// import fineupload from 'fine-uploader';
 	
 	var $ = __webpack_require__(1);
 	var LogoMagicModel = {
-	  load: function load() {
-	    $.ajax({
-	      url: '/logoMagicAPI',
-	      method: 'GET',
-	      complete: function complete(response) {}
-	    });
-	  }
+	  // load: function(){
+	  //   $.ajax({
+	  //     url: '/logoMagicAPI',
+	  //     method: 'GET',
+	  //     complete: function(response){
+	  //     }
+	  //   });
+	  // }
 	};
 	
 	module.exports = LogoMagicModel;
 
 /***/ },
 /* 215 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	'use strict';
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _pagesLogoMagicLogoMagicModel = __webpack_require__(214);
-	
-	var _pagesLogoMagicLogoMagicModel2 = _interopRequireDefault(_pagesLogoMagicLogoMagicModel);
-	
-	var dispatcher = {
-	  formatImage: function formatImage(heightA, widthA, heightB, widthB) {
-	    if (widthA > heightA) {
-	      if (widthA > widthB) {
-	        // resize A width, align vertically
-	      } else {
-	          // resize B width, align vertically
-	        }
-	    } else if (heightA > heightB) {
-	        // Resize A height, align horizontally
-	      } else {}
-	        // Reize B height, align horizontally
-	
-	        // Made do a case statement here instead
-	  },
-	  editImageName: function editImageName(id, title, newTitle, event) {
-	    var isEnter = event.which === 13;
-	    var isString = typeof newTitle === 'string';
-	    var notEmpty = newTitle.length > 0;
-	    var isEscape = event.which === 27;
-	
-	    if (isEnter && isString && notEmpty) {
-	      _pagesLogoMagicLogoMagicModel2['default'].editTitle(id, newTitle);
-	    } else if (isEscape) {
-	      _pagesLogoMagicLogoMagicModel2['default'].ignoreEdit(id);
-	    }
-	  }
-	};
-	
-	module.exports = dispatcher;
+	"use strict";
+
+	// import model from 'pages/logoMagic/logoMagicModel';
+
+	// var dispatcher = {
+	//   formatImage: function(heightA, widthA, heightB, widthB){
+	//     if ( widthA > heightA ){
+	//       if ( widthA > widthB ) {
+	//       // resize A width, align vertically
+	//       } else {
+	//       // resize B width, align vertically
+	//       }
+	//     } else if ( heightA > heightB ) {
+	//       // Resize A height, align horizontally
+	//     } else {
+	//       // Reize B height, align horizontally
+	//     }
+	//     // Made do a case statement here instead
+	//   },
+	//   editImageName: function(id, title, newTitle, event){
+	//     var isEnter = event.which === 13;
+	//     var isString = typeof newTitle === 'string';
+	//     var notEmpty = newTitle.length > 0;
+	//     var isEscape = event.which === 27;
+
+	//     if (isEnter && isString && notEmpty
+	//     ) {
+	//       model.editTitle(id, newTitle);
+	//     } else if (isEscape) {
+	//       model.ignoreEdit(id);
+	//     }
+	//   }
+	// };
+
+	// module.exports = dispatcher;
 
 /***/ },
 /* 216 */
@@ -38746,7 +38729,8 @@
 	        endpoint: '/logoMagicAPI',
 	        params: {
 	          masterId: masterId
-	        }
+	        },
+	        maxConnections: 1
 	      },
 	      thumbnails: {
 	        placeholders: {
@@ -38756,6 +38740,19 @@
 	      },
 	      validation: {
 	        allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
+	      },
+	      callbacks: {
+	        onComplete: _underscore2['default'].bind(function (id, name, response, xhr) {
+	          var image = response.file.location;
+	          var $ul = window.find('.server-images-list');
+	          // $ul.html('');
+	          var $li = $('                                                                                           \
+	            <figure>                                                                                              \
+	            <img src="{image}">          \
+	            </figure>                                                                                             \
+	          .');
+	          $ul.append($li);
+	        }, this)
 	      }
 	    });
 	    $('#trigger-upload').click(function () {

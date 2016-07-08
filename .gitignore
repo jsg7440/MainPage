@@ -35,3 +35,4 @@ docker-compose.yml
 _notes/
 
 server/imageDatabase/
+public/media/images/*

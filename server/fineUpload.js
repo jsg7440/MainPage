@@ -4,13 +4,11 @@ var mkdirp = require('mkdirp');
 var multiparty = require('multiparty');
 var images = require('images');
 var _ = require('underscore');
-// var $ = require('jquery');
+var sizeOf = require('image-size');
 
 var config = {
-  // paths/constants
-  fileInputName: process.env.FILE_INPUT_NAME || "qqfile",
-  uploadedFilesPath: process.env.UPLOADED_FILES_DIR,
-  maxFileSize: process.env.MAX_FILE_SIZE || 0 // in bytes, 0 for unlimited
+  fileInputName: "qqfile",
+  maxFileSize: 0 // in bytes, 0 for unlimited
 };
  
 var FineUpload = {
@@ -22,18 +20,18 @@ var FineUpload = {
       var partIndex = fields.qqpartindex;
       // text/plain is required to ensure support for IE9 and older
       res.set("Content-Type", "text/plain");
-      that.onSimpleUpload(fields, files[config.fileInputName][0], res);
+      that.onSimpleUpload(fields, files[config.fileInputName][0], req, res);
     });
   },
-  onSimpleUpload: function(fields, file, res) {
+  onSimpleUpload: function(fields, file, req, res) {
     var uuid = fields.masterId,
         responseData = {
           success: false
         };
     file.name = fields.qqfilename;
     if (this.isValid(file.size)) {
-      var fileDestination = {};
       this.moveUploadedFile(file, uuid, _.bind(function() {
+          var fileDestination = req.protocol + '://' + req.get('host') + "/media/images/" + uuid + "_output.jpg"
           this.combineImages(uuid);
           responseData.success = true;
           responseData.file = {
@@ -64,21 +62,38 @@ var FineUpload = {
   },
   combineImages: function(uuid) {
     var filePath = 'server/imageDatabase/' + uuid;
-    fs.readdir(filePath, function(err, files){
-      var filePath = 'server/imageDatabase/' + uuid + "/";
+    var files = fs.readdirSync(filePath);
+    console.log(files)
+    console.log(files.length)
+    if(files.length >= 2) {
+      this.drawImages(files, uuid);
+    }
+  },
+  drawImages: function(files, uuid){ 
+    var filePath = 'server/imageDatabase/' + uuid + "/";
+    var file_path1 = filePath + files[0];
+    var file_path2 = filePath + files[1];
+    var dimensionsA = sizeOf(file_path1);
+    var permanent_dir = __dirname + "/../public/media/images/";
+    var permanent_file_path = permanent_dir + uuid + "_output.jpg";
 
-      if(files < 2) {
-        return;
-      }
-      // TODO: add logic for image orientation
-      images(600, 300)
-      .draw(images(filePath + files[0]).size(300), 0, 0)
-      .draw(images(filePath + files[1]).size(300), 300, 0)
-      .save( (__dirname + "/imageDatabase/" + uuid + "/output.jpg"), {
-          quality : 50
-      });
+    mkdirp(permanent_dir, function(error) {
+      console.log("Error creating dir")
     });
 
+    image_1 = images(file_path1).size(300).save( (permanent_dir + uuid + "_" + files[0]));
+    image_2 = images(file_path2).size(300).save( (permanent_dir + uuid + "_" + files[1]));
+    images(601, 301)
+    .fill(0xff, 0xff, 0xff, 1)
+    .draw(image_1, 0, 0)
+    .draw(image_2, 300, 0)
+    .save( (permanent_file_path));
+
+    rimraf(filePath, function(error) {
+      if (error) {
+        console.error("Problem deleting file! " + error);
+      }
+    });
   },
   isValid: function(size) {
     return config.maxFileSize === 0 || size < config.maxFileSize;

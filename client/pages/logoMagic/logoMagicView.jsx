@@ -6,17 +6,6 @@ import dispatcher from 'pages/logoMagic/logoMagicDispatcher';
 import FineUploaderHelper from 'pages/logoMagic/fineUploaderHelper';
 
 var LogoMagicView = React.createClass({
-  propTypes: {
-    // data: {
-    //   id: PropTypes.number,
-    //   title: PropTypes.string,
-    //   filename: PropTypes.string,
-    //   width: PropTypes.number,
-    //   height: PropTypes.number,
-    //   url: PropTypes.string
-    // }
-    // controller: ???
-  },
   componentDidMount: function() {
     var $this = $(ReactDOM.findDOMNode(this));
     FineUploaderHelper.initialize($this);
@@ -25,13 +14,11 @@ var LogoMagicView = React.createClass({
     return (
       <div id="fine-uploader-gallery"></div> 
     );
+    
   },
   initialize: function(){
     this.LMModel.fetch();
     this.LMModel.on('change', this.render, this); 
-  },
-  saveLocal: function(){
-    // Save to host on click
   }
 });
 

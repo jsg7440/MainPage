@@ -12,7 +12,8 @@ var FineUploaderHelper = {
         endpoint: '/logoMagicAPI',
         params: {
           masterId: masterId
-        }
+        },
+        maxConnections: 1
       },
       thumbnails: {
         placeholders: {
@@ -22,6 +23,19 @@ var FineUploaderHelper = {
       },
       validation: {
         allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
+      },
+      callbacks: {
+        onComplete: _.bind(function(id, name, response, xhr) {
+          var image = response.file.location;
+          var $ul = window.find('.server-images-list');
+          // $ul.html('');
+          var $li = $('                                                                                           \
+            <figure>                                                                                              \
+            <img src="{image}">          \
+            </figure>                                                                                             \
+          .');
+          $ul.append($li);
+        }, this)
       }
     });
     $('#trigger-upload').click(function() {
