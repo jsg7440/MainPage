@@ -34,5 +34,5 @@ docker-compose.yml
 # dreamweaver
 _notes/
 
-server/imageDatabase/
+server/imageDatabase/*
 public/media/images/*

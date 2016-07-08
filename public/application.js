@@ -38106,10 +38106,6 @@
 	
 	var _pagesLogoMagicLogoMagicModel2 = _interopRequireDefault(_pagesLogoMagicLogoMagicModel);
 	
-	var _pagesLogoMagicLogoMagicDispatcher = __webpack_require__(215);
-	
-	var _pagesLogoMagicLogoMagicDispatcher2 = _interopRequireDefault(_pagesLogoMagicLogoMagicDispatcher);
-	
 	var _pagesLogoMagicFineUploaderHelper = __webpack_require__(216);
 	
 	var _pagesLogoMagicFineUploaderHelper2 = _interopRequireDefault(_pagesLogoMagicFineUploaderHelper);
@@ -38127,17 +38123,13 @@
 	    return _react2['default'].createElement('div', { id: 'fine-uploader-gallery' });
 	  },
 	  initialize: function initialize() {
-	    this.LMModel.fetch();
-	    this.LMModel.on('change', this.render, this);
+	    this.LogoMagicModel.fetch();
+	    this.LogoMagicModel.on('change', this.render, this);
 	  }
 	});
 	
 	module.exports = LogoMagicView;
 	
-	// var images = this.model.get('images');
-	//   var image = this.props.data;
-	//   var $ul = this.$el.find('.server-images-list');
-	//   $ul.html('');
 	//   images.forEach(function(){
 	//     var $li = $('                                                                                           \
 	//       <figure>                                                                                              \
@@ -38145,7 +38137,15 @@
 	//         <figcaption>{image.title}</figcaption>                                                              \
 	//       </figure>                                                                                             \
 	//       .');
-	//     $ul.append($li);
+
+	// var $ul = window.find('.server-images-list');
+	//       // $ul.html('');
+	//       var $li = $('                                \
+	//         <figure>                                   \
+	//         <img src="{image}">                        \
+	//         </figure>                                  \
+	//         .');                                      
+	//       $ul.append($li);
 
 /***/ },
 /* 204 */
@@ -38662,46 +38662,7 @@
 	module.exports = LogoMagicModel;
 
 /***/ },
-/* 215 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	// import model from 'pages/logoMagic/logoMagicModel';
-
-	// var dispatcher = {
-	//   formatImage: function(heightA, widthA, heightB, widthB){
-	//     if ( widthA > heightA ){
-	//       if ( widthA > widthB ) {
-	//       // resize A width, align vertically
-	//       } else {
-	//       // resize B width, align vertically
-	//       }
-	//     } else if ( heightA > heightB ) {
-	//       // Resize A height, align horizontally
-	//     } else {
-	//       // Reize B height, align horizontally
-	//     }
-	//     // Made do a case statement here instead
-	//   },
-	//   editImageName: function(id, title, newTitle, event){
-	//     var isEnter = event.which === 13;
-	//     var isString = typeof newTitle === 'string';
-	//     var notEmpty = newTitle.length > 0;
-	//     var isEscape = event.which === 27;
-
-	//     if (isEnter && isString && notEmpty
-	//     ) {
-	//       model.editTitle(id, newTitle);
-	//     } else if (isEscape) {
-	//       model.ignoreEdit(id);
-	//     }
-	//   }
-	// };
-
-	// module.exports = dispatcher;
-
-/***/ },
+/* 215 */,
 /* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -38742,17 +38703,9 @@
 	        allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
 	      },
 	      callbacks: {
-	        onComplete: _underscore2['default'].bind(function (id, name, response, xhr) {
+	        onComplete: function onComplete(id, name, response, xhr) {
 	          var image = response.file.location;
-	          var $ul = window.find('.server-images-list');
-	          // $ul.html('');
-	          var $li = $('                                                                                           \
-	            <figure>                                                                                              \
-	            <img src="{image}">          \
-	            </figure>                                                                                             \
-	          .');
-	          $ul.append($li);
-	        }, this)
+	        }
 	      }
 	    });
 	    $('#trigger-upload').click(function () {
