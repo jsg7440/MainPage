@@ -12,7 +12,6 @@ var config = {
 };
 
 var FineUpload = {
-
   onUpload: function(req, res) {
     var form = new multiparty.Form();
     var that = this;
@@ -30,7 +29,7 @@ var FineUpload = {
     file.name = fields.qqfilename;
     if (this.isValid(file.size)) {
       this.moveUploadedFile(file, uuid, _.bind(function() {
-        var fileDestination = req.protocol + '://' + req.get('host') + "/media/images/" + uuid + "_output.jpg"
+        var fileDestination = req.protocol + '://' + req.get('host') + "/media/images/output/" + uuid + ".jpg"
         this.combineImages(uuid);
         responseData.success = true;
         responseData.file = {
@@ -47,22 +46,10 @@ var FineUpload = {
       this.failWithTooBigFile(responseData, res);
     }
   },
-  onDeleteFile: function(req, res) {
-    var uuid = req.params.uuid,
-    dirToDelete = config.uploadedFilesPath + uuid;
-
-    rimraf(dirToDelete, function(error) {
-      if (error) {
-        console.error("Problem deleting file! " + error);
-        res.status(500);
-      }
-      res.send();
-    });
-  },
   combineImages: function(uuid) {
     var filePath = 'server/imageDatabase/' + uuid;
     var files = fs.readdirSync(filePath);
-    if(files.length >= 2) {
+    if (files.length >= 2) {
       this.processImages(files, uuid);
     }
   },
@@ -70,45 +57,40 @@ var FineUpload = {
     var filePath = 'server/imageDatabase/' + uuid + "/";
     var file_path1 = filePath + files[0];
     var file_path2 = filePath + files[1];
-    var file_name = permanent_dir + uuid + "_"
     var dimA = sizeOf(file_path1);
     var dimB = sizeOf(file_path2);
     var permanent_dir = __dirname + "/../public/media/images/";
-    var permanent_file_path = permanent_dir + uuid + "_output.jpg";
-    mkdirp(permanent_dir, function(error) {
+    var file_name = permanent_dir + uuid + "_"
+    var permanent_file_path = permanent_dir + "output/" + uuid + ".jpg";
 
-    });
+    mkdirp(permanent_dir + "output");
 
-    image_1 = images(file_path1).size(300).save( (file_name + "_" + files[0]));
-    image_2 = images(file_path2).size(300).save( (file_name + "_" + files[1]));
+    image_1 = images(file_path1).size(300).save((file_name + "_" + files[0]));
+    image_2 = images(file_path2).size(300).save((file_name + "_" + files[1]));
     var dimAPost = sizeOf((file_name + "_" + files[0]));
     var dimBPost = sizeOf((file_name + "_" + files[1]));
-    
-    if ( dimAPost.width === 300 ){
+    var imageSize = 300;
+
+    if (dimAPost.width === imageSize) {
       console.log('drawing vertically');
-      images(301, (dimAPost.height + dimBPost.height + 1))
-      .fill(0xff, 0xff, 0xff, 1)
-      .draw(image_1, 0, 0)
-      .draw(image_2, 0, dimAPost.height)
-      .save( (permanent_file_path));
-      rimraf(filePath, function(error) {
-        if (error) {
-          console.error("Problem deleting file! " + error);
-        }
-      });
+      images(imageSize + 1, (dimAPost.height + dimBPost.height + 1))
+        .fill(0xff, 0xff, 0xff, 1)
+        .draw(image_1, 0, 0)
+        .draw(image_2, 0, dimAPost.height)
+        .save(permanent_file_path);
     } else {
       console.log('drawing horizontally');
-      images(dimAPost.width + dimBPost.width + 1, 301)
-      .fill(0xff, 0xff, 0xff, 1)
-      .draw(image_1, 0, 0)
-      .draw(image_2, dimAPost.width, 0)
-      .save( (permanent_file_path));
-      rimraf(filePath, function(error) {
-        if (error) {
-          console.error("Problem deleting file! " + error);
-        }
-      });
+      images(dimAPost.width + dimBPost.width + 1, imageSize + 1)
+        .fill(0xff, 0xff, 0xff, 1)
+        .draw(image_1, 0, 0)
+        .draw(image_2, dimAPost.width, 0)
+        .save(permanent_file_path);
     }
+    rimraf(filePath, function(error) {
+      if (error) {
+        console.error("Problem deleting file! " + error);
+      }
+    });
   },
   isValid: function(size) {
     return config.maxFileSize === 0 || size < config.maxFileSize;
@@ -125,21 +107,21 @@ var FineUpload = {
       if (error) {
         console.error("Problem creating directory " + destinationDir + ": " + error);
         failure();
-      }
+      } 
       else {
         sourceStream = fs.createReadStream(sourceFile);
         destStream = fs.createWriteStream(fileDestination);
         sourceStream
-        .on("error", function(error) {
-          console.error("Problem copying file: " + error.stack);
-          destStream.end();
-          failure();
-        })
-        .on("end", function(){
-          destStream.end();
-          success();
-        })
-        .pipe(destStream);
+          .on("error", function(error) {
+            console.error("Problem copying file: " + error.stack);
+            destStream.end();
+            failure();
+          })
+          .on("end", function(){
+            destStream.end();
+            success();
+          })
+          .pipe(destStream);
       }
     });
   },

@@ -70,19 +70,19 @@
 	
 	var _pagesLogoMagicLogoMagicView2 = _interopRequireDefault(_pagesLogoMagicLogoMagicView);
 	
-	var _pagesFunnySquares = __webpack_require__(204);
+	var _pagesFunnySquares = __webpack_require__(206);
 	
 	var _pagesFunnySquares2 = _interopRequireDefault(_pagesFunnySquares);
 	
-	var _componentsHeader = __webpack_require__(206);
+	var _componentsHeader = __webpack_require__(208);
 	
 	var _componentsHeader2 = _interopRequireDefault(_componentsHeader);
 	
-	var _pagesPhotoSearch = __webpack_require__(208);
+	var _pagesPhotoSearch = __webpack_require__(210);
 	
 	var _pagesPhotoSearch2 = _interopRequireDefault(_pagesPhotoSearch);
 	
-	var _pagesTodoReactTodoListView = __webpack_require__(210);
+	var _pagesTodoReactTodoListView = __webpack_require__(212);
 	
 	var _pagesTodoReactTodoListView2 = _interopRequireDefault(_pagesTodoReactTodoListView);
 	
@@ -29567,7 +29567,7 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"todo-container":"todo-container","add-todo-container":"add-todo-container","col-md-10":"col-md-10","col-md-2":"col-md-2","square":"square","square-container":"square-container","square1":"square1","square2":"square2","square3":"square3","square4":"square4","square5":"square5","square6":"square6","search-container":"search-container","photo":"photo","filedrag":"filedrag","hover":"hover","upload-container":"upload-container"};
+	module.exports = {"todo-container":"todo-container","add-todo-container":"add-todo-container","col-md-10":"col-md-10","col-md-2":"col-md-2","square":"square","square-container":"square-container","square1":"square1","square2":"square2","square3":"square3","square4":"square4","square5":"square5","square6":"square6","search-container":"search-container","photo":"photo","filedrag":"filedrag","hover":"hover","upload-container":"upload-container","combined-image-container":"combined-image-container"};
 
 /***/ },
 /* 164 */,
@@ -38102,16 +38102,22 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _pagesLogoMagicLogoMagicModel = __webpack_require__(214);
-	
-	var _pagesLogoMagicLogoMagicModel2 = _interopRequireDefault(_pagesLogoMagicLogoMagicModel);
-	
-	var _pagesLogoMagicFineUploaderHelper = __webpack_require__(216);
+	var _pagesLogoMagicFineUploaderHelper = __webpack_require__(204);
 	
 	var _pagesLogoMagicFineUploaderHelper2 = _interopRequireDefault(_pagesLogoMagicFineUploaderHelper);
 	
-	var $ = __webpack_require__(1);
+	// var LogoMagicView = {
+	//   init: function() {
+	//     var $this = $(ReactDOM.findDOMNode(this));
+	//     LogoMagicView.render($this);
+	//     FineUploaderHelper.initialize($this);
+	//   },
+	//   render: function($this){
+	//     $this.html(<div id="fine-uploader-gallery"></div>);
+	//   }
+	// };
 	
+	var $ = __webpack_require__(1);
 	var LogoMagicView = _react2['default'].createClass({
 	  displayName: 'LogoMagicView',
 	
@@ -38121,31 +38127,19 @@
 	  },
 	  render: function render() {
 	    return _react2['default'].createElement('div', { id: 'fine-uploader-gallery' });
-	  },
-	  initialize: function initialize() {
-	    this.LogoMagicModel.fetch();
-	    this.LogoMagicModel.on('change', this.render, this);
 	  }
+	  // TODO: implement the model
+	  // initialize: function(){
+	  // this.LogoMagicModel.fetch();
+	  // this.LogoMagicModel.on('change', this.render, this);
+	  // },
+	  // drawNewImage: function(image){
+	  //   var src = document.createElement('img');
+	  //   document.getElementById('server-images-list').appendChild(image);
+	  // }
 	});
 	
 	module.exports = LogoMagicView;
-	
-	//   images.forEach(function(){
-	//     var $li = $('                                                                                           \
-	//       <figure>                                                                                              \
-	//         <img src="{image.url}" alt="{image.filename}" width="{image.width}" height="image.height">          \
-	//         <figcaption>{image.title}</figcaption>                                                              \
-	//       </figure>                                                                                             \
-	//       .');
-
-	// var $ul = window.find('.server-images-list');
-	//       // $ul.html('');
-	//       var $li = $('                                \
-	//         <figure>                                   \
-	//         <img src="{image}">                        \
-	//         </figure>                                  \
-	//         .');                                      
-	//       $ul.append($li);
 
 /***/ },
 /* 204 */
@@ -38155,528 +38149,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _jquery = __webpack_require__(1);
-	
-	var _jquery2 = _interopRequireDefault(_jquery);
-	
-	var _underscore = __webpack_require__(169);
-	
-	var _underscore2 = _interopRequireDefault(_underscore);
-	
-	var _templatesFunnySquareHtml = __webpack_require__(205);
-	
-	var _templatesFunnySquareHtml2 = _interopRequireDefault(_templatesFunnySquareHtml);
-	
-	var _handlebars = __webpack_require__(172);
-	
-	var _handlebars2 = _interopRequireDefault(_handlebars);
-	
-	var template;
-	var app = {
-	  init: function init() {
-	    template = _handlebars2['default'].compile(_templatesFunnySquareHtml2['default']);
-	    app.render();
-	  },
-	  render: function render() {
-	    // display 6 squares
-	    var numberOfSquares = 6;
-	    var renderedHtml = '';
-	    _underscore2['default'].times(numberOfSquares, function (index) {
-	      renderedHtml += template({ id: index + 1 });
-	    });
-	    (0, _jquery2['default'])('body').append(renderedHtml);
-	  }
-	};
-	
-	module.exports = app;
-
-/***/ },
-/* 205 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"square-container\">\n  <div class=\"square square{{id}}\">\n    <div class=\"inner\">{{id}}</div>\n  </div>\n</div>";
-
-/***/ },
-/* 206 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _jquery = __webpack_require__(1);
-	
-	var _jquery2 = _interopRequireDefault(_jquery);
-	
-	var _templatesNavbarHtml = __webpack_require__(207);
-	
-	var _templatesNavbarHtml2 = _interopRequireDefault(_templatesNavbarHtml);
-	
-	var app = {
-	  init: function init() {
-	    app.render();
-	  },
-	  render: function render() {
-	    (0, _jquery2['default'])('header').append(_templatesNavbarHtml2['default']);
-	  }
-	};
-	
-	module.exports = app;
-
-/***/ },
-/* 207 */
-/***/ function(module, exports) {
-
-	module.exports = "<nav>\n  <a role=\"menuitem\" href=\"/pages/todo.html\">Todo Application</a>\n  <a role=\"menuitem\" href=\"/pages/todoReact.html\">Todo React Application</a>\n  <a role=\"menuitem\" href=\"/pages/funnySquares.html\">Funny Squares</a>\n  <a role=\"menuitem\" href=\"/pages/photoSearch.html\">Photo Search</a>\n  <a role=\"menuitem\" href=\"/pages/logoMagic.html\">My Project - Logo Magic</a>\n  <!-- <a role=\"menuitem\" href=\"/pages/project.html\">My Project - Login Page</a> -->\n</nav>";
-
-/***/ },
-/* 208 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _jquery = __webpack_require__(1);
-	
-	var _jquery2 = _interopRequireDefault(_jquery);
-	
-	var _templatesFlickrImageHtml = __webpack_require__(209);
-	
-	var _templatesFlickrImageHtml2 = _interopRequireDefault(_templatesFlickrImageHtml);
-	
-	var _handlebars = __webpack_require__(172);
-	
-	var _handlebars2 = _interopRequireDefault(_handlebars);
-	
-	var compiledTemplate = _handlebars2['default'].compile(_templatesFlickrImageHtml2['default']);
-	
-	var app = {
-	  init: function init() {
-	    app.render();
-	  },
-	  render: function render() {
-	    app.$input = (0, _jquery2['default'])('.search-container input');
-	    app.bindEvents();
-	  },
-	  bindEvents: function bindEvents() {
-	    app.$input.on('keypress', app.searchKeypress);
-	  },
-	  searchKeypress: function searchKeypress(event) {
-	    if (event.which === 13) {
-	      app.doSearch();
-	    }
-	  },
-	  doSearch: function doSearch() {
-	    var phrase = app.$input.val();
-	    _jquery2['default'].ajax({
-	      url: 'https://api.flickr.com/services/rest',
-	      method: 'GET',
-	      data: {
-	        text: phrase,
-	        method: 'flickr.photos.search',
-	        api_key: 'f09dfbf333809d88f4fe897c321de56b',
-	        format: 'json',
-	        per_page: 50
-	      },
-	      complete: function complete(response) {
-	        var text = response.responseText;
-	        text = text.slice(14, text.length - 1);
-	        var data = JSON.parse(text);
-	        app.renderResults(data);
-	      }
-	    });
-	  },
-	  renderResults: function renderResults(data) {
-	    var html = '';
-	    var myPhotos = data.photos.photo;
-	    myPhotos.forEach(function (item) {
-	      html += compiledTemplate(item);
-	    });
-	    (0, _jquery2['default'])('.search-results').html(html);
-	  }
-	};
-	
-	module.exports = app;
-
-/***/ },
-/* 209 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"photo\">\n\t<img src=\"https://farm{{farm}}.static.flickr.com/{{server}}/{{id}}_{{secret}}_b.jpg\">\n</div>";
-
-/***/ },
-/* 210 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _react = __webpack_require__(5);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(162);
-	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-	
-	var _backbone = __webpack_require__(168);
-	
-	var _backbone2 = _interopRequireDefault(_backbone);
-	
-	var _pagesTodoReactTodoModel = __webpack_require__(211);
-	
-	var _pagesTodoReactTodoModel2 = _interopRequireDefault(_pagesTodoReactTodoModel);
-	
-	var _pagesTodoReactTodoView = __webpack_require__(212);
-	
-	var _pagesTodoReactTodoView2 = _interopRequireDefault(_pagesTodoReactTodoView);
-	
-	var _pagesTodoReactTodoDispatcher = __webpack_require__(213);
-	
-	var _pagesTodoReactTodoDispatcher2 = _interopRequireDefault(_pagesTodoReactTodoDispatcher);
-	
-	var $ = __webpack_require__(1);
-	
-	var TodoReactListView = _backbone2['default'].View.extend({
-	  el: '.todo-container',
-	  model: _pagesTodoReactTodoModel2['default'],
-	  events: {
-	    'click .btn-add': 'addTodoItem',
-	    'keydown input.input-name': 'addTodoItemOnEnter'
-	  },
-	  initialize: function initialize() {
-	    this.model.fetch();
-	    this.model.on('change', this.render, this);
-	  },
-	  render: function render() {
-	    var todos = this.model.get('todos');
-	    var $ul = this.$el.find('.list-group');
-	    $ul.html('');
-	    todos.forEach(function (todo) {
-	      var $li = $('<li class="list-group-item row"></li>');
-	      $ul.append($li);
-	      _reactDom2['default'].render(_react2['default'].createElement(_pagesTodoReactTodoView2['default'], { data: todo }),
-	      // Get original DOMnode from jQuery object
-	      $li[0]);
-	    });
-	  },
-	  addTodoItem: function addTodoItem() {
-	    var $input = this.$el.find('.input-name');
-	    var newTitle = $input.val();
-	    _pagesTodoReactTodoDispatcher2['default'].addTodo(newTitle);
-	    $input.val('');
-	  },
-	  addTodoItemOnEnter: function addTodoItemOnEnter(event) {
-	    if (event.which === 13) {
-	      this.addTodoItem();
-	    }
-	  }
-	});
-	
-	module.exports = TodoReactListView;
-
-/***/ },
-/* 211 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _underscore = __webpack_require__(169);
-	
-	var _underscore2 = _interopRequireDefault(_underscore);
-	
-	var _backbone = __webpack_require__(168);
-	
-	var _backbone2 = _interopRequireDefault(_backbone);
-	
-	var $ = __webpack_require__(1);
-	
-	var TodoModel = _backbone2['default'].Model.extend({
-	  defaults: {
-	    todos: []
-	  },
-	  todoSchema: {
-	    id: 0,
-	    title: '',
-	    completed: false,
-	    isEditing: false
-	  },
-	  fetch: function fetch() {
-	    var that = this;
-	    $.ajax({
-	      url: '/api',
-	      method: 'GET',
-	      complete: function complete(response) {
-	        var dataString = response.responseText;
-	        var data = JSON.parse(dataString);
-	        data = that.applySchema(data);
-	        that.set('todos', data);
-	      }
-	    });
-	  },
-	  save: function save() {
-	    var that = this;
-	    var todos = this.get('todos');
-	    $.ajax({
-	      url: '/api',
-	      method: 'POST',
-	      data: { todos: JSON.stringify(todos) },
-	      complete: function complete(response) {
-	        var dataString = response.responseText;
-	        var data = JSON.parse(dataString);
-	        data = that.applySchema(data);
-	        that.set('todos', data);
-	        that.trigger('change');
-	      }
-	    });
-	  },
-	  applySchema: function applySchema(todos) {
-	    var data = todos;
-	    var schema = this.todoSchema;
-	    data = _underscore2['default'].isArray(todos) ? data : [];
-	    data = data.map(function (todo, index) {
-	      todo.id = index;
-	      return _underscore2['default'].defaults(todo, schema);
-	    });
-	    return data;
-	  },
-	  addItem: function addItem(newTitle) {
-	    var newTodo = { title: newTitle };
-	    var todos = this.get('todos');
-	    todos.push(newTodo);
-	    this.set('todos', todos);
-	    this.save();
-	  },
-	  removeItem: function removeItem(id) {
-	    // finally actually remove the thing
-	    var todos = this.get('todos');
-	    todos.splice(id, 1);
-	    this.save();
-	  },
-	  itemCompleted: function itemCompleted(id) {
-	    var todos = this.get('todos');
-	    var item = _underscore2['default'].findWhere(todos, { id: id });
-	    item.completed = !item.completed;
-	    this.set('todos', todos);
-	    this.save();
-	  },
-	  editTitle: function editTitle(id, newTitle) {
-	    var todos = this.get('todos');
-	    var item = _underscore2['default'].findWhere(todos, { id: id });
-	    item.title = newTitle;
-	    item.isEditing = false;
-	    this.set('todos', todos);
-	    this.save();
-	  },
-	  ignoreEdit: function ignoreEdit(id) {
-	    // blackholed
-	    var todos = this.get('todos');
-	    var item = _underscore2['default'].findWhere(todos, { id: id });
-	    item.isEditing = false;
-	    this.save();
-	  },
-	  startEditing: function startEditing(id) {
-	    var todos = this.get('todos');
-	    var item = _underscore2['default'].findWhere(todos, { id: id });
-	    item.isEditing = true;
-	    this.set('todos', todos);
-	    this.save();
-	  }
-	});
-	
-	var todoModel = new TodoModel();
-	
-	module.exports = todoModel;
-
-/***/ },
-/* 212 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _react = __webpack_require__(5);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _jquery = __webpack_require__(1);
-	
-	var _jquery2 = _interopRequireDefault(_jquery);
-	
-	var _pagesTodoReactTodoDispatcher = __webpack_require__(213);
-	
-	var _pagesTodoReactTodoDispatcher2 = _interopRequireDefault(_pagesTodoReactTodoDispatcher);
-	
-	var TodoItem = _react2['default'].createClass({
-	  displayName: 'TodoItem',
-	
-	  propTypes: {
-	    data: _react.PropTypes.shape({
-	      id: _react.PropTypes.number,
-	      title: _react.PropTypes.string,
-	      completed: _react.PropTypes.bool
-	    }),
-	    controller: _react.PropTypes.object
-	  },
-	  render: function render() {
-	    var todo = this.props.data;
-	    var title = _react2['default'].createElement(
-	      'div',
-	      { className: 'col-sm-10', onKeyPress: this.addItemOnEnter, onClick: this.titleClick },
-	      todo.title
-	    );
-	    if (todo.isEditing) {
-	      title = _react2['default'].createElement(
-	        'div',
-	        { className: 'col-sm-10' },
-	        _react2['default'].createElement('input', { type: 'text', className: 'form-control', defaultValue: todo.title, onKeyUp: this.editKeypress, onChange: function () {} })
-	      );
-	    }
-	
-	    return _react2['default'].createElement(
-	      'div',
-	      null,
-	      _react2['default'].createElement(
-	        'div',
-	        { className: 'col-sm-1' },
-	        _react2['default'].createElement('input', { type: 'checkbox', checked: todo.completed, onChange: this.handleComplete })
-	      ),
-	      title,
-	      _react2['default'].createElement(
-	        'div',
-	        { className: 'col-sm-1' },
-	        _react2['default'].createElement(
-	          'button',
-	          { type: 'button', 'aria-label': 'Close', onClick: this.handleClose },
-	          _react2['default'].createElement(
-	            'span',
-	            { 'aria-hidden': 'true' },
-	            '×'
-	          )
-	        )
-	      )
-	    );
-	  },
-	  editKeypress: function editKeypress(event) {
-	    var id = this.props.data.id;
-	    var newTitle = (0, _jquery2['default'])('li').eq(id).find('input[type="text"]').val();
-	    _pagesTodoReactTodoDispatcher2['default'].editTodoTitle(id, newTitle, event);
-	  },
-	  handleClose: function handleClose() {
-	    var id = this.props.data.id;
-	    _pagesTodoReactTodoDispatcher2['default'].removeTodo(id);
-	  },
-	  handleComplete: function handleComplete() {
-	    var id = this.props.data.id;
-	    _pagesTodoReactTodoDispatcher2['default'].clickComplete(id);
-	  },
-	  titleClick: function titleClick() {
-	    var id = this.props.data.id;
-	    _pagesTodoReactTodoDispatcher2['default'].startEditMode(id);
-	  },
-	  addItemOnEnter: function addItemOnEnter(event) {
-	    _pagesTodoReactTodoDispatcher2['default'].addTodoEnter(event);
-	  }
-	});
-	
-	module.exports = TodoItem;
-
-/***/ },
-/* 213 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _pagesTodoReactTodoModel = __webpack_require__(211);
-	
-	var _pagesTodoReactTodoModel2 = _interopRequireDefault(_pagesTodoReactTodoModel);
-	
-	var dispatcher = {
-	  clickComplete: function clickComplete(id) {
-	    _pagesTodoReactTodoModel2['default'].itemCompleted(id);
-	  },
-	  addTodo: function addTodo(title) {
-	    if (title !== '' && typeof title === 'string') {
-	      _pagesTodoReactTodoModel2['default'].addItem(title);
-	    }
-	  },
-	  addTodoEnter: function addTodoEnter(event) {
-	    var title;
-	    if (event.which === 13 && title !== '' && typeof title === 'string') {
-	      _pagesTodoReactTodoModel2['default'].addItem();
-	    }
-	  },
-	  removeTodo: function removeTodo(id) {
-	    _pagesTodoReactTodoModel2['default'].removeItem(id);
-	  },
-	  editTodoTitle: function editTodoTitle(id, newTitle, event) {
-	    if (event.which === 13 && typeof newTitle === 'string' && newTitle.length > 0) {
-	      _pagesTodoReactTodoModel2['default'].editTitle(id, newTitle);
-	    } else if (event.which === 27) {
-	      _pagesTodoReactTodoModel2['default'].ignoreEdit(id);
-	    }
-	  },
-	  startEditMode: function startEditMode(id) {
-	    _pagesTodoReactTodoModel2['default'].startEditing(id);
-	  }
-	};
-	
-	module.exports = dispatcher;
-
-/***/ },
-/* 214 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _react = __webpack_require__(5);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	// import ReactDOM from 'react-dom';
-	// import _ from 'underscore';
-	// import dispatcher from 'pages/logoMagic/logoMagicDispatcher';
-	// import fineupload from 'fine-uploader';
-	
-	var $ = __webpack_require__(1);
-	var LogoMagicModel = {
-	  // load: function(){
-	  //   $.ajax({
-	  //     url: '/logoMagicAPI',
-	  //     method: 'GET',
-	  //     complete: function(response){
-	  //     }
-	  //   });
-	  // }
-	};
-	
-	module.exports = LogoMagicModel;
-
-/***/ },
-/* 215 */,
-/* 216 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _node_modulesFineUploaderJqueryFineUploaderJqueryFineUploaderJs = __webpack_require__(217);
+	var _node_modulesFineUploaderJqueryFineUploaderJqueryFineUploaderJs = __webpack_require__(205);
 	
 	var _node_modulesFineUploaderJqueryFineUploaderJqueryFineUploaderJs2 = _interopRequireDefault(_node_modulesFineUploaderJqueryFineUploaderJqueryFineUploaderJs);
-	
-	var _underscore = __webpack_require__(169);
-	
-	var _underscore2 = _interopRequireDefault(_underscore);
 	
 	var $ = __webpack_require__(1);
 	
@@ -38705,6 +38180,7 @@
 	      callbacks: {
 	        onComplete: function onComplete(id, name, response, xhr) {
 	          var image = response.file.location;
+	          $('#image').attr('src', image);
 	        }
 	      }
 	    });
@@ -38724,7 +38200,7 @@
 	module.exports = FineUploaderHelper;
 
 /***/ },
-/* 217 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -50445,6 +49921,489 @@
 	
 	/*! 2016-06-16 */
 
+
+/***/ },
+/* 206 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _jquery = __webpack_require__(1);
+	
+	var _jquery2 = _interopRequireDefault(_jquery);
+	
+	var _underscore = __webpack_require__(169);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _templatesFunnySquareHtml = __webpack_require__(207);
+	
+	var _templatesFunnySquareHtml2 = _interopRequireDefault(_templatesFunnySquareHtml);
+	
+	var _handlebars = __webpack_require__(172);
+	
+	var _handlebars2 = _interopRequireDefault(_handlebars);
+	
+	var template;
+	var app = {
+	  init: function init() {
+	    template = _handlebars2['default'].compile(_templatesFunnySquareHtml2['default']);
+	    app.render();
+	  },
+	  render: function render() {
+	    // display 6 squares
+	    var numberOfSquares = 6;
+	    var renderedHtml = '';
+	    _underscore2['default'].times(numberOfSquares, function (index) {
+	      renderedHtml += template({ id: index + 1 });
+	    });
+	    (0, _jquery2['default'])('body').append(renderedHtml);
+	  }
+	};
+	
+	module.exports = app;
+
+/***/ },
+/* 207 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"square-container\">\n  <div class=\"square square{{id}}\">\n    <div class=\"inner\">{{id}}</div>\n  </div>\n</div>";
+
+/***/ },
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _jquery = __webpack_require__(1);
+	
+	var _jquery2 = _interopRequireDefault(_jquery);
+	
+	var _templatesNavbarHtml = __webpack_require__(209);
+	
+	var _templatesNavbarHtml2 = _interopRequireDefault(_templatesNavbarHtml);
+	
+	var app = {
+	  init: function init() {
+	    app.render();
+	  },
+	  render: function render() {
+	    (0, _jquery2['default'])('header').append(_templatesNavbarHtml2['default']);
+	  }
+	};
+	
+	module.exports = app;
+
+/***/ },
+/* 209 */
+/***/ function(module, exports) {
+
+	module.exports = "<nav>\n  <a role=\"menuitem\" href=\"/pages/todo.html\">Todo Application</a>\n  <a role=\"menuitem\" href=\"/pages/todoReact.html\">Todo React Application</a>\n  <a role=\"menuitem\" href=\"/pages/funnySquares.html\">Funny Squares</a>\n  <a role=\"menuitem\" href=\"/pages/photoSearch.html\">Photo Search</a>\n  <a role=\"menuitem\" href=\"/pages/logoMagic.html\">My Project - Logo Magic</a>\n  <!-- <a role=\"menuitem\" href=\"/pages/project.html\">My Project - Login Page</a> -->\n</nav>";
+
+/***/ },
+/* 210 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _jquery = __webpack_require__(1);
+	
+	var _jquery2 = _interopRequireDefault(_jquery);
+	
+	var _templatesFlickrImageHtml = __webpack_require__(211);
+	
+	var _templatesFlickrImageHtml2 = _interopRequireDefault(_templatesFlickrImageHtml);
+	
+	var _handlebars = __webpack_require__(172);
+	
+	var _handlebars2 = _interopRequireDefault(_handlebars);
+	
+	var compiledTemplate = _handlebars2['default'].compile(_templatesFlickrImageHtml2['default']);
+	
+	var app = {
+	  init: function init() {
+	    app.render();
+	  },
+	  render: function render() {
+	    app.$input = (0, _jquery2['default'])('.search-container input');
+	    app.bindEvents();
+	  },
+	  bindEvents: function bindEvents() {
+	    app.$input.on('keypress', app.searchKeypress);
+	  },
+	  searchKeypress: function searchKeypress(event) {
+	    if (event.which === 13) {
+	      app.doSearch();
+	    }
+	  },
+	  doSearch: function doSearch() {
+	    var phrase = app.$input.val();
+	    _jquery2['default'].ajax({
+	      url: 'https://api.flickr.com/services/rest',
+	      method: 'GET',
+	      data: {
+	        text: phrase,
+	        method: 'flickr.photos.search',
+	        api_key: 'f09dfbf333809d88f4fe897c321de56b',
+	        format: 'json',
+	        per_page: 50
+	      },
+	      complete: function complete(response) {
+	        var text = response.responseText;
+	        text = text.slice(14, text.length - 1);
+	        var data = JSON.parse(text);
+	        app.renderResults(data);
+	      }
+	    });
+	  },
+	  renderResults: function renderResults(data) {
+	    var html = '';
+	    var myPhotos = data.photos.photo;
+	    myPhotos.forEach(function (item) {
+	      html += compiledTemplate(item);
+	    });
+	    (0, _jquery2['default'])('.search-results').html(html);
+	  }
+	};
+	
+	module.exports = app;
+
+/***/ },
+/* 211 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"photo\">\n\t<img src=\"https://farm{{farm}}.static.flickr.com/{{server}}/{{id}}_{{secret}}_b.jpg\">\n</div>";
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _react = __webpack_require__(5);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(162);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _backbone = __webpack_require__(168);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var _pagesTodoReactTodoModel = __webpack_require__(213);
+	
+	var _pagesTodoReactTodoModel2 = _interopRequireDefault(_pagesTodoReactTodoModel);
+	
+	var _pagesTodoReactTodoView = __webpack_require__(214);
+	
+	var _pagesTodoReactTodoView2 = _interopRequireDefault(_pagesTodoReactTodoView);
+	
+	var _pagesTodoReactTodoDispatcher = __webpack_require__(215);
+	
+	var _pagesTodoReactTodoDispatcher2 = _interopRequireDefault(_pagesTodoReactTodoDispatcher);
+	
+	var $ = __webpack_require__(1);
+	
+	var TodoReactListView = _backbone2['default'].View.extend({
+	  el: '.todo-container',
+	  model: _pagesTodoReactTodoModel2['default'],
+	  events: {
+	    'click .btn-add': 'addTodoItem',
+	    'keydown input.input-name': 'addTodoItemOnEnter'
+	  },
+	  initialize: function initialize() {
+	    this.model.fetch();
+	    this.model.on('change', this.render, this);
+	  },
+	  render: function render() {
+	    var todos = this.model.get('todos');
+	    var $ul = this.$el.find('.list-group');
+	    $ul.html('');
+	    todos.forEach(function (todo) {
+	      var $li = $('<li class="list-group-item row"></li>');
+	      $ul.append($li);
+	      _reactDom2['default'].render(_react2['default'].createElement(_pagesTodoReactTodoView2['default'], { data: todo }),
+	      // Get original DOMnode from jQuery object
+	      $li[0]);
+	    });
+	  },
+	  addTodoItem: function addTodoItem() {
+	    var $input = this.$el.find('.input-name');
+	    var newTitle = $input.val();
+	    _pagesTodoReactTodoDispatcher2['default'].addTodo(newTitle);
+	    $input.val('');
+	  },
+	  addTodoItemOnEnter: function addTodoItemOnEnter(event) {
+	    if (event.which === 13) {
+	      this.addTodoItem();
+	    }
+	  }
+	});
+	
+	module.exports = TodoReactListView;
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _underscore = __webpack_require__(169);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var _backbone = __webpack_require__(168);
+	
+	var _backbone2 = _interopRequireDefault(_backbone);
+	
+	var $ = __webpack_require__(1);
+	
+	var TodoModel = _backbone2['default'].Model.extend({
+	  defaults: {
+	    todos: []
+	  },
+	  todoSchema: {
+	    id: 0,
+	    title: '',
+	    completed: false,
+	    isEditing: false
+	  },
+	  fetch: function fetch() {
+	    var that = this;
+	    $.ajax({
+	      url: '/api',
+	      method: 'GET',
+	      complete: function complete(response) {
+	        var dataString = response.responseText;
+	        var data = JSON.parse(dataString);
+	        data = that.applySchema(data);
+	        that.set('todos', data);
+	      }
+	    });
+	  },
+	  save: function save() {
+	    var that = this;
+	    var todos = this.get('todos');
+	    $.ajax({
+	      url: '/api',
+	      method: 'POST',
+	      data: { todos: JSON.stringify(todos) },
+	      complete: function complete(response) {
+	        var dataString = response.responseText;
+	        var data = JSON.parse(dataString);
+	        data = that.applySchema(data);
+	        that.set('todos', data);
+	        that.trigger('change');
+	      }
+	    });
+	  },
+	  applySchema: function applySchema(todos) {
+	    var data = todos;
+	    var schema = this.todoSchema;
+	    data = _underscore2['default'].isArray(todos) ? data : [];
+	    data = data.map(function (todo, index) {
+	      todo.id = index;
+	      return _underscore2['default'].defaults(todo, schema);
+	    });
+	    return data;
+	  },
+	  addItem: function addItem(newTitle) {
+	    var newTodo = { title: newTitle };
+	    var todos = this.get('todos');
+	    todos.push(newTodo);
+	    this.set('todos', todos);
+	    this.save();
+	  },
+	  removeItem: function removeItem(id) {
+	    // finally actually remove the thing
+	    var todos = this.get('todos');
+	    todos.splice(id, 1);
+	    this.save();
+	  },
+	  itemCompleted: function itemCompleted(id) {
+	    var todos = this.get('todos');
+	    var item = _underscore2['default'].findWhere(todos, { id: id });
+	    item.completed = !item.completed;
+	    this.set('todos', todos);
+	    this.save();
+	  },
+	  editTitle: function editTitle(id, newTitle) {
+	    var todos = this.get('todos');
+	    var item = _underscore2['default'].findWhere(todos, { id: id });
+	    item.title = newTitle;
+	    item.isEditing = false;
+	    this.set('todos', todos);
+	    this.save();
+	  },
+	  ignoreEdit: function ignoreEdit(id) {
+	    // blackholed
+	    var todos = this.get('todos');
+	    var item = _underscore2['default'].findWhere(todos, { id: id });
+	    item.isEditing = false;
+	    this.save();
+	  },
+	  startEditing: function startEditing(id) {
+	    var todos = this.get('todos');
+	    var item = _underscore2['default'].findWhere(todos, { id: id });
+	    item.isEditing = true;
+	    this.set('todos', todos);
+	    this.save();
+	  }
+	});
+	
+	var todoModel = new TodoModel();
+	
+	module.exports = todoModel;
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _react = __webpack_require__(5);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _jquery = __webpack_require__(1);
+	
+	var _jquery2 = _interopRequireDefault(_jquery);
+	
+	var _pagesTodoReactTodoDispatcher = __webpack_require__(215);
+	
+	var _pagesTodoReactTodoDispatcher2 = _interopRequireDefault(_pagesTodoReactTodoDispatcher);
+	
+	var TodoItem = _react2['default'].createClass({
+	  displayName: 'TodoItem',
+	
+	  propTypes: {
+	    data: _react.PropTypes.shape({
+	      id: _react.PropTypes.number,
+	      title: _react.PropTypes.string,
+	      completed: _react.PropTypes.bool
+	    }),
+	    controller: _react.PropTypes.object
+	  },
+	  render: function render() {
+	    var todo = this.props.data;
+	    var title = _react2['default'].createElement(
+	      'div',
+	      { className: 'col-sm-10', onKeyPress: this.addItemOnEnter, onClick: this.titleClick },
+	      todo.title
+	    );
+	    if (todo.isEditing) {
+	      title = _react2['default'].createElement(
+	        'div',
+	        { className: 'col-sm-10' },
+	        _react2['default'].createElement('input', { type: 'text', className: 'form-control', defaultValue: todo.title, onKeyUp: this.editKeypress, onChange: function () {} })
+	      );
+	    }
+	
+	    return _react2['default'].createElement(
+	      'div',
+	      null,
+	      _react2['default'].createElement(
+	        'div',
+	        { className: 'col-sm-1' },
+	        _react2['default'].createElement('input', { type: 'checkbox', checked: todo.completed, onChange: this.handleComplete })
+	      ),
+	      title,
+	      _react2['default'].createElement(
+	        'div',
+	        { className: 'col-sm-1' },
+	        _react2['default'].createElement(
+	          'button',
+	          { type: 'button', 'aria-label': 'Close', onClick: this.handleClose },
+	          _react2['default'].createElement(
+	            'span',
+	            { 'aria-hidden': 'true' },
+	            '×'
+	          )
+	        )
+	      )
+	    );
+	  },
+	  editKeypress: function editKeypress(event) {
+	    var id = this.props.data.id;
+	    var newTitle = (0, _jquery2['default'])('li').eq(id).find('input[type="text"]').val();
+	    _pagesTodoReactTodoDispatcher2['default'].editTodoTitle(id, newTitle, event);
+	  },
+	  handleClose: function handleClose() {
+	    var id = this.props.data.id;
+	    _pagesTodoReactTodoDispatcher2['default'].removeTodo(id);
+	  },
+	  handleComplete: function handleComplete() {
+	    var id = this.props.data.id;
+	    _pagesTodoReactTodoDispatcher2['default'].clickComplete(id);
+	  },
+	  titleClick: function titleClick() {
+	    var id = this.props.data.id;
+	    _pagesTodoReactTodoDispatcher2['default'].startEditMode(id);
+	  },
+	  addItemOnEnter: function addItemOnEnter(event) {
+	    _pagesTodoReactTodoDispatcher2['default'].addTodoEnter(event);
+	  }
+	});
+	
+	module.exports = TodoItem;
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _pagesTodoReactTodoModel = __webpack_require__(213);
+	
+	var _pagesTodoReactTodoModel2 = _interopRequireDefault(_pagesTodoReactTodoModel);
+	
+	var dispatcher = {
+	  clickComplete: function clickComplete(id) {
+	    _pagesTodoReactTodoModel2['default'].itemCompleted(id);
+	  },
+	  addTodo: function addTodo(title) {
+	    if (title !== '' && typeof title === 'string') {
+	      _pagesTodoReactTodoModel2['default'].addItem(title);
+	    }
+	  },
+	  addTodoEnter: function addTodoEnter(event) {
+	    var title;
+	    if (event.which === 13 && title !== '' && typeof title === 'string') {
+	      _pagesTodoReactTodoModel2['default'].addItem();
+	    }
+	  },
+	  removeTodo: function removeTodo(id) {
+	    _pagesTodoReactTodoModel2['default'].removeItem(id);
+	  },
+	  editTodoTitle: function editTodoTitle(id, newTitle, event) {
+	    if (event.which === 13 && typeof newTitle === 'string' && newTitle.length > 0) {
+	      _pagesTodoReactTodoModel2['default'].editTitle(id, newTitle);
+	    } else if (event.which === 27) {
+	      _pagesTodoReactTodoModel2['default'].ignoreEdit(id);
+	    }
+	  },
+	  startEditMode: function startEditMode(id) {
+	    _pagesTodoReactTodoModel2['default'].startEditing(id);
+	  }
+	};
+	
+	module.exports = dispatcher;
 
 /***/ }
 /******/ ]);

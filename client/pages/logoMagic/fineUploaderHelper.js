@@ -1,6 +1,6 @@
 var $ = require('jquery');
 import fineUploader from '../../../node_modules/fine-uploader/jquery.fine-uploader/jquery.fine-uploader.js';
-import _ from 'underscore';
+
 
 var FineUploaderHelper = {
   initialize: function(element){
@@ -27,6 +27,7 @@ var FineUploaderHelper = {
       callbacks: {
         onComplete: function(id, name, response, xhr) {
           var image = response.file.location;
+          $('#image').attr('src', image);
         }
       }
     });

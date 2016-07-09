@@ -4,12 +4,11 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"> -->
   <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
   <link rel="stylesheet" type="text/css" href="/main.css">
   <link rel="stylesheet" type="text/css" href="../fineUploader.css">
   <link rel="stylesheet" type="text/css" href="../fine-uploader-gallery.css">
-  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
+  <!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"> -->
   <script type="text/javascript" async="async" defer="defer" src="/application.js"></script>
   
   <script type="text/template" id="qq-template-gallery">
@@ -22,10 +21,10 @@
       </div>
 
       <div class="buttons">
-        <div class="qq-upload-button-selector qq-upload-button">
+        <button class="qq-upload-button-selector qq-upload-button selector-button btn-primary">
           <div>Select files</div>
-        </div>
-        <button type="button" id="trigger-upload" class="btn btn-primary">
+        </button>
+        <button type="button" id="trigger-upload" class="qq-upload-button btn-primary">
           <i class="icon-upload icon-white"></i> Upload
         </button>
       </div>
@@ -46,7 +45,7 @@
           <button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>
           <button type="button" class="qq-upload-retry-selector qq-upload-retry">
             <span class="qq-btn qq-retry-icon" aria-label="Retry"></span>
-            Retry
+  
           </button>
 
           <div class="qq-file-info">
@@ -100,16 +99,11 @@
 </head>
 <body>
   <div id="uploader"></div>
-    <!-- Fine Uploader DOM Element
-    ====================================================================== -->
-    
-
-    <!-- Your code to create an instance of Fine Uploader and bind to the DOM/template
-    ====================================================================== -->
-    <ul class="server-images-list">
-      <!-- Testing! -->
-    </ul>
-  </body>
-  </html>
+  <ul class="server-images-list"></ul>
+  <div class="combined-image-container">
+    <img id="image">
+  </div>
+</body>
+</html>
 
 

@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import React, { PropTypes } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import 'styles/main.scss';
 import TodoControllerView from 'pages/todo/todoController';

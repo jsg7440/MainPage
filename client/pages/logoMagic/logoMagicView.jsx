@@ -1,8 +1,18 @@
 var $ = require('jquery');
-import React, { PropTypes } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import LogoMagicModel from 'pages/logoMagic/logoMagicModel';
 import FineUploaderHelper from 'pages/logoMagic/fineUploaderHelper';
+
+// var LogoMagicView = {
+//   init: function() {
+//     var $this = $(ReactDOM.findDOMNode(this));
+//     LogoMagicView.render($this);
+//     FineUploaderHelper.initialize($this);
+//   },
+//   render: function($this){
+//     $this.html(<div id="fine-uploader-gallery"></div>);
+//   }
+// };
 
 var LogoMagicView = React.createClass({
   componentDidMount: function() {
@@ -13,28 +23,16 @@ var LogoMagicView = React.createClass({
     return (
       <div id="fine-uploader-gallery"></div> 
       );
-  },
-  initialize: function(){
-    this.LogoMagicModel.fetch();
-    this.LogoMagicModel.on('change', this.render, this); 
   }
+  // TODO: implement the model
+  // initialize: function(){
+    // this.LogoMagicModel.fetch();
+    // this.LogoMagicModel.on('change', this.render, this); 
+  // },
+  // drawNewImage: function(image){
+  //   var src = document.createElement('img');
+  //   document.getElementById('server-images-list').appendChild(image);
+  // }
 });
 
 module.exports = LogoMagicView;
-
-    //   images.forEach(function(){
-    //     var $li = $('                                                                                           \
-    //       <figure>                                                                                              \
-    //         <img src="{image.url}" alt="{image.filename}" width="{image.width}" height="image.height">          \
-    //         <figcaption>{image.title}</figcaption>                                                              \
-    //       </figure>                                                                                             \
-    //       .');
-
-    // var $ul = window.find('.server-images-list');
-    //       // $ul.html('');
-    //       var $li = $('                                \
-    //         <figure>                                   \
-    //         <img src="{image}">                        \
-    //         </figure>                                  \
-    //         .');                                       
-    //       $ul.append($li);

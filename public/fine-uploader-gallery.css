@@ -22,6 +22,7 @@
     color: #FFFFFF;
     border-radius: 2px;
     border: 1px solid #37B7CC;
+    margin: 2px;
     box-shadow: 0 1px 1px rgba(255, 255, 255, 0.37) inset,
     1px 0 1px rgba(255, 255, 255, 0.07) inset,
     0 1px 0 rgba(0, 0, 0, 0.36),
@@ -435,7 +436,7 @@
 .qq-gallery.qq-uploader DIALOG {
     display: none;
 }
-
+    
 .qq-gallery.qq-uploader DIALOG[open] {
     display: block;
 }

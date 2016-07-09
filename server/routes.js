@@ -31,10 +31,6 @@ router.post('/api', function(req, res){
   });
 });
 
-router.get('/logoMagicAPI', function (){
-  // fineUpload.
-});
-
 router.post('/logomagicAPI', function(req, res){
   fineUpload.onUpload(req, res);
 });

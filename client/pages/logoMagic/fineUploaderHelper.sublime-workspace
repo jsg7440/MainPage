@@ -1,0 +1,459 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"file",
+				"file_path1"
+			],
+			[
+				"in",
+				"input-name"
+			],
+			[
+				"ha",
+				"handleClose"
+			],
+			[
+				"data",
+				"databasePath"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"compileT",
+				"compiledTemplate"
+			],
+			[
+				"todos",
+				"todos"
+			],
+			[
+				"b",
+				"botanist"
+			],
+			[
+				"sc",
+				"src"
+			],
+			[
+				"num",
+				"numberOfGames"
+			],
+			[
+				"menu",
+				"menuitem"
+			],
+			[
+				"ar",
+				"article	Tag"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 87.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 120.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/jsg7440/class/projects/jQuery-ToDo/server/fineUpload.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/server/routes.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/fine-uploader-gallery.css",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/logoMagic/logoMagicView.jsx",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/pages/logoMagic.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/styles/logoMagic.scss",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/logoMagic/fineUploaderHelper.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/App.jsx",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/fineUploader.css",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/styles/main.scss",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/styles/todo.scss",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/logoMagic/logoMagicImageView.jsx",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/logoMagic/logoMagicModel.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/logoMagic/logoMagicDispatcher.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/pages/todoReact.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/.gitignore",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/server/imageDatabase/687f1a5d-32b7-486b-a392-8f8772b67ed2/download.png",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/server/imageDatabase/permanent/output.jpg",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/package.json",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/server/imageDatabase/5681d24d-b283-4a7e-9235-464ae302b9d1/output.jpg",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/server/app.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/server/imageDatabase/.gitignore",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/server/imageDatabase/dbInit",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/server/webpack.config.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/project.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/node_modules/jquery/dist/jquery.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/application.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/todoReact/todoListView.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/styles/fineUploader.css",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/server/routes/routes.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/todoReact/todoView.jsx",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/todoReact/todoDispatcher.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/templates/navbar.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/logoMagic/logoMagicImageCombiner.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/logoMagic/logoMagicUploader.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/logoMagic/logoMagicImageCombiner.ja",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/css/dropzone.css",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/dropzone.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/logoMagic/logoMagicController.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/todoReact/todoModel.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/logoMagic.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/Procfile",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/todoReact/todoController.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/pages/project.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/styles/project.scss",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/funnySquares.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/todo/todoModel.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/templates/funnySquare.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/templates/logoMagic.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/styles/todoReact.scss",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/todo/todo-jquery.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/server/database.json",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/todo/todoView.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/todo/todoController.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/todo.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/styles/photoSearch.scss",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/server/view.ejs",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/photoSearch.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/pages/photoSearch.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/templates/flickrImage.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/styles/funnySquares.scss",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/pages/funnySquares.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/todo-backbone.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/pages/todo.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/templates/todoItem.html",
+		"/Users/jsg7440/Downloads/nvdcve-modifiedtrans.xml",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/Templates/todoItem.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/Templates/funnySquare.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/Templates/navbar.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/Templates/todoModal.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/components/header.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/Templates/<div class=\"modal fade\" tabindex=\"-1\" role=\"dialog.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/goL.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/js/goL.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/threeJSExample.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/js/threeJSExample.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/README.md",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/pages/threeJSExample.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/goL games.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/pages/goL.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/styles/threeJSExample.scss",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/styles/goL.scss",
+		"/Users/jsg7440/class/projects/Misc/THREEExample.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/golNew.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/pages/visualization.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/pages/visualization.html",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/styles/visualization.scss",
+		"/Users/jsg7440/class/projects/Misc/javascriptTypes.js",
+		"/Users/jsg7440/class/projects/Misc/jqueryBasics.js",
+		"/Users/jsg7440/class/projects/Misc/vanillaJavascript.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/Pages/project.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/Styles/project.scss",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/Styles/main.scss",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/Pages/todo.js",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/client/Styles/todo.scss",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/css/bootstrap.min.css",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/public/main.css",
+		"/Users/jsg7440/class/projects/jQuery-ToDo/server/.eslintrc",
+		"/Users/jsg7440/class/projects/Misc/cssAdvancedSelectors",
+		"/Users/jsg7440/class/projects/jQuery ToDo/server/detail.ejs",
+		"/Users/jsg7440/class/projects/Syllabus/Week2_CSS.md",
+		"/Users/jsg7440/class/projects/Syllabus/README.md",
+		"/Users/jsg7440/class/projects/jQuery ToDo/server/view.ejs",
+		"/Users/jsg7440/class/projects/untitled.html",
+		"/Users/jsg7440/class/projects/firstproject/client/App.jsx",
+		"/Users/jsg7440/class/projects/firstproject/index.php",
+		"/Users/jsg7440/class/projects/Starter Files/beginning.html",
+		"/Users/jsg7440/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/jsg7440/class/projects/jQuery-ToDo",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"mkd",
+			"height",
+			"failure",
+			"mkdirp",
+			"server-images-list",
+			"qq-upload-button",
+			"selector",
+			"react",
+			"funnySquares",
+			"src",
+			"xhr",
+			"$",
+			"_.",
+			"todoitem",
+			"render",
+			"drawimage",
+			"responsedata",
+			"success: false",
+			"mkdirp",
+			"console.log",
+			"upload",
+			"onsimple",
+			"response",
+			"render",
+			"componentDidMount",
+			"dispat",
+			"model",
+			"dir",
+			"combineImages",
+			"_.bind",
+			"_",
+			"mkdirp",
+			"onsimpleupload",
+			"moveup",
+			"combineImages",
+			"onsimpleupload",
+			"uuid",
+			"moveUploadedFile",
+			"uuid",
+			"movefile",
+			"movefil",
+			"movefile",
+			"combine",
+			"uuid",
+			"filedestination",
+			"combine",
+			"uuid",
+			"images",
+			"imagedatabase",
+			"combineImages",
+			"combineImages	",
+			"combineImages",
+			"combineimage",
+			"uuid",
+			"destinat",
+			"combineImages",
+			"width",
+			"height",
+			"width",
+			"images",
+			"combineimages",
+			"filedestination",
+			"destination",
+			"onsubmit",
+			"filedestination",
+			"combineimages",
+			"moveupload",
+			"fileDestination",
+			"destination",
+			"fileDestination",
+			"qq",
+			"defaultParams",
+			"defaultParam",
+			"generate",
+			"fineuploader",
+			"fineupload",
+			"ReactDOM",
+			"on",
+			"uploadedFilesPath",
+			"maxFileSize",
+			"fineuploader",
+			"upl",
+			"node",
+			"nodeModulesDir",
+			"publicDir",
+			"maxFileSize",
+			"port",
+			"qq-template-gallery",
+			"gallery",
+			"qq-template-gallery",
+			"commonConfiguration",
+			"jquer",
+			"jqu",
+			"jquery",
+			"init",
+			"fs",
+			"backbone",
+			"fields",
+			"multipart",
+			"');\n",
+			"success",
+			"watch",
+			"todos",
+			"data",
+			"todoitemview",
+			"title",
+			"controller",
+			"todos",
+			"model",
+			"routes",
+			"var",
+			"init",
+			"applyschema",
+			"additem",
+			"editti",
+			"additem",
+			"backbone",
+			"init",
+			"DROPZON",
+			"addTodoItemOnEnter",
+			"addtodoitem",
+			"addtodo",
+			"additem",
+			"addItemOnEnter",
+			"addtodo",
+			"newTitle",
+			"addtodo",
+			"button"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "fineUploaderHelper.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 352.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

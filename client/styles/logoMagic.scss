@@ -25,3 +25,13 @@
 	overflow: hidden;
 	display: inline-block;
 }
+
+.combined-image-container {
+    width: inherit;
+    border-radius: 6px;
+    border: 1px solid #CCCCCC;
+    background-color: #FAFAFA;
+    padding: 20px;	
+    height: 100%;
+    min-height: 300px;
+}
